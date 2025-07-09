@@ -1,0 +1,225 @@
+above: ở trên
+access: truy cập
+accountable for: chịu trách nhiệm cho
+adapt: thích nghi
+admit: thừa nhận
+advance: tiến bộ
+advertising: quảng cáo
+advice: lời khuyên
+affiliation: sự liên kết
+afford: có đủ khả năng
+agent: đại lý
+aim to: nhằm mục đích
+allergy: dị ứng
+allocation: sự phân bổ
+alternative: thay thế
+although: mặc dù
+among: trong số
+any left: còn lại không
+applicant: người ứng tuyển
+assume: giả định
+audiences: khán giả
+aware: nhận thức
+aware of: nhận biết
+bargained: mặc cả
+be able to: có thể
+belonging: sở hữu
+beside: bên cạnh
+boots: giày ống
+bring: mang lại
+by the way: nhân tiện
+calm: bình tĩnh
+can lead to: có thể dẫn đến
+capable: có khả năng
+castle: lâu đài
+clerk: thư ký
+clinic: phòng khám
+coincided: trùng hợp
+combines: kết hợp
+come with: đi kèm
+compatible with: tương thích với
+competent: có năng lực
+competition: cuộc thi
+compliant: tuân thủ
+complicate: làm phức tạp
+complimentary: khen ngợi
+concluded: đã kết luận
+confidence: sự tự tin
+congestion: sự tắc nghẽn
+considered: được xem là
+contingency: tình huống bất ngờ
+convene: triệu tập
+conveniant: tiện lợi
+cooperation: sự hợp tác
+courteous: lịch sự
+crops: mùa vụ
+debute: tranh luận
+decision: quyết định
+decisions: các quyết định
+dedicate: cống hiến
+defect: lỗi
+demand: nhu cầu
+determine: xác định
+devote: cống hiến
+difficult: khó khăn
+discard: vứt bỏ
+disputes: tranh chấp
+distance: khoảng cách
+distantly: một cách xa cách
+distinct: riêng biệt
+distribute: phân phối
+dividing: phân chia
+effective: hiệu quả
+elect: bầu chọn
+elected: được bầu
+eligible: đủ điều kiện
+energetic: nhiệt huyết
+enough: đủ
+ensure: đảm bảo
+enthusiasm: sự nhiệt tình
+envelop: bao phủ
+estate: bất động sản
+evacuation: sự sơ tán
+ever: đã từng
+except for: ngoại trừ
+excess: sự dư thừa
+exchange: trao đổi
+expect: mong đợi
+expended: đã tiêu tốn
+expert: chuyên gia
+expired: hết hạn
+extinguishing: dập tắt
+factually: dựa trên thực tế
+fall: ngã
+familiar: quen thuộc
+features: đặc điểm
+fertile: màu mỡ
+flourish: phát triển mạnh
+fold: gấp lại
+fomula: công thức
+frequent: thường xuyên
+frequently: thường xuyên
+fundraising: gây quỹ
+furaces: lò luyện kim
+further: thêm nữa
+garment: quần áo
+gladly: một cách vui vẻ
+grades: điểm số
+guest: khách
+hand on: trao tay
+has to be: phải
+held: được tổ chức
+hired: được thuê
+immediately: ngay lập tức
+impress: gây ấn tượng
+include: bao gồm
+indicate: chỉ ra
+indicated: đã chỉ ra
+industry: ngành công nghiệp
+influenced: bị ảnh hưởng
+instead of: thay vì
+institute: học viện
+intend: dự định
+intensive: chuyên sâu
+invest in: đầu tư vào
+invitation: lời mời
+involves: liên quan đến
+isolate: cách ly
+jeumlessly: lành mạnh
+known: được biết đến
+lift: nâng lên
+look forward to: trông mong
+mandatory: bắt buộc
+meet to need: đáp ứng nhu cầu
+neatly: gọn gàng
+necessary: cần thiết
+negotiated: đã đàm phán
+negotiating: đàm phán
+numerous: nhiều
+observer: người quan sát
+occupant: người chiếm giữ
+opportunity: cơ hội
+outcome: kết quả
+parcel: bưu kiện
+permit: giấy phép
+personal belonging: đồ dùng cá nhân
+position: vị trí
+possible: có thể
+potential: tiềm năng
+praised: được khen ngợi
+predict: dự đoán
+prescription: đơn thuốc
+present: trình bày
+preserve: bảo tồn
+prevalence: sự phổ biến
+primary: chính, chủ yếu
+prishable: dễ hỏng
+probably: có lẽ
+productivity: năng suất
+profoundly: sâu sắc
+prohibiting: ngăn cấm
+proof: bằng chứng
+prosperous: thịnh vượng
+provides: cung cấp
+punctual: đúng giờ
+purchased: đã mua
+rarely: hiếm khi
+reasons: lý do
+recognized: được công nhận
+recovery: sự phục hồi
+reduced: đã giảm
+refer: tham khảo
+refrain: kiềm chế
+regardless of: bất kể
+regular: thường xuyên
+rely on: dựa vào
+remain: vẫn còn
+rental: cho thuê
+restricted: bị hạn chế
+retain: giữ lại
+revolutionize: cách mạng hóa
+rise: tăng
+roof: mái nhà
+rural: nông thôn
+scenic: đẹp
+sector: ngành
+seeking: đang tìm kiếm
+several: một vài
+shifts: ca làm việc
+signification: ý nghĩa
+slightly: hơi
+so that: để mà
+soliciting: kêu gọi
+soon: sớm
+speading: trãi rộng
+state: trạng thái
+statement: lời tuyên bố
+steady: ổn định
+stir: khuấy
+straightforward: thẳng thắn
+strategies: chiến lược
+strict: nghiêm ngặt
+stuns: làm choáng váng
+substantial: đáng kể
+suggested: đã gợi ý
+supervisor: người giám sát
+supply and demand: cung và cầu
+suppose: giả sử
+surrounding: xung quanh
+suspension: sự đình chỉ
+take on the role: đảm nhận vai trò
+targible: hữu hình
+temporary: tạm thời
+theory: lý thuyết
+thoroughly: một cách kỹ lưỡng
+through: thông qua
+toward: hướng về
+undertake: đảm nhận
+unfold: mở ra
+unless: trừ khi
+vacancy without: vị trí trống không có
+vacant: trống
+virtually: gần như
+visitor: khách tham quan
+whether: liệu rằng
+wholly: toàn bộ

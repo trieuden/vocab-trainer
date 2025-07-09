@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Luyện Từ Vựng</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f0f2f5;
+                text-align: center;
+                padding: 50px;
+            }
+            .card {
+                background: white;
+                border-radius: 10px;
+                padding: 30px;
+                max-width: 400px;
+                margin: auto;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                font-size: 32px;
+                color: #333;
+            }
+            input {
+                padding: 10px;
+                width: 80%;
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            button {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .check-btn {
+                background-color: #4caf50;
+                color: white;
+            }
+            .show-btn {
+                background-color: #2196f3;
+                color: white;
+            }
+            .result {
+                margin-top: 10px;
+                font-weight: bold;
+                color: #d32f2f;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h2 id="word">...</h2>
+            <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" />
+            <div>
+                <button class="check-btn" onclick="checkAnswer()">Kiểm tra</button>
+                <button onclick="showResult()">Hiện kết quả</button>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+
+        <script>
+            let data = {};
+            let currentWord = "";
+            let keys = [];
+
+            // Đọc file vocabulary_list.txt
+            fetch("vocabulary_list.txt")
+                .then((res) => res.text())
+                .then((text) => {
+                    const lines = text.split("\n");
+                    lines.forEach((line) => {
+                        const [key, value] = line.split(":");
+                        if (key && value) {
+                            data[key.trim()] = value.trim();
+                        }
+                    });
+                    keys = Object.keys(data);
+                    pickRandomWord();
+                });
+
+            function pickRandomWord() {
+                currentWord = keys[Math.floor(Math.random() * keys.length)];
+                document.getElementById("word").textContent = currentWord;
+                document.getElementById("answer").value = "";
+                document.getElementById("result").textContent = "";
+            }
+
+            function handleKey(event) {
+                if (event.key === "Enter") {
+                    checkAnswer();
+                } else if (event.key === "Shift") {
+                    showResult();
+                }
+            }
+
+            function checkAnswer() {
+                const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+                const correctAnswer = data[currentWord].toLowerCase();
+
+                if (userAnswer === correctAnswer) {
+                    pickRandomWord();
+                } else {
+                    document.getElementById("result").textContent = "Sai rồi! Hãy thử lại.";
+                }
+            }
+
+            function showResult() {
+                document.getElementById("result").textContent = `Đáp án đúng: "${data[currentWord]}"`;
+            }
+        </script>
+    </body>
+</html>
