@@ -21,7 +21,7 @@ assume: giả định / cho rằng
 audiences: khán giả
 aware: nhận thức
 aware of: nhận biết
-bargain(n / v): giá hời / sự mặc cả
+bargain (n / v): giá hời / sự mặc cả
 be able to: có thể
 belonging: đồ dùng / sỡ hữu
 beside: bên cạnh
@@ -32,7 +32,7 @@ calm: bình tĩnh
 can lead to: có thể dẫn đến
 capable: có khả năng
 castle: lâu đài
-clerk: thư ký
+clerk: lễ tân / nhân viên
 clinic: phòng khám
 coincide: trùng hợp
 combines: kết hợp

@@ -2,7 +2,7 @@
 <html lang="vi">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Luyện Từ Vựng</title>
         <style>
             body {
@@ -14,12 +14,7 @@
                 min-height: 100vh;
                 box-sizing: border-box;
             }
-            #tagname {
-                position: absolute;
-                top: -6px;
-                right: 5px;
-                font-size: 11px;
-            }
+
             .card {
                 background: rgb(44, 44, 44);
                 border-radius: 10px;
@@ -27,17 +22,26 @@
                 max-width: 400px;
                 margin: auto;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                position: relative;
                 width: 100%;
                 box-sizing: border-box;
-                position: relative;
             }
+
+            #tagname {
+                position: absolute;
+                top: -6px;
+                right: 5px;
+                font-size: 11px;
+            }
+
             h2 {
                 font-size: 28px;
                 color: #ffffff;
                 margin: 10px 0 20px 0;
                 word-break: break-word;
             }
-            input {
+
+            input[type="text"] {
                 padding: 12px;
                 width: calc(100% - 24px);
                 margin: 10px 0;
@@ -45,9 +49,8 @@
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 box-sizing: border-box;
-                -webkit-appearance: none;
-                appearance: none;
             }
+
             button {
                 padding: 12px 16px;
                 margin: 5px;
@@ -56,9 +59,8 @@
                 border-radius: 5px;
                 cursor: pointer;
                 min-height: 44px;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
             }
+
             .check-btn {
                 background-color: #4caf50;
                 color: white;
@@ -75,87 +77,71 @@
                 background-color: #9c27b0;
                 color: white;
             }
+
             .recording {
                 background-color: #f44336 !important;
                 animation: pulse 1s infinite;
             }
+
             @keyframes pulse {
-                0% {
+                0%,
+                100% {
                     opacity: 1;
                 }
                 50% {
                     opacity: 0.7;
                 }
-                100% {
-                    opacity: 1;
-                }
             }
+
             .result {
                 margin-top: 10px;
                 font-weight: bold;
                 color: #d32f2f;
             }
+
             .stats {
                 margin-top: 30px;
-                color: #555;
+                color: #ccc;
                 font-size: 16px;
             }
+
             #correctCount {
-                color: #880101;
+                color: #00e676;
                 font-weight: bold;
             }
             #wrongCount {
-                color: #4531f5;
+                color: #ff5252;
                 font-weight: bold;
             }
 
-            /* Responsive Design cho Mobile */
-            @media (max-width: 480px) {
-                body {
-                    padding: 10px;
-                }
-                .card {
-                    padding: 15px;
-                    max-width: none;
-                }
-                h2 {
-                    font-size: 24px;
-                    margin: 5px 0 15px 0;
-                }
-                button {
-                    font-size: 13px;
-                    padding: 10px 12px;
-                    margin: 3px;
-                    width: calc(50% - 6px);
-                    box-sizing: border-box;
-                }
-                .stats {
-                    font-size: 14px;
-                    margin-top: 20px;
-                }
-                input {
-                    font-size: 16px;
-                }
+            #fileInput {
+                display: none;
             }
 
-            /* Responsive cho iPhone SE và màn hình nhỏ */
-            @media (max-width: 375px) {
-                .card {
-                    padding: 12px;
-                }
-                h2 {
-                    font-size: 22px;
-                }
-                button {
-                    font-size: 12px;
-                    padding: 8px 10px;
-                }
+            .file-section {
+                margin-top: 30px;
+            }
+
+            .file-btn {
+                border: #3b3c3d dotted 1px;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: inline-block;
+                cursor: pointer;
+            }
+
+            .file-name {
+                color: #ccc;
+                margin-top: 8px;
+                font-size: 13px;
             }
         </style>
     </head>
     <body>
         <div class="card">
             <p id="tagname">@trieuden</p>
+
             <h2 id="word">...</h2>
             <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" />
             <div>
@@ -168,18 +154,56 @@
             </div>
             <div class="result" id="result"></div>
             <div class="stats">Đúng: <span id="correctCount">0</span> | Sai: <span id="wrongCount">0</span></div>
+
+            <!-- Chọn file ở dưới cùng -->
+            <div class="file-section">
+                <label class="file-btn" for="fileInput">Import</label>
+                <input type="file" id="fileInput" accept=".txt" />
+                <div class="file-name" id="fileNameDisplay">Chưa chọn file</div>
+            </div>
         </div>
 
         <script>
             let data = {};
-            let currentWord = "";
             let keys = [];
+            let currentWord = "";
             let correctCount = 0;
             let wrongCount = 0;
             let isRecording = false;
             let recognition = null;
             let showVoc = false;
 
+            // File input
+            const fileInput = document.getElementById("fileInput");
+            const fileNameDisplay = document.getElementById("fileNameDisplay");
+
+            fileInput.addEventListener("change", (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    fileNameDisplay.textContent = file.name;
+                    readFile(file);
+                }
+            });
+
+            function readFile(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const lines = e.target.result.split("\n");
+                    data = {};
+                    lines.forEach((line) => {
+                        const [key, value] = line.split(":");
+                        if (key && value) {
+                            data[key.trim()] = value.trim();
+                        }
+                    });
+                    keys = Object.keys(data);
+                    if (keys.length > 0) pickRandomWord();
+                    else alert("File không hợp lệ. Định dạng: từ: nghĩa");
+                };
+                reader.readAsText(file);
+            }
+
+            // nhận diện giọng nói
             if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 recognition = new SpeechRecognition();
@@ -194,14 +218,7 @@
                     stopRecording();
                 };
 
-                recognition.onerror = function (event) {
-                    console.error("Lỗi nhận diện giọng nói:", event.error);
-                    stopRecording();
-                };
-
-                recognition.onend = function () {
-                    stopRecording();
-                };
+                recognition.onerror = recognition.onend = () => stopRecording();
             }
 
             fetch("vocabulary_list.txt")
@@ -226,11 +243,9 @@
             }
 
             function handleKey(event) {
-                if (event.key === "Enter") {
-                    checkAnswer();
-                } else if (event.key === "Shift") {
-                    showResult();
-                } else if (event.key === " " && event.ctrlKey) {
+                if (event.key === "Enter") checkAnswer();
+                else if (event.key === "Shift") showResult();
+                else if (event.key === " " && event.ctrlKey) {
                     event.preventDefault();
                     speakWord();
                 } else if (event.key === " " && event.altKey) {
@@ -247,11 +262,8 @@
                     .map((x) => x.trim());
 
                 if (correctAnswers.includes(userAnswer)) {
-                    if (showVoc === true) {
-                        showVoc = false;
-                    } else {
-                        correctCount++;
-                    }
+                    if (!showVoc) correctCount++;
+                    showVoc = false;
                     updateStats();
                     pickRandomWord();
                 } else {
@@ -264,8 +276,8 @@
             function showResult() {
                 if (!showVoc) {
                     wrongCount++;
-                    updateStats();
                     showVoc = true;
+                    updateStats();
                     document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
                 }
             }
@@ -275,30 +287,24 @@
                 document.getElementById("wrongCount").textContent = wrongCount;
             }
 
-            // Tính năng phát âm từ tiếng Anh
             function speakWord() {
                 if ("speechSynthesis" in window) {
                     const utterance = new SpeechSynthesisUtterance(currentWord);
-                    utterance.lang = "en-US"; // Tiếng Anh
-                    utterance.rate = 0.8; // Tốc độ nói chậm hơn một chút
+                    utterance.lang = "en-US";
+                    utterance.rate = 0.8;
                     speechSynthesis.speak(utterance);
                 } else {
-                    alert("Trình duyệt không hỗ trợ tính năng phát âm");
+                    alert("Trình duyệt không hỗ trợ phát âm.");
                 }
             }
 
-            // Tính năng nhận diện giọng nói
             function toggleVoiceRecognition() {
                 if (!recognition) {
-                    alert("Trình duyệt không hỗ trợ nhận diện giọng nói");
+                    alert("Trình duyệt không hỗ trợ nhận diện giọng nói.");
                     return;
                 }
-
-                if (!isRecording) {
-                    startRecording();
-                } else {
-                    stopRecording();
-                }
+                if (!isRecording) startRecording();
+                else stopRecording();
             }
 
             function startRecording() {
@@ -314,9 +320,7 @@
                 const voiceBtn = document.getElementById("voiceBtn");
                 voiceBtn.classList.remove("recording");
                 voiceBtn.textContent = "🎤 Nói";
-                if (recognition) {
-                    recognition.stop();
-                }
+                recognition.stop();
             }
         </script>
     </body>
