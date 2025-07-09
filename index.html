@@ -274,7 +274,9 @@
             }
 
             function showResult() {
-                wrongCount++;
+                if(!showVoc){
+                    wrongCount++;
+                }
                 showVoc = true;
                 updateStats();
                 document.getElementById("answer").value = `${data[currentWord].split("/")[0]}`;
