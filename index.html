@@ -167,9 +167,7 @@
                 <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecognition()">🎤 Nói</button>
             </div>
             <div class="result" id="result"></div>
-            <div class="stats">
-                Đúng: <span id="correctCount">0</span> | Sai: <span id="wrongCount">0</span>
-            </div>
+            <div class="stats">Đúng: <span id="correctCount">0</span> | Sai: <span id="wrongCount">0</span></div>
         </div>
 
         <script>
@@ -180,6 +178,7 @@
             let wrongCount = 0;
             let isRecording = false;
             let recognition = null;
+            let showVoc = false;
 
             if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -248,20 +247,27 @@
                     .map((x) => x.trim());
 
                 if (correctAnswers.includes(userAnswer)) {
-                    correctCount++;
+                    if (showVoc === true) {
+                        showVoc = false;
+                    } else {
+                        correctCount++;
+                    }
                     updateStats();
                     pickRandomWord();
                 } else {
                     wrongCount++;
                     updateStats();
-                    document.getElementById("result").textContent = "Sai rồi! Hãy thử lại.";
+                    document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
                 }
             }
 
             function showResult() {
-                wrongCount++;
-                updateStats();
-                document.getElementById("result").textContent = `Đáp án đúng: "${data[currentWord]}"`;
+                if (!showVoc) {
+                    wrongCount++;
+                    updateStats();
+                    showVoc = true;
+                    document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
+                }
             }
 
             function updateStats() {
