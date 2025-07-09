@@ -2,39 +2,55 @@
 <html lang="vi">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <title>Luyện Từ Vựng</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
                 background: #3b3c3d;
                 text-align: center;
-                padding: 50px;
+                padding: 20px;
+                margin: 0;
+                min-height: 100vh;
+                box-sizing: border-box;
             }
             .card {
                 background: rgb(44, 44, 44);
                 border-radius: 10px;
-                padding: 30px;
+                padding: 20px;
                 max-width: 400px;
                 margin: auto;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                box-sizing: border-box;
             }
             h2 {
-                font-size: 32px;
+                font-size: 28px;
                 color: #ffffff;
+                margin: 10px 0 20px 0;
+                word-break: break-word;
             }
             input {
-                padding: 10px;
-                width: 80%;
+                padding: 12px;
+                width: calc(100% - 24px);
                 margin: 10px 0;
                 font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                -webkit-appearance: none;
+                appearance: none;
             }
             button {
-                padding: 10px 20px;
+                padding: 12px 16px;
                 margin: 5px;
-                font-size: 16px;
+                font-size: 14px;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
+                min-height: 44px;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
             .check-btn {
                 background-color: #4caf50;
@@ -69,7 +85,7 @@
             .stats {
                 margin-top: 30px;
                 color: #555;
-                font-size: 19px;
+                font-size: 16px;
             }
             #correctCount{
                 color: #d32f2f;
@@ -78,6 +94,49 @@
             #wrongCount{
                 color: #4caf50;
                 font-weight: bold;
+            }
+
+            /* Responsive Design cho Mobile */
+            @media (max-width: 480px) {
+                body {
+                    padding: 10px;
+                }
+                .card {
+                    padding: 15px;
+                    max-width: none;
+                }
+                h2 {
+                    font-size: 24px;
+                    margin: 5px 0 15px 0;
+                }
+                button {
+                    font-size: 13px;
+                    padding: 10px 12px;
+                    margin: 3px;
+                    width: calc(50% - 6px);
+                    box-sizing: border-box;
+                }
+                .stats {
+                    font-size: 14px;
+                    margin-top: 20px;
+                }
+                input {
+                    font-size: 16px;
+                }
+            }
+
+            /* Responsive cho iPhone SE và màn hình nhỏ */
+            @media (max-width: 375px) {
+                .card {
+                    padding: 12px;
+                }
+                h2 {
+                    font-size: 22px;
+                }
+                button {
+                    font-size: 12px;
+                    padding: 8px 10px;
+                }
             }
         </style>
     </head>
