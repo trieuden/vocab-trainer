@@ -74,7 +74,7 @@ energetic: nhiệt huyết
 enough: đủ
 ensure: đảm bảo
 enthusiasm: sự nhiệt tình
-envelop: bao phủ
+envelop: bao phủ / phong bì
 real estate: bất động sản
 evacuation: sự sơ tán
 ever: đã từng

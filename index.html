@@ -6,12 +6,12 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background: #f0f2f5;
+                background: #3b3c3d;
                 text-align: center;
                 padding: 50px;
             }
             .card {
-                background: white;
+                background: rgb(44, 44, 44);
                 border-radius: 10px;
                 padding: 30px;
                 max-width: 400px;
@@ -20,7 +20,7 @@
             }
             h2 {
                 font-size: 32px;
-                color: #333;
+                color: #ffffff;
             }
             input {
                 padding: 10px;
@@ -49,6 +49,19 @@
                 font-weight: bold;
                 color: #d32f2f;
             }
+            .stats {
+                margin-top: 30px;
+                color: #555;
+                font-size: 19px;
+            }
+            #correctCount{
+                color: #d32f2f;
+                font-weight: bold;
+            }
+            #wrongCount{
+                color: #4caf50;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -60,12 +73,15 @@
                 <button onclick="showResult()">Hiện kết quả</button>
             </div>
             <div class="result" id="result"></div>
+            <div class="stats">✅ Đúng: <span id="correctCount">0</span> | ❌ Sai: <span id="wrongCount">0</span></div>
         </div>
 
         <script>
             let data = {};
             let currentWord = "";
             let keys = [];
+            let correctCount = 0;
+            let wrongCount = 0;
 
             fetch("vocabulary_list.txt")
                 .then((res) => res.text())
@@ -104,14 +120,23 @@
                     .map((x) => x.trim());
 
                 if (correctAnswers.includes(userAnswer)) {
+                    correctCount++;
+                    updateStats();
                     pickRandomWord();
                 } else {
+                    wrongCount++;
+                    updateStats();
                     document.getElementById("result").textContent = "Sai rồi! Hãy thử lại.";
                 }
             }
 
             function showResult() {
                 document.getElementById("result").textContent = `Đáp án đúng: "${data[currentWord]}"`;
+            }
+
+            function updateStats() {
+                document.getElementById("correctCount").textContent = correctCount;
+                document.getElementById("wrongCount").textContent = wrongCount;
             }
         </script>
     </body>
