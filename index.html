@@ -274,12 +274,11 @@
             }
 
             function showResult() {
-                if (!showVoc) {
-                    wrongCount++;
-                    showVoc = true;
-                    updateStats();
-                    document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
-                }
+                wrongCount++;
+                showVoc = true;
+                updateStats();
+                document.getElementById("answer").value = `${data[currentWord].split("/")[0]}`;
+                document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
             }
 
             function updateStats() {
