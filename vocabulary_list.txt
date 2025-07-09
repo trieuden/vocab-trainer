@@ -41,7 +41,7 @@ compatible with: tương thích với
 competent: có năng lực
 competition: cuộc thi
 compliant: tuân thủ
-complicate: làm phức tạp
+complicate: phức tạp
 complimentary: khen ngợi
 conclude: kết luận
 confidence: sự tự tin
@@ -111,7 +111,7 @@ immediately: ngay lập tức
 impress: gây ấn tượng
 include: bao gồm
 indicate: chỉ ra
-industry: ngành công nghiệp
+industry: ngành công nghiệp / ngành
 influence: bị ảnh hưởng
 instead of: thay vì
 institute: học viện

@@ -44,6 +44,23 @@
                 background-color: #2196f3;
                 color: white;
             }
+            .speak-btn {
+                background-color: #ff9800;
+                color: white;
+            }
+            .voice-btn {
+                background-color: #9c27b0;
+                color: white;
+            }
+            .recording {
+                background-color: #f44336 !important;
+                animation: pulse 1s infinite;
+            }
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.7; }
+                100% { opacity: 1; }
+            }
             .result {
                 margin-top: 10px;
                 font-weight: bold;
@@ -70,7 +87,11 @@
             <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" />
             <div>
                 <button class="check-btn" onclick="checkAnswer()">Kiểm tra</button>
-                <button onclick="showResult()">Hiện kết quả</button>
+                <button class="show-btn" onclick="showResult()">Hiện kết quả</button>
+            </div>
+            <div>
+                <button class="speak-btn" onclick="speakWord()">🔊 Phát âm</button>
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecognition()">🎤 Nói</button>
             </div>
             <div class="result" id="result"></div>
             <div class="stats">✅ Đúng: <span id="correctCount">0</span> | ❌ Sai: <span id="wrongCount">0</span></div>
@@ -82,6 +103,32 @@
             let keys = [];
             let correctCount = 0;
             let wrongCount = 0;
+            let isRecording = false;
+            let recognition = null;
+
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.lang = 'vi-VN'; 
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                recognition.onresult = function(event) {
+                    let transcript = event.results[0][0].transcript;
+                    transcript = transcript.replace(/\.$/, '');
+                    document.getElementById("answer").value = transcript;
+                    stopRecording();
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Lỗi nhận diện giọng nói:', event.error);
+                    stopRecording();
+                };
+                
+                recognition.onend = function() {
+                    stopRecording();
+                };
+            }
 
             fetch("vocabulary_list.txt")
                 .then((res) => res.text())
@@ -109,6 +156,12 @@
                     checkAnswer();
                 } else if (event.key === "Shift") {
                     showResult();
+                } else if (event.key === " " && event.ctrlKey) {
+                    event.preventDefault();
+                    speakWord();
+                } else if (event.key === " " && event.altKey) {
+                    event.preventDefault();
+                    toggleVoiceRecognition();
                 }
             }
 
@@ -137,6 +190,50 @@
             function updateStats() {
                 document.getElementById("correctCount").textContent = correctCount;
                 document.getElementById("wrongCount").textContent = wrongCount;
+            }
+
+            // Tính năng phát âm từ tiếng Anh
+            function speakWord() {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(currentWord);
+                    utterance.lang = 'en-US'; // Tiếng Anh
+                    utterance.rate = 0.8; // Tốc độ nói chậm hơn một chút
+                    speechSynthesis.speak(utterance);
+                } else {
+                    alert('Trình duyệt không hỗ trợ tính năng phát âm');
+                }
+            }
+
+            // Tính năng nhận diện giọng nói
+            function toggleVoiceRecognition() {
+                if (!recognition) {
+                    alert('Trình duyệt không hỗ trợ nhận diện giọng nói');
+                    return;
+                }
+
+                if (!isRecording) {
+                    startRecording();
+                } else {
+                    stopRecording();
+                }
+            }
+
+            function startRecording() {
+                isRecording = true;
+                const voiceBtn = document.getElementById("voiceBtn");
+                voiceBtn.classList.add("recording");
+                voiceBtn.textContent = "🔴 Đang nghe...";
+                recognition.start();
+            }
+
+            function stopRecording() {
+                isRecording = false;
+                const voiceBtn = document.getElementById("voiceBtn");
+                voiceBtn.classList.remove("recording");
+                voiceBtn.textContent = "🎤 Nói";
+                if (recognition) {
+                    recognition.stop();
+                }
             }
         </script>
     </body>
