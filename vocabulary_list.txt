@@ -2,28 +2,28 @@ above: ở trên
 access: truy cập
 accountable for: chịu trách nhiệm cho
 adapt: thích nghi
-admit: thừa nhận
-advance: tiến bộ
+admit: thừa nhận / cho vào
+advance: tiến bộ / đưa ra
 advertising: quảng cáo
 advice: lời khuyên
 affiliation: sự liên kết
-afford: có đủ khả năng
-agent: đại lý
+afford: đủ khả năng
+agent: đại lý / người đại diện / tác nhân
 aim to: nhằm mục đích
 allergy: dị ứng
 allocation: sự phân bổ
-alternative: thay thế
+alternative (n / adj): thay thế
 although: mặc dù
 among: trong số
 any left: còn lại không
 applicant: người ứng tuyển
-assume: giả định
+assume: giả định / cho rằng
 audiences: khán giả
 aware: nhận thức
 aware of: nhận biết
-bargained: mặc cả
+bargain(n / v): giá hời / sự mặc cả
 be able to: có thể
-belonging: sở hữu
+belonging: đồ dùng / sỡ hữu
 beside: bên cạnh
 boots: giày ống
 bring: mang lại
@@ -34,7 +34,7 @@ capable: có khả năng
 castle: lâu đài
 clerk: thư ký
 clinic: phòng khám
-coincided: trùng hợp
+coincide: trùng hợp
 combines: kết hợp
 come with: đi kèm
 compatible with: tương thích với
@@ -43,19 +43,18 @@ competition: cuộc thi
 compliant: tuân thủ
 complicate: làm phức tạp
 complimentary: khen ngợi
-concluded: đã kết luận
+conclude: kết luận
 confidence: sự tự tin
 congestion: sự tắc nghẽn
-considered: được xem là
+consider: xem xét / cân nhắc
 contingency: tình huống bất ngờ
 convene: triệu tập
-conveniant: tiện lợi
+convenient: tiện lợi
 cooperation: sự hợp tác
 courteous: lịch sự
 crops: mùa vụ
-debute: tranh luận
+dispute (n): sự tranh luận
 decision: quyết định
-decisions: các quyết định
 dedicate: cống hiến
 defect: lỗi
 demand: nhu cầu
@@ -63,163 +62,162 @@ determine: xác định
 devote: cống hiến
 difficult: khó khăn
 discard: vứt bỏ
-disputes: tranh chấp
 distance: khoảng cách
-distantly: một cách xa cách
+distantly: xa cách
 distinct: riêng biệt
 distribute: phân phối
 dividing: phân chia
 effective: hiệu quả
 elect: bầu chọn
-elected: được bầu
 eligible: đủ điều kiện
 energetic: nhiệt huyết
 enough: đủ
 ensure: đảm bảo
 enthusiasm: sự nhiệt tình
 envelop: bao phủ
-estate: bất động sản
+real estate: bất động sản
 evacuation: sự sơ tán
 ever: đã từng
 except for: ngoại trừ
 excess: sự dư thừa
 exchange: trao đổi
 expect: mong đợi
-expended: đã tiêu tốn
+expend: tiêu tốn
 expert: chuyên gia
-expired: hết hạn
-extinguishing: dập tắt
-factually: dựa trên thực tế
+expire: hết hạn
+extinguish: dập tắt
+factually: thực tế
 fall: ngã
 familiar: quen thuộc
-features: đặc điểm
+feature: đặc điểm
 fertile: màu mỡ
-flourish: phát triển mạnh
+flourish: thịnh vượng
 fold: gấp lại
-fomula: công thức
+formula: công thức
 frequent: thường xuyên
 frequently: thường xuyên
-fundraising: gây quỹ
+fundraise: gây quỹ
 furaces: lò luyện kim
 further: thêm nữa
 garment: quần áo
 gladly: một cách vui vẻ
-grades: điểm số
+grade: điểm số
 guest: khách
 hand on: trao tay
-has to be: phải
-held: được tổ chức
-hired: được thuê
+have to (model v): phải
+hold - held: tổ chức
+hire: thuê
 immediately: ngay lập tức
 impress: gây ấn tượng
 include: bao gồm
 indicate: chỉ ra
-indicated: đã chỉ ra
 industry: ngành công nghiệp
-influenced: bị ảnh hưởng
+influence: bị ảnh hưởng
 instead of: thay vì
 institute: học viện
 intend: dự định
 intensive: chuyên sâu
 invest in: đầu tư vào
 invitation: lời mời
-involves: liên quan đến
+involve: liên quan đến
 isolate: cách ly
-jeumlessly: lành mạnh
-known: được biết đến
+issue: vấn đề / phát hành
+seamlessly: liền mạch
+known + as : được biết đến
 lift: nâng lên
-look forward to: trông mong
+look forward to + v-ing: trông mong
 mandatory: bắt buộc
 meet to need: đáp ứng nhu cầu
 neatly: gọn gàng
 necessary: cần thiết
-negotiated: đã đàm phán
-negotiating: đàm phán
+negotiate: đàm phán
 numerous: nhiều
 observer: người quan sát
 occupant: người chiếm giữ
 opportunity: cơ hội
 outcome: kết quả
 parcel: bưu kiện
-permit: giấy phép
+permit: giấy phép / cho phép
 personal belonging: đồ dùng cá nhân
 position: vị trí
 possible: có thể
 potential: tiềm năng
-praised: được khen ngợi
+praise: khen ngợi
 predict: dự đoán
 prescription: đơn thuốc
-present: trình bày
+present: trình bày / món quà / hiện tại
 preserve: bảo tồn
 prevalence: sự phổ biến
-primary: chính, chủ yếu
-prishable: dễ hỏng
+primary: chính / chủ yếu
+patient: bệnh nhân / kiên nhẫn
+perishable: dễ hỏng
 probably: có lẽ
 productivity: năng suất
 profoundly: sâu sắc
 prohibiting: ngăn cấm
 proof: bằng chứng
 prosperous: thịnh vượng
-provides: cung cấp
+provide: cung cấp
 punctual: đúng giờ
-purchased: đã mua
+purchase: mua
+quiet: im lặng
 rarely: hiếm khi
-reasons: lý do
-recognized: được công nhận
+reason: lý do
+recognize: công nhận
 recovery: sự phục hồi
-reduced: đã giảm
-refer: tham khảo
+reduce: giảm
+refer: tham khảo / đề cập
 refrain: kiềm chế
 regardless of: bất kể
 regular: thường xuyên
 rely on: dựa vào
 remain: vẫn còn
 rental: cho thuê
-restricted: bị hạn chế
+restrict(v): bị hạn chế
 retain: giữ lại
 revolutionize: cách mạng hóa
 rise: tăng
 roof: mái nhà
 rural: nông thôn
-scenic: đẹp
+reserve: đặt chỗ
+make a reservation: đặt chỗ
+scenic (adj): đẹp về cảnh
 sector: ngành
-seeking: đang tìm kiếm
+seek: tìm kiếm
 several: một vài
-shifts: ca làm việc
+shift: ca làm việc
 signification: ý nghĩa
-slightly: hơi
+slightly: hơi / nhẹ
 so that: để mà
-soliciting: kêu gọi
+solicit: kêu gọi / nài nỉ
 soon: sớm
-speading: trãi rộng
-state: trạng thái
-statement: lời tuyên bố
+spead: trãi rộng
+state: trạng thái / tuyên bố
 steady: ổn định
 stir: khuấy
 straightforward: thẳng thắn
-strategies: chiến lược
+strategy: chiến lược
 strict: nghiêm ngặt
-stuns: làm choáng váng
+stunning: cảnh đẹp
 substantial: đáng kể
-suggested: đã gợi ý
+suggest: gợi ý
 supervisor: người giám sát
 supply and demand: cung và cầu
 suppose: giả sử
 surrounding: xung quanh
 suspension: sự đình chỉ
 take on the role: đảm nhận vai trò
-targible: hữu hình
+tangible: hữu hình
 temporary: tạm thời
 theory: lý thuyết
-thoroughly: một cách kỹ lưỡng
+thoroughly: kỹ lưỡng
 through: thông qua
 toward: hướng về
 undertake: đảm nhận
 unfold: mở ra
 unless: trừ khi
-vacancy without: vị trí trống không có
 vacant: trống
 virtually: gần như
 visitor: khách tham quan
 whether: liệu rằng
-wholly: toàn bộ
+whole: toàn bộ

@@ -67,7 +67,6 @@
             let currentWord = "";
             let keys = [];
 
-            // Đọc file vocabulary_list.txt
             fetch("vocabulary_list.txt")
                 .then((res) => res.text())
                 .then((text) => {
@@ -99,9 +98,12 @@
 
             function checkAnswer() {
                 const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
-                const correctAnswer = data[currentWord].toLowerCase();
+                const correctAnswers = data[currentWord]
+                    .toLowerCase()
+                    .split("/")
+                    .map((x) => x.trim());
 
-                if (userAnswer === correctAnswer) {
+                if (correctAnswers.includes(userAnswer)) {
                     pickRandomWord();
                 } else {
                     document.getElementById("result").textContent = "Sai rồi! Hãy thử lại.";
