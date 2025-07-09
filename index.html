@@ -14,6 +14,12 @@
                 min-height: 100vh;
                 box-sizing: border-box;
             }
+            #tagname {
+                position: absolute;
+                top: -6px;
+                right: 5px;
+                font-size: 11px;
+            }
             .card {
                 background: rgb(44, 44, 44);
                 border-radius: 10px;
@@ -23,6 +29,7 @@
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 width: 100%;
                 box-sizing: border-box;
+                position: relative;
             }
             h2 {
                 font-size: 28px;
@@ -73,9 +80,15 @@
                 animation: pulse 1s infinite;
             }
             @keyframes pulse {
-                0% { opacity: 1; }
-                50% { opacity: 0.7; }
-                100% { opacity: 1; }
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+                100% {
+                    opacity: 1;
+                }
             }
             .result {
                 margin-top: 10px;
@@ -87,12 +100,12 @@
                 color: #555;
                 font-size: 16px;
             }
-            #correctCount{
-                color: #d32f2f;
+            #correctCount {
+                color: #880101;
                 font-weight: bold;
             }
-            #wrongCount{
-                color: #4caf50;
+            #wrongCount {
+                color: #4531f5;
                 font-weight: bold;
             }
 
@@ -142,6 +155,7 @@
     </head>
     <body>
         <div class="card">
+            <p id="tagname">@trieuden</p>
             <h2 id="word">...</h2>
             <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" />
             <div>
@@ -153,7 +167,9 @@
                 <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecognition()">🎤 Nói</button>
             </div>
             <div class="result" id="result"></div>
-            <div class="stats">✅ Đúng: <span id="correctCount">0</span> | ❌ Sai: <span id="wrongCount">0</span></div>
+            <div class="stats">
+                Đúng: <span id="correctCount">0</span> | Sai: <span id="wrongCount">0</span>
+            </div>
         </div>
 
         <script>
@@ -165,26 +181,26 @@
             let isRecording = false;
             let recognition = null;
 
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 recognition = new SpeechRecognition();
-                recognition.lang = 'vi-VN'; 
+                recognition.lang = "vi-VN";
                 recognition.continuous = false;
                 recognition.interimResults = false;
-                
-                recognition.onresult = function(event) {
+
+                recognition.onresult = function (event) {
                     let transcript = event.results[0][0].transcript;
-                    transcript = transcript.replace(/\.$/, '');
+                    transcript = transcript.replace(/\.$/, "");
                     document.getElementById("answer").value = transcript;
                     stopRecording();
                 };
-                
-                recognition.onerror = function(event) {
-                    console.error('Lỗi nhận diện giọng nói:', event.error);
+
+                recognition.onerror = function (event) {
+                    console.error("Lỗi nhận diện giọng nói:", event.error);
                     stopRecording();
                 };
-                
-                recognition.onend = function() {
+
+                recognition.onend = function () {
                     stopRecording();
                 };
             }
@@ -243,6 +259,8 @@
             }
 
             function showResult() {
+                wrongCount++;
+                updateStats();
                 document.getElementById("result").textContent = `Đáp án đúng: "${data[currentWord]}"`;
             }
 
@@ -253,20 +271,20 @@
 
             // Tính năng phát âm từ tiếng Anh
             function speakWord() {
-                if ('speechSynthesis' in window) {
+                if ("speechSynthesis" in window) {
                     const utterance = new SpeechSynthesisUtterance(currentWord);
-                    utterance.lang = 'en-US'; // Tiếng Anh
+                    utterance.lang = "en-US"; // Tiếng Anh
                     utterance.rate = 0.8; // Tốc độ nói chậm hơn một chút
                     speechSynthesis.speak(utterance);
                 } else {
-                    alert('Trình duyệt không hỗ trợ tính năng phát âm');
+                    alert("Trình duyệt không hỗ trợ tính năng phát âm");
                 }
             }
 
             // Tính năng nhận diện giọng nói
             function toggleVoiceRecognition() {
                 if (!recognition) {
-                    alert('Trình duyệt không hỗ trợ nhận diện giọng nói');
+                    alert("Trình duyệt không hỗ trợ nhận diện giọng nói");
                     return;
                 }
 
