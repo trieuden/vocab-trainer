@@ -1,223 +1,237 @@
-above: ở trên
-access: truy cập
-accountable for: chịu trách nhiệm cho
-adapt: thích nghi
-admit: thừa nhận / cho vào
-advance: tiến bộ / đưa ra
-advertising: quảng cáo
-advice: lời khuyên
-affiliation: sự liên kết
-afford: đủ khả năng
-agent: đại lý / người đại diện / tác nhân
-aim to: nhằm mục đích
-allergy: dị ứng
-allocation: sự phân bổ
-alternative (n / adj): thay thế
-although: mặc dù
-among: trong số
-any left: còn lại không
-applicant: người ứng tuyển
-assume: giả định / cho rằng
-audiences: khán giả
-aware: nhận thức
-aware of: nhận biết
-bargain (n / v): giá hời / sự mặc cả
-be able to: có thể
-belonging: đồ dùng / sỡ hữu
-beside: bên cạnh
-boots: giày ống
-bring: mang lại
-by the way: nhân tiện
-calm: bình tĩnh
-can lead to: có thể dẫn đến
-capable: có khả năng
-castle: lâu đài
-clerk: lễ tân / nhân viên
-clinic: phòng khám
-coincide: trùng hợp
-combines: kết hợp
-come with: đi kèm
-compatible with: tương thích với
-competent: có năng lực
-competition: cuộc thi
-compliant: tuân thủ
-complicate: phức tạp
-complimentary: khen ngợi
-conclude: kết luận
-confidence: sự tự tin
-congestion: sự tắc nghẽn
-consider: xem xét / cân nhắc
-contingency: tình huống bất ngờ
-convene: triệu tập
-convenient: tiện lợi
-cooperation: sự hợp tác
-courteous: lịch sự
-crops: mùa vụ
+above (adj): ở trên
+above (prep): phía trên
+above (adv): ở phía trên
+access (n): sự truy cập
+access (v): truy cập
+accountable for (adj – cụm): chịu trách nhiệm cho
+adapt (v): thích nghi
+admit (v): thừa nhận / cho vào
+advance (v): tiến bộ / đưa ra
+advance (n): sự tiến bộ
+advance (adj): trước / sớm
+advertising (n – uncountable): quảng cáo
+advice (n – uncountable): lời khuyên
+affiliation (n): sự liên kết
+afford (v): đủ khả năng (làm gì, mua gì)
+agent (n): đại lý / người đại diện
+aim to (v – cụm): nhằm mục đích
+allergy (n): dị ứng
+allocation (n): sự phân bổ
+alternative (n): lựa chọn thay thế
+alternative (adj): thay thế
+although (conj): mặc dù
+among (prep): trong số
+any left (cụm: đại từ + adj): còn lại không
+applicant (n): người ứng tuyển
+assume (v): giả định / cho rằng
+audiences (n): khán giả
+aware (adj): nhận thức
+aware of (adj – cụm): nhận biết
+bargain (n): giá hời
+bargain (v): mặc cả
+be able to (v – cấu trúc): có thể
+belonging (n): đồ dùng / sở hữu
+beside (prep): bên cạnh
+boots (n): giày ống
+bring (v): mang lại
+by the way (adv – cụm): nhân tiện
+calm (adj): bình tĩnh
+can lead to (v – cụm): có thể dẫn đến
+capable (adj): có khả năng
+castle (n): lâu đài
+clerk (n): lễ tân / nhân viên
+clinic (n): phòng khám
+coincide (v): trùng hợp
+combines (v): kết hợp
+come with (v – cụm): đi kèm
+compatible with (adj – cụm): tương thích với
+competent (adj): có năng lực
+competition (n): cuộc thi
+compliant (adj): tuân thủ
+complicate (v): làm phức tạp
+complimentary (adj): khen ngợi
+conclude (v): kết luận
+confidence (n): sự tự tin
+congestion (n): sự tắc nghẽn
+consider (v): xem xét / cân nhắc
+contingency (n): tình huống bất ngờ
+convene (v): triệu tập
+convenient (adj): tiện lợi
+cooperation (n): sự hợp tác
+courteous (adj): lịch sự
+crops (n): mùa vụ
 dispute (n): sự tranh luận
-decision: quyết định
-dedicate: cống hiến
-defect: lỗi
-demand: nhu cầu
-determine: xác định
-devote: cống hiến
-difficult: khó khăn
-discard: vứt bỏ
-distance: khoảng cách
-distantly: xa cách
-distinct: riêng biệt
-distribute: phân phối
-dividing: phân chia
-effective: hiệu quả
-elect: bầu chọn
-eligible: đủ điều kiện
-energetic: nhiệt huyết
-enough: đủ
-ensure: đảm bảo
-enthusiasm: sự nhiệt tình
-envelop: bao phủ / phong bì
-real estate: bất động sản
-evacuation: sự sơ tán
-ever: đã từng
-except for: ngoại trừ
-excess: sự dư thừa
-exchange: trao đổi
-expect: mong đợi
-expend: tiêu tốn
-expert: chuyên gia
-expire: hết hạn
-extinguish: dập tắt
-factually: thực tế
-fall: ngã
-familiar: quen thuộc
-feature: đặc điểm
-fertile: màu mỡ
-flourish: thịnh vượng
-fold: gấp lại
-formula: công thức
-frequent: thường xuyên
-frequently: thường xuyên
-fundraise: gây quỹ
-furaces: lò luyện kim
-further: thêm nữa
-garment: quần áo
-gladly: một cách vui vẻ
-grade: điểm số
-guest: khách
-hand on: trao tay
-have to (model v): phải
-hold - held: tổ chức
-hire: thuê
-immediately: ngay lập tức
-impress: gây ấn tượng
-include: bao gồm
-indicate: chỉ ra
-industry: ngành công nghiệp / ngành
-influence: bị ảnh hưởng
-instead of: thay vì
-institute: học viện
-intend: dự định
-intensive: chuyên sâu
-invest in: đầu tư vào
-invitation: lời mời
-involve: liên quan đến
-isolate: cách ly
-issue: vấn đề / phát hành
-seamlessly: liền mạch
-known + as : được biết đến
-lift: nâng lên
-look forward to + v-ing: trông mong
-mandatory: bắt buộc
-meet to need: đáp ứng nhu cầu
-neatly: gọn gàng
-necessary: cần thiết
-negotiate: đàm phán
-numerous: nhiều
-observer: người quan sát
-occupant: người chiếm giữ
-opportunity: cơ hội
-outcome: kết quả
-parcel: bưu kiện
-permit: giấy phép / cho phép
-personal belonging: đồ dùng cá nhân
-position: vị trí
-possible: có thể
-potential: tiềm năng
-praise: khen ngợi
-predict: dự đoán
-prescription: đơn thuốc
-present: trình bày / món quà / hiện tại
-preserve: bảo tồn
-prevalence: sự phổ biến
-primary: chính / chủ yếu
-patient: bệnh nhân / kiên nhẫn
-perishable: dễ hỏng
-probably: có lẽ
-productivity: năng suất
-profoundly: sâu sắc
-prohibiting: ngăn cấm
-proof: bằng chứng
-prosperous: thịnh vượng
-provide: cung cấp
-punctual: đúng giờ
-purchase: mua
-quiet: im lặng
-rarely: hiếm khi
-reason: lý do
-recognize: công nhận
-recovery: sự phục hồi
-reduce: giảm
-refer: tham khảo / đề cập
-refrain: kiềm chế
-regardless of: bất kể
-regular: thường xuyên
-rely on: dựa vào
-remain: vẫn còn
-rental: cho thuê
-restrict(v): bị hạn chế
-retain: giữ lại
-revolutionize: cách mạng hóa
-rise: tăng
-roof: mái nhà
-rural: nông thôn
-reserve: đặt chỗ
-make a reservation: đặt chỗ
+decision (n): quyết định
+dedicate (v): cống hiến
+defect (n): lỗi
+demand (n): nhu cầu
+determine (v): xác định
+devote (v): cống hiến
+difficult (adj): khó khăn
+discard (v): vứt bỏ
+distance (n): khoảng cách
+distantly (adv): xa cách
+distinct (adj): riêng biệt
+distribute (v): phân phối
+dividing (adj): phân chia
+effective (adj): hiệu quả
+elect (v): bầu chọn
+eligible (adj): đủ điều kiện
+energetic (adj): nhiệt huyết
+enough (adj / adv / pron): đủ
+ensure (v): đảm bảo
+enthusiasm (n): sự nhiệt tình
+envelop (v): bao phủ
+envelope (n): phong bì
+real estate (n – cụm): bất động sản
+evacuation (n): sự sơ tán
+ever (adv): đã từng
+except for (prep – cụm): ngoại trừ
+excess (n): sự dư thừa
+exchange (v / n): trao đổi
+expect (v): mong đợi
+expend (v): tiêu tốn
+expert (n): chuyên gia
+expire (v): hết hạn
+extinguish (v): dập tắt
+factually (adv): thực tế
+fall (v / n): ngã
+familiar (adj): quen thuộc
+feature (n / v): đặc điểm / làm nổi bật
+fertile (adj): màu mỡ
+flourish (v): thịnh vượng
+fold (v): gấp lại
+formula (n): công thức
+frequent (adj): thường xuyên
+frequently (adv): thường xuyên
+fundraise (v): gây quỹ
+furnaces (n): lò luyện kim
+further (adj / adv): thêm nữa
+garment (n): quần áo
+gladly (adv): một cách vui vẻ
+grade (n): điểm số
+guest (n): khách
+hand on (v – cụm): trao tay
+have to (modal v): phải
+hold – held (v): tổ chức
+hire (v): thuê
+immediately (adv): ngay lập tức
+impress (v): gây ấn tượng
+include (v): bao gồm
+indicate (v): chỉ ra
+industry (n): ngành công nghiệp / ngành
+influence (v / n): ảnh hưởng / sự ảnh hưởng
+instead of (prep – cụm): thay vì
+institute (n): học viện
+intend (v): dự định
+intensive (adj): chuyên sâu
+invest in (v – cụm): đầu tư vào
+invitation (n): lời mời
+involve (v): liên quan đến
+isolate (v): cách ly
+issue (n): vấn đề
+issue (v): phát hành
+seamlessly (adv): liền mạch
+known as (adj – cụm): được biết đến
+lift (v): nâng lên
+look forward to + V-ing (v – cụm): trông mong
+mandatory (adj): bắt buộc
+meet the need (v – cụm): đáp ứng nhu cầu
+neatly (adv): gọn gàng
+necessary (adj): cần thiết
+negotiate (v): đàm phán
+numerous (adj): nhiều
+observer (n): người quan sát
+occupant (n): người chiếm giữ
+opportunity (n): cơ hội
+outcome (n): kết quả
+parcel (n): bưu kiện
+permit (n): giấy phép
+permit (v): cho phép
+personal belonging (n – cụm): đồ dùng cá nhân
+position (n): vị trí
+possible (adj): có thể
+potential (adj / n): tiềm năng
+praise (v / n): khen ngợi / lời khen
+predict (v): dự đoán
+prescription (n): đơn thuốc
+present (v): trình bày
+present (n): món quà
+present (adj): hiện tại
+preserve (v): bảo tồn
+prevalence (n): sự phổ biến
+primary (adj): chính / chủ yếu
+patient (n): bệnh nhân
+patient (adj): kiên nhẫn
+perishable (adj): dễ hỏng
+probably (adv): có lẽ
+productivity (n): năng suất
+profoundly (adv): sâu sắc
+prohibiting (v – dạng V-ing): ngăn cấm
+proof (n): bằng chứng
+prosperous (adj): thịnh vượng
+provide (v): cung cấp
+punctual (adj): đúng giờ
+purchase (v / n): mua / sự mua
+quiet (adj): im lặng
+rarely (adv): hiếm khi
+reason (n): lý do
+recognize (v): công nhận
+recovery (n): sự phục hồi
+reduce (v): giảm
+refer (v): tham khảo / đề cập
+refrain (v): kiềm chế
+regardless of (prep – cụm): bất kể
+regular (adj): thường xuyên
+rely on (v – cụm): dựa vào
+remain (v): vẫn còn
+rental (n): việc cho thuê
+restrict (v): bị hạn chế
+retain (v): giữ lại
+revolutionize (v): cách mạng hóa
+rise (v / n): tăng / sự tăng
+roof (n): mái nhà
+rural (adj): nông thôn
+reserve (v): đặt chỗ
+make a reservation (v – cụm): đặt chỗ
 scenic (adj): đẹp về cảnh
-sector: ngành
-seek: tìm kiếm
-several: một vài
-shift: ca làm việc
-signification: ý nghĩa
-slightly: hơi / nhẹ
-so that: để mà
-solicit: kêu gọi / nài nỉ
-soon: sớm
-spead: trãi rộng
-state: trạng thái / tuyên bố
-steady: ổn định
-stir: khuấy
-straightforward: thẳng thắn
-strategy: chiến lược
-strict: nghiêm ngặt
-stunning: cảnh đẹp
-substantial: đáng kể
-suggest: gợi ý
-supervisor: người giám sát
-supply and demand: cung và cầu
-suppose: giả sử
-surrounding: xung quanh
-suspension: sự đình chỉ
-take on the role: đảm nhận vai trò
-tangible: hữu hình
-temporary: tạm thời
-theory: lý thuyết
-thoroughly: kỹ lưỡng
-through: thông qua
-toward: hướng về
-undertake: đảm nhận
-unfold: mở ra
-unless: trừ khi
-vacant: trống
-virtually: gần như
-visitor: khách tham quan
-whether: liệu rằng
-whole: toàn bộ
+sector (n): ngành
+seek (v): tìm kiếm
+several (adj / det): một vài
+shift (n): ca làm việc
+signification (n): ý nghĩa
+slightly (adv): hơi / nhẹ
+so that (conj – cụm): để mà
+solicit (v): kêu gọi / nài nỉ
+soon (adv): sớm
+spread (v): trải rộng
+state (n): trạng thái
+state (v): tuyên bố
+steady (adj): ổn định
+stir (v): khuấy
+straightforward (adj): thẳng thắn
+strategy (n): chiến lược
+strict (adj): nghiêm ngặt
+stunning (adj): cảnh đẹp
+substantial (adj): đáng kể
+suggest (v): gợi ý
+supervisor (n): người giám sát
+supply and demand (n – cụm): cung và cầu
+suppose (v): giả sử
+surrounding (adj): xung quanh
+suspension (n): sự đình chỉ
+take on the role (v – cụm): đảm nhận vai trò
+tangible (adj): hữu hình
+temporary (adj): tạm thời
+theory (n): lý thuyết
+thoroughly (adv): kỹ lưỡng
+through (prep): thông qua
+toward (prep): hướng về
+undertake (v): đảm nhận
+unfold (v): mở ra
+unless (conj): trừ khi
+vacant (adj): trống
+virtually (adv): gần như
+visitor (n): khách tham quan
+whether (conj): liệu rằng
+whole (adj): toàn bộ
