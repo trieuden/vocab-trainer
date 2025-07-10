@@ -58,13 +58,11 @@ function pickRandomWord() {
     document.getElementById("result").textContent = "";
 }
 
-function handleKey(event) {
-    if (event.key === "Enter") checkAnswer();
-}
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Shift") showResult();
     if (event.key === "Control") speakWord();
+    if (event.key === "Enter") checkAnswer();
 });
 
 function checkAnswer() {
