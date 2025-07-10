@@ -79,8 +79,6 @@ function checkAnswer() {
             updateStats();
             pickRandomWord();
         } else {
-            wrongCount++;
-            updateStats();
             document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
         }
     } else {
@@ -95,8 +93,6 @@ function checkAnswer() {
             updateStats();
             pickRandomWord();
         } else {
-            wrongCount++;
-            updateStats();
             document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
         }
     }
