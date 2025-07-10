@@ -4,162 +4,38 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Luyện Từ Vựng</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background: #3b3c3d;
-                text-align: center;
-                padding: 20px;
-                margin: 0;
-                min-height: 100vh;
-                box-sizing: border-box;
-            }
-
-            .card {
-                background: rgb(44, 44, 44);
-                border-radius: 10px;
-                padding: 20px;
-                max-width: 400px;
-                margin: auto;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                position: relative;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            #tagname {
-                position: absolute;
-                top: -6px;
-                right: 5px;
-                font-size: 11px;
-            }
-
-            h2 {
-                font-size: 28px;
-                color: #ffffff;
-                margin: 10px 0 20px 0;
-                word-break: break-word;
-            }
-
-            input[type="text"] {
-                padding: 12px;
-                width: calc(100% - 24px);
-                margin: 10px 0;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
-            }
-
-            button {
-                padding: 12px 16px;
-                margin: 5px;
-                font-size: 14px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                min-height: 44px;
-            }
-
-            .check-btn {
-                background-color: #4caf50;
-                color: white;
-            }
-            .show-btn {
-                background-color: #2196f3;
-                color: white;
-            }
-            .speak-btn {
-                background-color: #ff9800;
-                color: white;
-            }
-            .voice-btn {
-                background-color: #9c27b0;
-                color: white;
-            }
-
-            .recording {
-                background-color: #f44336 !important;
-                animation: pulse 1s infinite;
-            }
-
-            @keyframes pulse {
-                0%,
-                100% {
-                    opacity: 1;
-                }
-                50% {
-                    opacity: 0.7;
-                }
-            }
-
-            .result {
-                margin-top: 10px;
-                font-weight: bold;
-                color: #d32f2f;
-            }
-
-            .stats {
-                margin-top: 30px;
-                color: #ccc;
-                font-size: 16px;
-            }
-
-            #correctCount {
-                color: #00e676;
-                font-weight: bold;
-            }
-            #wrongCount {
-                color: #ff5252;
-                font-weight: bold;
-            }
-
-            #fileInput {
-                display: none;
-            }
-
-            .file-section {
-                margin-top: 30px;
-            }
-
-            .file-btn {
-                border: #3b3c3d dotted 1px;
-                color: white;
-                padding: 10px 20px;
-                border-radius: 5px;
-                display: inline-block;
-                cursor: pointer;
-            }
-
-            .file-name {
-                color: #ccc;
-                margin-top: 8px;
-                font-size: 13px;
-            }
-        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-        <div class="card">
-            <p id="tagname">@trieuden</p>
+    <body class="bg-neutral-800 text-white text-center p-5 min-h-screen box-border font-sans">
+        <div class="bg-neutral-700 rounded-xl p-6 max-w-md mx-auto shadow-lg relative w-full">
+            <p id="tagname" class="absolute top-[2px] right-[5px] text-xs">@trieuden</p>
 
-            <h2 id="word">...</h2>
-            <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" />
-            <div>
-                <button class="check-btn" onclick="checkAnswer()">Kiểm tra</button>
-                <button class="show-btn" onclick="showResult()">Hiện kết quả</button>
-            </div>
-            <div>
-                <button class="speak-btn" onclick="speakWord()">🔊 Phát âm</button>
-                <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecognition()">🎤 Nói</button>
-            </div>
-            <div class="result" id="result"></div>
-            <div class="stats">Đúng: <span id="correctCount">0</span> | Sai: <span id="wrongCount">0</span></div>
+            <h2 id="word" class="text-2xl font-bold mb-5 break-words">...</h2>
 
-            <!-- Chọn file ở dưới cùng -->
-            <div class="file-section">
-                <label class="file-btn" for="fileInput">Import</label>
-                <input type="file" id="fileInput" accept=".txt" />
-                <div class="file-name" id="fileNameDisplay">Chưa chọn file</div>
+            <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" class="p-3 w-full text-base border border-gray-300 rounded mb-4 text-black" />
+
+            <div class="mb-3">
+                <button onclick="checkAnswer()" class="bg-green-600 text-white py-3 px-4 rounded text-sm m-1 min-h-[44px]">Kiểm tra</button>
+                <button onclick="showResult()" class="bg-blue-600 text-white py-3 px-4 rounded text-sm m-1 min-h-[44px]">Hiện kết quả</button>
+            </div>
+
+            <div class="mb-3">
+                <button onclick="speakWord()" class="bg-orange-500 text-white py-3 px-4 rounded text-sm m-1 min-h-[44px]">🔊 Phát âm</button>
+                <button id="voiceBtn" onclick="toggleVoiceRecognition()" class="bg-purple-700 text-white py-3 px-4 rounded text-sm m-1 min-h-[44px]">🎤 Nói</button>
+            </div>
+
+            <div class="mb-3 flex items-center justify-center">
+                <input class="size-4 mr-1" type="checkbox" id="advanceToggle" />
+                <span>Advance</span>
+            </div>
+
+            <div id="result" class="mt-2 font-bold text-red-600"></div>
+            <div class="mt-6 text-gray-300 text-base">Đúng: <span id="correctCount" class="text-green-400 font-bold">0</span> | Sai: <span id="wrongCount" class="text-red-400 font-bold">0</span></div>
+
+            <div class="mt-3">
+                <label for="fileInput" class="border border-dotted text-white py-2 px-4 rounded cursor-pointer inline-block">Import</label>
+                <input type="file" id="fileInput" accept=".txt" class="hidden" />
+                <div id="fileNameDisplay" class="text-sm text-gray-400 mt-2">Chưa chọn file</div>
             </div>
         </div>
 
@@ -172,10 +48,16 @@
             let isRecording = false;
             let recognition = null;
             let showVoc = false;
+            let isReverse = false;
 
-            // File input
             const fileInput = document.getElementById("fileInput");
             const fileNameDisplay = document.getElementById("fileNameDisplay");
+            const advanceToggle = document.getElementById("advanceToggle");
+
+            advanceToggle.addEventListener("change", () => {
+                isReverse = advanceToggle.checked;
+                pickRandomWord();
+            });
 
             fileInput.addEventListener("change", (e) => {
                 const file = e.target.files[0];
@@ -185,6 +67,15 @@
                 }
             });
 
+            function normalize(text) {
+                return text
+                    .replace(/\([^)]*\)/g, "") // xóa (adj), (n), (v), ...
+                    .replace(/\/[^/]*\//g, "") // xóa /phát âm/
+                    .replace(/\s+/g, " ") // loại bỏ khoảng trắng dư
+                    .trim()
+                    .toLowerCase();
+            }
+
             function readFile(file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -192,9 +83,7 @@
                     data = {};
                     lines.forEach((line) => {
                         const [key, value] = line.split(":");
-                        if (key && value) {
-                            data[key.trim()] = value.trim();
-                        }
+                        if (key && value) data[key.trim()] = value.trim();
                     });
                     keys = Object.keys(data);
                     if (keys.length > 0) pickRandomWord();
@@ -203,7 +92,6 @@
                 reader.readAsText(file);
             }
 
-            // nhận diện giọng nói
             if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 recognition = new SpeechRecognition();
@@ -227,9 +115,7 @@
                     const lines = text.split("\n");
                     lines.forEach((line) => {
                         const [key, value] = line.split(":");
-                        if (key && value) {
-                            data[key.trim()] = value.trim();
-                        }
+                        if (key && value) data[key.trim()] = value.trim();
                     });
                     keys = Object.keys(data);
                     pickRandomWord();
@@ -237,7 +123,8 @@
 
             function pickRandomWord() {
                 currentWord = keys[Math.floor(Math.random() * keys.length)];
-                document.getElementById("word").textContent = currentWord;
+                const displayWord = isReverse ? data[currentWord].split("/")[0] : currentWord;
+                document.getElementById("word").textContent = displayWord;
                 document.getElementById("answer").value = "";
                 document.getElementById("result").textContent = "";
             }
@@ -255,32 +142,54 @@
             }
 
             function checkAnswer() {
-                const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
-                const correctAnswers = data[currentWord]
-                    .toLowerCase()
-                    .split("/")
-                    .map((x) => x.trim());
+                const userInput = normalize(document.getElementById("answer").value);
 
-                if (correctAnswers.includes(userAnswer)) {
-                    if (!showVoc) correctCount++;
-                    showVoc = false;
-                    updateStats();
-                    pickRandomWord();
+                let correctAnswers;
+                if (isReverse) {
+                    correctAnswers = normalize(currentWord);
+                    if (userInput === correctAnswers) {
+                        if (!showVoc) correctCount++;
+                        showVoc = false;
+                        updateStats();
+                        pickRandomWord();
+                    } else {
+                        wrongCount++;
+                        updateStats();
+                        document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
+                    }
                 } else {
-                    wrongCount++;
-                    updateStats();
-                    document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
+                    correctAnswers = data[currentWord]
+                        .toLowerCase()
+                        .split("/")
+                        .map((x) => normalize(x));
+
+                    if (correctAnswers.includes(userInput)) {
+                        if (!showVoc) correctCount++;
+                        showVoc = false;
+                        updateStats();
+                        pickRandomWord();
+                    } else {
+                        wrongCount++;
+                        updateStats();
+                        document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
+                    }
                 }
             }
 
             function showResult() {
-                if(!showVoc){
-                    wrongCount++;
-                }
+                if (!showVoc) wrongCount++;
                 showVoc = true;
+
+                if (isReverse) {
+                    document.getElementById("answer").value = normalize(currentWord);
+                    document.getElementById("result").textContent = `Từ đúng là: "${normalize(currentWord)}"`;
+                } else {
+                    const meaning = data[currentWord].split("/")[0];
+                    document.getElementById("answer").value = meaning;
+                    document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
+                }
+
                 updateStats();
-                document.getElementById("answer").value = `${data[currentWord].split("/")[0]}`;
-                document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
             }
 
             function updateStats() {
@@ -290,8 +199,9 @@
 
             function speakWord() {
                 if ("speechSynthesis" in window) {
-                    const utterance = new SpeechSynthesisUtterance(currentWord);
-                    utterance.lang = "en-US";
+                    const textToSpeak = isReverse ? data[currentWord].split("/")[0] : currentWord;
+                    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                    utterance.lang = isReverse ? "vi-VN" : "en-US";
                     utterance.rate = 0.8;
                     speechSynthesis.speak(utterance);
                 } else {
@@ -304,14 +214,13 @@
                     alert("Trình duyệt không hỗ trợ nhận diện giọng nói.");
                     return;
                 }
-                if (!isRecording) startRecording();
-                else stopRecording();
+                isRecording ? stopRecording() : startRecording();
             }
 
             function startRecording() {
                 isRecording = true;
                 const voiceBtn = document.getElementById("voiceBtn");
-                voiceBtn.classList.add("recording");
+                voiceBtn.classList.add("bg-red-600", "animate-pulse");
                 voiceBtn.textContent = "🔴 Đang nghe...";
                 recognition.start();
             }
@@ -319,7 +228,7 @@
             function stopRecording() {
                 isRecording = false;
                 const voiceBtn = document.getElementById("voiceBtn");
-                voiceBtn.classList.remove("recording");
+                voiceBtn.classList.remove("bg-red-600", "animate-pulse");
                 voiceBtn.textContent = "🎤 Nói";
                 recognition.stop();
             }
