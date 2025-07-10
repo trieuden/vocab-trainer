@@ -167,7 +167,7 @@ helpIcon.addEventListener("click", () => {
     clearTimeout(tooltipTimeout);
     tooltipTimeout = setTimeout(() => {
         tooltip.classList.add("hidden");
-    }, 5000);
+    }, 2000);
 });
 
 // SpeechRecognition init
