@@ -8,17 +8,17 @@
     </head>
     <body class="bg-neutral-800 text-white text-center p-5 min-h-screen box-border font-sans">
         <div class="bg-neutral-700 rounded-xl p-6 max-w-md mx-auto shadow-lg relative w-full">
+            <!-- Icon và Tooltip -->
             <p id="tagname" class="absolute top-[2px] right-[5px] text-xs">@trieuden</p>
-            <div class="absolute top-[2px] left-[5px] group text-xs cursor-pointer w-fit">
-                ❓
-                <div class="absolute w-64 bg-neutral-600 text-white text-left text-xs p-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    💡
-                    <ul class="list-disc pl-4 mt-1 space-y-1">
-                        <li>Nhấn <kbd>Ctrl</kbd> để phát âm</li>
-                        <li>Nhấn <kbd>Shift</kbd> để hiện đáp án</li>
-                    </ul>
-                </div>
+            <div id="helpIcon" class="absolute top-[2px] left-[5px] text-xs cursor-pointer w-fit z-20">❓</div>
+            <div id="tooltip" class="hidden absolute top-[28px] left-[5px] w-64 bg-neutral-600 text-white text-left text-xs p-2 rounded shadow-lg z-10">
+                💡
+                <ul class="list-disc pl-4 mt-1 space-y-1">
+                    <li>Nhấn <kbd>Ctrl</kbd> để phát âm</li>
+                    <li>Nhấn <kbd>Shift</kbd> để hiện đáp án</li>
+                </ul>
             </div>
+
             <h2 id="word" class="text-2xl font-bold mb-5 break-words">...</h2>
 
             <input type="text" id="answer" placeholder="Nhập nghĩa" onkeydown="handleKey(event)" class="p-3 w-full text-base border border-gray-300 rounded mb-4 text-black" />
@@ -48,196 +48,7 @@
             </div>
         </div>
 
-        <script>
-            let data = {};
-            let keys = [];
-            let currentWord = "";
-            let correctCount = 0;
-            let wrongCount = 0;
-            let isRecording = false;
-            let recognition = null;
-            let showVoc = false;
-            let isReverse = false;
-
-            const fileInput = document.getElementById("fileInput");
-            const fileNameDisplay = document.getElementById("fileNameDisplay");
-            const advanceToggle = document.getElementById("advanceToggle");
-
-            advanceToggle.addEventListener("change", () => {
-                isReverse = advanceToggle.checked;
-                pickRandomWord();
-            });
-
-            fileInput.addEventListener("change", (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    fileNameDisplay.textContent = file.name;
-                    readFile(file);
-                }
-            });
-
-            function normalize(text) {
-                return text
-                    .replace(/\([^)]*\)/g, "") // xóa (adj), (n), (v), ...
-                    .replace(/\/[^/]*\//g, "") // xóa /phát âm/
-                    .replace(/\s+/g, " ") // loại bỏ khoảng trắng dư
-                    .trim()
-                    .toLowerCase();
-            }
-
-            function readFile(file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const lines = e.target.result.split("\n");
-                    data = {};
-                    lines.forEach((line) => {
-                        const [key, value] = line.split(":");
-                        if (key && value) data[key.trim()] = value.trim();
-                    });
-                    keys = Object.keys(data);
-                    if (keys.length > 0) pickRandomWord();
-                    else alert("File không hợp lệ. Định dạng: từ: nghĩa");
-                };
-                reader.readAsText(file);
-            }
-
-            if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.lang = "vi-VN";
-                recognition.continuous = false;
-                recognition.interimResults = false;
-
-                recognition.onresult = function (event) {
-                    let transcript = event.results[0][0].transcript;
-                    transcript = transcript.replace(/\.$/, "");
-                    document.getElementById("answer").value = transcript;
-                    stopRecording();
-                };
-
-                recognition.onerror = recognition.onend = () => stopRecording();
-            }
-
-            fetch("vocabulary_list.txt")
-                .then((res) => res.text())
-                .then((text) => {
-                    const lines = text.split("\n");
-                    lines.forEach((line) => {
-                        const [key, value] = line.split(":");
-                        if (key && value) data[key.trim()] = value.trim();
-                    });
-                    keys = Object.keys(data);
-                    pickRandomWord();
-                });
-
-            function pickRandomWord() {
-                currentWord = keys[Math.floor(Math.random() * keys.length)];
-                const displayWord = isReverse ? data[currentWord].split("/")[0] : currentWord;
-                document.getElementById("word").textContent = displayWord;
-                document.getElementById("answer").value = "";
-                document.getElementById("result").textContent = "";
-            }
-
-            function handleKey(event) {
-                if (event.key === "Enter") checkAnswer();
-            }
-
-            document.addEventListener("keydown", (event) => {
-                if (event.key === "Shift") showResult();
-                if (event.key === "Control") speakWord();
-            });
-
-            function checkAnswer() {
-                const userInput = normalize(document.getElementById("answer").value);
-
-                let correctAnswers;
-                if (isReverse) {
-                    correctAnswers = normalize(currentWord);
-                    if (userInput === correctAnswers) {
-                        if (!showVoc) correctCount++;
-                        showVoc = false;
-                        updateStats();
-                        pickRandomWord();
-                    } else {
-                        wrongCount++;
-                        updateStats();
-                        document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
-                    }
-                } else {
-                    correctAnswers = data[currentWord]
-                        .toLowerCase()
-                        .split("/")
-                        .map((x) => normalize(x));
-
-                    if (correctAnswers.includes(userInput)) {
-                        if (!showVoc) correctCount++;
-                        showVoc = false;
-                        updateStats();
-                        pickRandomWord();
-                    } else {
-                        wrongCount++;
-                        updateStats();
-                        document.getElementById("result").textContent = "Sai rồi! Bớt ngu lại con chó.";
-                    }
-                }
-            }
-
-            function showResult() {
-                if (!showVoc) wrongCount++;
-                showVoc = true;
-
-                if (isReverse) {
-                    document.getElementById("answer").value = normalize(currentWord);
-                    document.getElementById("result").textContent = `Từ đúng là: "${normalize(currentWord)}"`;
-                } else {
-                    const meaning = data[currentWord].split("/")[0];
-                    document.getElementById("answer").value = meaning;
-                    document.getElementById("result").textContent = `Nhớ kĩ cho tao: "${data[currentWord]}"`;
-                }
-
-                updateStats();
-            }
-
-            function updateStats() {
-                document.getElementById("correctCount").textContent = correctCount;
-                document.getElementById("wrongCount").textContent = wrongCount;
-            }
-
-            function speakWord() {
-                if ("speechSynthesis" in window) {
-                    const textToSpeak = isReverse ? data[currentWord].split("/")[0] : currentWord;
-                    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-                    utterance.lang = isReverse ? "vi-VN" : "en-US";
-                    utterance.rate = 0.8;
-                    speechSynthesis.speak(utterance);
-                } else {
-                    alert("Trình duyệt không hỗ trợ phát âm.");
-                }
-            }
-
-            function toggleVoiceRecognition() {
-                if (!recognition) {
-                    alert("Trình duyệt không hỗ trợ nhận diện giọng nói.");
-                    return;
-                }
-                isRecording ? stopRecording() : startRecording();
-            }
-
-            function startRecording() {
-                isRecording = true;
-                const voiceBtn = document.getElementById("voiceBtn");
-                voiceBtn.classList.add("bg-red-600", "animate-pulse");
-                voiceBtn.textContent = "🔴 Đang nghe...";
-                recognition.start();
-            }
-
-            function stopRecording() {
-                isRecording = false;
-                const voiceBtn = document.getElementById("voiceBtn");
-                voiceBtn.classList.remove("bg-red-600", "animate-pulse");
-                voiceBtn.textContent = "🎤 Nói";
-                recognition.stop();
-            }
-        </script>
+        <!-- Tải file JS ngoài -->
+        <script src="main.js"></script>
     </body>
 </html>
