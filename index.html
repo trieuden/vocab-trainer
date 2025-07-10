@@ -9,10 +9,19 @@
     <body class="bg-neutral-800 text-white text-center p-5 min-h-screen box-border font-sans">
         <div class="bg-neutral-700 rounded-xl p-6 max-w-md mx-auto shadow-lg relative w-full">
             <p id="tagname" class="absolute top-[2px] right-[5px] text-xs">@trieuden</p>
-
+            <div class="absolute top-[2px] left-[5px] group text-xs cursor-pointer w-fit">
+                ❓
+                <div class="absolute w-64 bg-neutral-600 text-white text-left text-xs p-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    💡
+                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                        <li>Nhấn <kbd>Ctrl</kbd> để phát âm</li>
+                        <li>Nhấn <kbd>Shift</kbd> để hiện đáp án</li>
+                    </ul>
+                </div>
+            </div>
             <h2 id="word" class="text-2xl font-bold mb-5 break-words">...</h2>
 
-            <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt" onkeydown="handleKey(event)" class="p-3 w-full text-base border border-gray-300 rounded mb-4 text-black" />
+            <input type="text" id="answer" placeholder="Nhập nghĩa" onkeydown="handleKey(event)" class="p-3 w-full text-base border border-gray-300 rounded mb-4 text-black" />
 
             <div class="mb-3">
                 <button onclick="checkAnswer()" class="bg-green-600 text-white py-3 px-4 rounded text-sm m-1 min-h-[44px]">Kiểm tra</button>
@@ -131,15 +140,12 @@
 
             function handleKey(event) {
                 if (event.key === "Enter") checkAnswer();
-                else if (event.key === "Shift") showResult();
-                else if (event.key === " " && event.ctrlKey) {
-                    event.preventDefault();
-                    speakWord();
-                } else if (event.key === " " && event.altKey) {
-                    event.preventDefault();
-                    toggleVoiceRecognition();
-                }
             }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Shift") showResult();
+                if (event.key === "Control") speakWord();
+            });
 
             function checkAnswer() {
                 const userInput = normalize(document.getElementById("answer").value);
