@@ -5,9 +5,9 @@ access (n): sự truy cập
 access (v): truy cập
 accountable for (adj – cụm): chịu trách nhiệm cho
 adapt (v): thích nghi
-admit (v): thừa nhận / cho vào
-advance (v): tiến bộ / đưa ra
-advance (n): sự tiến bộ
+admit (v): thừa nhận / nhận vào
+advance (v): nâng cao / đưa ra
+advance (n): nâng cao
 advance (adj): trước / sớm
 advertising (n – uncountable): quảng cáo
 advice (n – uncountable): lời khuyên
@@ -65,7 +65,7 @@ decision (n): quyết định
 dedicate (v): cống hiến
 defect (n): lỗi
 demand (n): nhu cầu
-determine (v): xác định
+determine (v): xác định / quyết tâm
 devote (v): cống hiến
 difficult (adj): khó khăn
 discard (v): vứt bỏ
@@ -90,7 +90,7 @@ except for (prep – cụm): ngoại trừ
 excess (n): sự dư thừa
 exchange (v / n): trao đổi
 expect (v): mong đợi
-expend (v): tiêu tốn
+expend (v): chi phí
 expert (n): chuyên gia
 expire (v): hết hạn
 extinguish (v): dập tắt
@@ -105,7 +105,7 @@ formula (n): công thức
 frequent (adj): thường xuyên
 frequently (adv): thường xuyên
 fundraise (v): gây quỹ
-furnaces (n): lò luyện kim
+furnaces (n): lò luyện kim / lò nung
 further (adj / adv): thêm nữa
 garment (n): quần áo
 gladly (adv): một cách vui vẻ
@@ -153,7 +153,7 @@ position (n): vị trí
 possible (adj): có thể
 potential (adj / n): tiềm năng
 praise (v / n): khen ngợi / lời khen
-predict (v): dự đoán
+predict (v): dự đoán / nói trước
 prescription (n): đơn thuốc
 present (v): trình bày
 present (n): món quà
