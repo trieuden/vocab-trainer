@@ -21,7 +21,7 @@ alternative (n): lựa chọn thay thế
 alternative (adj): thay thế
 although (conj): mặc dù
 among (prep): trong số
-any left (cụm: đại từ + adj): còn lại không
+any left (cụm đại từ + adj): còn lại không
 applicant (n): người ứng tuyển
 assume (v): giả định / cho rằng
 audiences (n): khán giả
