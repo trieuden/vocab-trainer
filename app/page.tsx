@@ -4,32 +4,37 @@ import { HomePage } from "../libs/vocab/pages";
 import { Login } from "@/vocab/component";
 import { UserModel } from "@/core/models/UserModel";
 
+const defaultUser: UserModel = {
+    id: "guest",
+    name: "guest",
+    avatar: "./images/default.png",
+};
+
 const Pages = () => {
     const [isOpenLogin, setIsOpenLogin] = useState(false);
-
-    const storedUser = localStorage.getItem("currentUser");
-
-    const [currentUser, setCurrentUser] = useState<UserModel>(
-        storedUser
-            ? JSON.parse(storedUser)
-            : {
-                  id: "guest",
-                  name: "guest",
-                  avatar: "./images/default.png",
-              }
-    );
+    const [currentUser, setCurrentUser] = useState<UserModel>(defaultUser);
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        if (!storedUser) {
-            const userModel = {
-                id: "guest",
-                name: "guest",
-                avatar: "./images/default.png",
-            };
-            localStorage.setItem("currentUser", JSON.stringify(userModel));
-            setCurrentUser(userModel);
+        const storedUser = localStorage.getItem("currentUser");
+
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setCurrentUser(parsedUser);
+            } catch {
+                localStorage.setItem("currentUser", JSON.stringify(defaultUser));
+                setCurrentUser(defaultUser);
+            }
+        } else {
+            localStorage.setItem("currentUser", JSON.stringify(defaultUser));
+            setCurrentUser(defaultUser);
         }
+
+        setIsReady(true);
     }, []);
+
+    if (!isReady) return null;
 
     return (
         <>
