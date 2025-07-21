@@ -1,0 +1,1559 @@
+[
+    {
+        "eng": "above",
+        "vie": "ở trên",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "above",
+        "vie": "phía trên",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "above",
+        "vie": "ở phía trên",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "access",
+        "vie": "sự truy cập",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "access",
+        "vie": "truy cập",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "accountable for",
+        "vie": "chịu trách nhiệm cho",
+        "type": "adjective",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "adapt",
+        "vie": "thích nghi",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "admit",
+        "vie": "thừa nhận / nhận vào",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "advance",
+        "vie": "nâng cao / đưa ra",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "advance",
+        "vie": "nâng cao",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "advance",
+        "vie": "trước / sớm",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "advertising",
+        "vie": "quảng cáo",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "advice",
+        "vie": "lời khuyên",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "affiliation",
+        "vie": "sự liên kết",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "afford",
+        "vie": "đủ khả năng",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "agent",
+        "vie": "đại lý / người đại diện",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "aim to",
+        "vie": "nhằm mục đích",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "allergy",
+        "vie": "dị ứng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "allocation",
+        "vie": "sự phân bổ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "alternative",
+        "vie": "lựa chọn thay thế",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "alternative",
+        "vie": "thay thế",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "although",
+        "vie": "mặc dù",
+        "type": "conjunction",
+        "level": "B1"
+    },
+    {
+        "eng": "among",
+        "vie": "trong số",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "any left",
+        "vie": "còn lại không",
+        "type": "pronoun + adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "applicant",
+        "vie": "người ứng tuyển",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "assume",
+        "vie": "giả định / cho rằng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "audiences",
+        "vie": "khán giả",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "aware",
+        "vie": "nhận thức",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "aware of",
+        "vie": "nhận biết",
+        "type": "adjective",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "bargain",
+        "vie": "giá hời",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "bargain",
+        "vie": "mặc cả",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "be able to",
+        "vie": "có thể",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "belonging",
+        "vie": "đồ dùng / sở hữu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "beside",
+        "vie": "bên cạnh",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "boots",
+        "vie": "giày ống",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "bring",
+        "vie": "mang lại",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "by the way",
+        "vie": "nhân tiện",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "calm",
+        "vie": "bình tĩnh",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "can lead to",
+        "vie": "có thể dẫn đến",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "capable",
+        "vie": "có khả năng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "castle",
+        "vie": "lâu đài",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "clerk",
+        "vie": "lễ tân / nhân viên",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "clinic",
+        "vie": "phòng khám",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "coincide",
+        "vie": "trùng hợp",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "combines",
+        "vie": "kết hợp",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "come with",
+        "vie": "đi kèm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "compatible with",
+        "vie": "tương thích với",
+        "type": "adjective",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "competent",
+        "vie": "có năng lực",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "competition",
+        "vie": "cuộc thi",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "compliant",
+        "vie": "tuân thủ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "complicate",
+        "vie": "làm phức tạp",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "complimentary",
+        "vie": "khen ngợi",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "conclude",
+        "vie": "kết luận",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "confidence",
+        "vie": "sự tự tin",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "congestion",
+        "vie": "sự tắc nghẽn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "consider",
+        "vie": "xem xét / cân nhắc",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "contingency",
+        "vie": "tình huống bất ngờ",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "convene",
+        "vie": "triệu tập",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "convenient",
+        "vie": "tiện lợi",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "cooperation",
+        "vie": "sự hợp tác",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "courteous",
+        "vie": "lịch sự",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "crops",
+        "vie": "mùa vụ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "dispute",
+        "vie": "sự tranh luận",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "decision",
+        "vie": "quyết định",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "dedicate",
+        "vie": "cống hiến",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "defect",
+        "vie": "lỗi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "demand",
+        "vie": "nhu cầu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "determine",
+        "vie": "xác định / quyết tâm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "devote",
+        "vie": "cống hiến",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "difficult",
+        "vie": "khó khăn",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "discard",
+        "vie": "vứt bỏ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "distance",
+        "vie": "khoảng cách",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "distantly",
+        "vie": "xa cách",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "distinct",
+        "vie": "riêng biệt",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "distribute",
+        "vie": "phân phối",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "dividing",
+        "vie": "phân chia",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "effective",
+        "vie": "hiệu quả",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "elect",
+        "vie": "bầu chọn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "eligible",
+        "vie": "đủ điều kiện",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "energetic",
+        "vie": "nhiệt huyết",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "enough",
+        "vie": "đủ",
+        "type": "adjective / adverb / pronoun",
+        "level": "B1"
+    },
+    {
+        "eng": "ensure",
+        "vie": "đảm bảo",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "enthusiasm",
+        "vie": "sự nhiệt tình",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "envelop",
+        "vie": "bao phủ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "envelope",
+        "vie": "phong bì",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "real estate",
+        "vie": "bất động sản",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "evacuation",
+        "vie": "sự sơ tán",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "ever",
+        "vie": "đã từng",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "except for",
+        "vie": "ngoại trừ",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "excess",
+        "vie": "sự dư thừa",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "exchange",
+        "vie": "trao đổi",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "exchange",
+        "vie": "trao đổi",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "expect",
+        "vie": "mong đợi",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "expend",
+        "vie": "chi phí",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "expert",
+        "vie": "chuyên gia",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "expire",
+        "vie": "hết hạn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "extinguish",
+        "vie": "dập tắt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "factually",
+        "vie": "thực tế",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "fall",
+        "vie": "ngã",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "fall",
+        "vie": "ngã",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "familiar",
+        "vie": "quen thuộc",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "feature",
+        "vie": "đặc điểm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "feature",
+        "vie": "làm nổi bật",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "fertile",
+        "vie": "màu mỡ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "flourish",
+        "vie": "thịnh vượng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "fold",
+        "vie": "gấp lại",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "formula",
+        "vie": "công thức",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "frequent",
+        "vie": "thường xuyên",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "frequently",
+        "vie": "thường xuyên",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "fundraise",
+        "vie": "gây quỹ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "furnaces",
+        "vie": "lò luyện kim / lò nung",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "further",
+        "vie": "thêm nữa",
+        "type": "adjective / adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "garment",
+        "vie": "quần áo",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "gladly",
+        "vie": "một cách vui vẻ",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "grade",
+        "vie": "điểm số",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "guest",
+        "vie": "khách",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "hand on",
+        "vie": "trao tay",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "have to",
+        "vie": "phải",
+        "type": "modal verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "hold – held",
+        "vie": "tổ chức",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "hire",
+        "vie": "thuê",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "immediately",
+        "vie": "ngay lập tức",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "impress",
+        "vie": "gây ấn tượng",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "include",
+        "vie": "bao gồm",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "indicate",
+        "vie": "chỉ ra",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "industry",
+        "vie": "ngành công nghiệp / ngành",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "influence",
+        "vie": "ảnh hưởng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "influence",
+        "vie": "sự ảnh hưởng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "instead of",
+        "vie": "thay vì",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "institute",
+        "vie": "học viện",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "intend",
+        "vie": "dự định",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "intensive",
+        "vie": "chuyên sâu",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "invest in",
+        "vie": "đầu tư vào",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "invitation",
+        "vie": "lời mời",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "involve",
+        "vie": "liên quan đến",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "isolate",
+        "vie": "cách ly",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "issue",
+        "vie": "vấn đề",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "issue",
+        "vie": "phát hành",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "seamlessly",
+        "vie": "liền mạch",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "known as",
+        "vie": "được biết đến",
+        "type": "adjective",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "lift",
+        "vie": "nâng lên",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "look forward to",
+        "vie": "trông mong",
+        "type": "verb",
+        "level": "B1",
+        "complement": "+ V-ing"
+    },
+    {
+        "eng": "mandatory",
+        "vie": "bắt buộc",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "meet the need",
+        "vie": "đáp ứng nhu cầu",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "neatly",
+        "vie": "gọn gàng",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "necessary",
+        "vie": "cần thiết",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "negotiate",
+        "vie": "đàm phán",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "numerous",
+        "vie": "nhiều",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "observer",
+        "vie": "người quan sát",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "occupant",
+        "vie": "người chiếm giữ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "opportunity",
+        "vie": "cơ hội",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "outcome",
+        "vie": "kết quả",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "parcel",
+        "vie": "bưu kiện",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "permit",
+        "vie": "giấy phép",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "permit",
+        "vie": "cho phép",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "personal belonging",
+        "vie": "đồ dùng cá nhân",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "position",
+        "vie": "vị trí",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "possible",
+        "vie": "có thể",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "potential",
+        "vie": "tiềm năng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "potential",
+        "vie": "tiềm năng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "praise",
+        "vie": "khen ngợi",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "praise",
+        "vie": "lời khen",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "predict",
+        "vie": "dự đoán / nói trước",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "prescription",
+        "vie": "đơn thuốc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "present",
+        "vie": "trình bày",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "present",
+        "vie": "món quà",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "present",
+        "vie": "hiện tại",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "preserve",
+        "vie": "bảo tồn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "prevalence",
+        "vie": "sự phổ biến",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "primary",
+        "vie": "chính / chủ yếu",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "patient",
+        "vie": "bệnh nhân",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "patient",
+        "vie": "kiên nhẫn",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "perishable",
+        "vie": "dễ hỏng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "probably",
+        "vie": "có lẽ",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "productivity",
+        "vie": "năng suất",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "profoundly",
+        "vie": "sâu sắc",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "prohibiting",
+        "vie": "ngăn cấm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "proof",
+        "vie": "bằng chứng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "prosperous",
+        "vie": "thịnh vượng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "provide",
+        "vie": "cung cấp",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "punctual",
+        "vie": "đúng giờ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "purchase",
+        "vie": "mua",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "purchase",
+        "vie": "sự mua",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "quiet",
+        "vie": "im lặng",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "rarely",
+        "vie": "hiếm khi",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "reason",
+        "vie": "lý do",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "recognize",
+        "vie": "công nhận",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "recovery",
+        "vie": "sự phục hồi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "reduce",
+        "vie": "giảm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "refer",
+        "vie": "tham khảo / đề cập",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "refrain",
+        "vie": "kiềm chế",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "regardless of",
+        "vie": "bất kể",
+        "type": "preposition",
+        "level": "B2"
+    },
+    {
+        "eng": "regular",
+        "vie": "thường xuyên",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "rely on",
+        "vie": "dựa vào",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "remain",
+        "vie": "vẫn còn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "rental",
+        "vie": "việc cho thuê",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "restrict",
+        "vie": "bị hạn chế",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "retain",
+        "vie": "giữ lại",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "revolutionize",
+        "vie": "cách mạng hóa",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "rise",
+        "vie": "tăng",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "rise",
+        "vie": "sự tăng",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "roof",
+        "vie": "mái nhà",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "rural",
+        "vie": "nông thôn",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "reserve",
+        "vie": "đặt chỗ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "make a reservation",
+        "vie": "đặt chỗ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "scenic",
+        "vie": "đẹp về cảnh",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "sector",
+        "vie": "ngành",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "seek",
+        "vie": "tìm kiếm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "several",
+        "vie": "một vài",
+        "type": "adjective / determiner",
+        "level": "B1"
+    },
+    {
+        "eng": "shift",
+        "vie": "ca làm việc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "signification",
+        "vie": "ý nghĩa",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "slightly",
+        "vie": "hơi / nhẹ",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "so that",
+        "vie": "để mà",
+        "type": "conjunction",
+        "level": "B1"
+    },
+    {
+        "eng": "solicit",
+        "vie": "kêu gọi / nài nỉ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "soon",
+        "vie": "sớm",
+        "type": "adverb",
+        "level": "B1"
+    },
+    {
+        "eng": "spread",
+        "vie": "trải rộng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "state",
+        "vie": "trạng thái",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "state",
+        "vie": "tuyên bố",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "steady",
+        "vie": "ổn định",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "stir",
+        "vie": "khuấy",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "straightforward",
+        "vie": "thẳng thắn",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "strategy",
+        "vie": "chiến lược",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "strict",
+        "vie": "nghiêm ngặt",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "stunning",
+        "vie": "cảnh đẹp",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "substantial",
+        "vie": "đáng kể",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "suggest",
+        "vie": "gợi ý",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "supervisor",
+        "vie": "người giám sát",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "supply and demand",
+        "vie": "cung và cầu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "suppose",
+        "vie": "giả sử",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "surrounding",
+        "vie": "xung quanh",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "suspension",
+        "vie": "sự đình chỉ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "take on the role",
+        "vie": "đảm nhận vai trò",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "tangible",
+        "vie": "hữu hình",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "temporary",
+        "vie": "tạm thời",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "theory",
+        "vie": "lý thuyết",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "thoroughly",
+        "vie": "kỹ lưỡng",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "through",
+        "vie": "thông qua",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "toward",
+        "vie": "hướng về",
+        "type": "preposition",
+        "level": "B1"
+    },
+    {
+        "eng": "undertake",
+        "vie": "đảm nhận",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "unfold",
+        "vie": "mở ra",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "unless",
+        "vie": "trừ khi",
+        "type": "conjunction",
+        "level": "B2"
+    },
+    {
+        "eng": "vacant",
+        "vie": "trống",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "virtually",
+        "vie": "gần như",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "visitor",
+        "vie": "khách tham quan",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "whether",
+        "vie": "liệu rằng",
+        "type": "conjunction",
+        "level": "B2"
+    },
+    {
+        "eng": "whole",
+        "vie": "toàn bộ",
+        "type": "adjective",
+        "level": "B1"
+    }
+]

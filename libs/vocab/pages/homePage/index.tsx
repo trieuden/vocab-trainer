@@ -5,11 +5,12 @@ import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, Sett
 import { PrimaryButton, TextButton } from "../../../core/component";
 import { LevelSlider } from "../../component/LevelSlider";
 import { Library, GuideModal } from "@/vocab/pages";
-import { ReadDefaultFile } from "@/core/services/WordServices";
+import { GetMiloLibraries, GetTrieudenLibraries } from "@/core/services/WordServices";
 import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
 import { getSentence } from "@/core/services/SentenceServices";
 import { WordModel } from "@/core/models/WordModel";
 import { LibraryModel } from "@/core/models/LibraryModel";
+import { UserModel } from "@/core/models/UserModel";
 import { useNotification } from "@/vocab/providers/NotificationProvider";
 
 type InputModeType = "enToVi" | "viToEn";
@@ -18,7 +19,12 @@ type ModalStateType = "settings" | "library" | "guide";
 
 const defaultImage = "/images/default.png";
 
-export const HomePage = () => {
+type HomePageProps = {
+    setIsOpenLogin: (isOpen: boolean) => void;
+    currentUser: UserModel;
+};
+
+export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -54,27 +60,38 @@ export const HomePage = () => {
     const [reverse, setReverse] = useState(0);
     const [inputMode, setInputMode] = useState<InputModeType>("enToVi");
 
+    const refreshData = () => {
+        setCheckedLibraries([]);
+        setLibraries([]);
+        setWordList([]);
+        setCurrentWord(undefined);
+        setCurrentSentence("");
+        setCurrentAudio("");
+        setCurrentPhonetic("");
+        setAnswer("");
+        setResultText("");
+    };
+
     useEffect(() => {
+        refreshData();
         const fetchData = async () => {
-            const newLibraries: LibraryModel[] = [];
-
-            for (let index = 0; index < 8; index++) {
-                const words = await ReadDefaultFile(`milo${index}.json`);
-                if (words.length > 0) {
-                    const data = {
-                        id: crypto.randomUUID?.() || Math.random().toString(),
-                        title: "Milo" + index,
-                        image: defaultImage,
-                        wordList: words,
-                    };
-                    newLibraries.push(data);
-                }
+            if (currentUser.id === "guest") {
+                const milo = await GetMiloLibraries();
+                const trieu = await GetTrieudenLibraries();
+                const res = [...milo, ...trieu];
+                setLibraries(res);
             }
-
-            setLibraries(newLibraries);
+            if (currentUser.id === "milo") {
+                const res = await GetMiloLibraries();
+                setLibraries(res);
+            }
+            if (currentUser.id === "trieuden") {
+                const res = await GetTrieudenLibraries();
+                setLibraries(res);
+            }
         };
         fetchData();
-    }, []);
+    }, [currentUser]);
 
     useEffect(() => {
         setCurrentWord(undefined);
@@ -197,7 +214,6 @@ export const HomePage = () => {
         }
         const normalizedAnswerToCheck = answerToCheck.trim().toLocaleLowerCase();
         const meanings = answer.split("/").map((part) => part.trim().toLocaleLowerCase());
-        console.log(meanings);
 
         const isCorrect = meanings.filter((part) => part === normalizedAnswerToCheck);
         if (isCorrect) {
@@ -253,7 +269,6 @@ export const HomePage = () => {
         if (currentAudio) {
             const audio = new Audio(currentAudio);
             audio.play();
-            return;
         } else {
             if ("speechSynthesis" in window) {
                 speechSynthesis.cancel();
@@ -281,7 +296,6 @@ export const HomePage = () => {
 
     const handleSpeechRecognition = () => {
         if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
-            alert("Speech recognition not supported in this browser");
             return;
         }
 
@@ -377,7 +391,25 @@ export const HomePage = () => {
                 <Stack direction="row" spacing={2} alignItems="center">
                     <h1 className="text-xl font-bold">Thư viện</h1>
                 </Stack>
-                <Stack mt={2} spacing={1.5}>
+                <Stack
+                    mt={2}
+                    spacing={1.5}
+                    className="overflow-y-auto h-[calc(100vh-90px)]"
+                    sx={{
+                        scrollBehavior: "smooth",
+                        "&::-webkit-scrollbar": {
+                            width: "4px",
+                        },
+                        "&::-webkit-scrollbar-track": {
+                            backgroundColor: "#f1f1f1",
+                            borderRadius: "10px",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                            backgroundColor: "#888",
+                            borderRadius: "10px",
+                        },
+                    }}
+                >
                     {libraries.map((library, index) => (
                         <Library
                             key={index}
@@ -464,11 +496,11 @@ export const HomePage = () => {
                             </IconButton>
                         </>
                     )}
-                    <Box component={"img"} src={defaultImage} className="rounded-full h-[45px] w-[45px] object-cover" />
+                    <Box component={"img"} src={currentUser?.avatar} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" onClick={() => setIsOpenLogin(true)} />
                 </Stack>
             </Stack>
 
-            <Stack direction={"row"} className="justify-between items-center p-2 " spacing={2} sx={{ height: "calc(100vh - 61px)" }}>
+            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: "calc(100vh - 65px)" }}>
                 {/* Settings Sidebar - Hidden on mobile */}
                 {!isMobile && (
                     <Stack flex={1} className={`bg-[#333] p-4 rounded-lg h-full`}>

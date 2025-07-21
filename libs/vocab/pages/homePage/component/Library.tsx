@@ -15,8 +15,10 @@ export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
                     "&.Mui-checked": {
                         color: "#1a8cff",
                     },
+                    "& .MuiSvgIcon-root": {
+                        fontSize: 30,
+                    },
                 }}
-                size="small"
                 checked={isChecked}
                 onChange={(e) => {
                     setIsChecked(e.target.checked);
