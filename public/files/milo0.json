@@ -1,0 +1,160 @@
+[
+    {
+        "eng": "a bookworm",
+        "vie": "mọt sách",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "to have green fingers",
+        "vie": "có tay trồng trọt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "a workaholic",
+        "vie": "người mê công việc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "a shopaholic",
+        "vie": "người mê mua sắm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "to hit the hay",
+        "vie": "đi ngủ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "to be stuck in a rut",
+        "vie": "bị chôn chặt ở mức độ trì, đóng việc",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "a dead-end job",
+        "vie": "công việc không có tương lai",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "to put my feet up",
+        "vie": "gác chân lên nghỉ ngơi",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+
+    
+    {
+        "eng": "to be on the fence",
+        "vie": "đứng trung lập, không nghiêng về phía nào",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "to be in two minds",
+        "vie": "lưỡng lự",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "to see both sides of the issue",
+        "vie": "hiểu được cả hai mặt của vấn đề",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "a double-edged sword",
+        "vie": "con dao hai lưỡi",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "a controversial issue",
+        "vie": "vấn đề gây tranh cãi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "to be up for debate",
+        "vie": "đang được đưa ra bàn luận",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "based on my own experience",
+        "vie": "dựa trên kinh nghiệm riêng của tôi",
+        "type": "phrase",
+        "level": "B1"
+    },
+    {
+        "eng": "to go along with an idea",
+        "vie": "đồng tình với một ý kiến / nhất trí với một ý kiến",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+
+
+    
+    {
+        "eng": "up-to-date",
+        "vie": "cập nhật / mới nhất",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "outdated",
+        "vie": "lỗi thời",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "user-friendly",
+        "vie": "dễ sử dụng",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "cutting-edge",
+        "vie": "tiên tiến / hàng đầu",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "brand new",
+        "vie": "mới toanh",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "tech-savvy",
+        "vie": "rành công nghệ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "low-tech",
+        "vie": "sử dụng công nghệ đơn giản",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "innovative",
+        "vie": "đầy sáng tạo",
+        "type": "adjective",
+        "level": "B2"
+    }
+]

@@ -1,0 +1,234 @@
+[
+    {
+        "eng": "meager",
+        "vie": "đạm bạc",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "ration",
+        "vie": "khẩu phần",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "shrink",
+        "vie": "co rút lại",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "uneven",
+        "vie": "không đều / gồ ghề",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "deduct",
+        "vie": "khấu trừ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "deposit",
+        "vie": "tiền đặt cọc / tiền gửi ngân hàng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "deposit",
+        "vie": "gửi tiền vào ngân hàng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "direct debit",
+        "vie": "giao dịch ủy nhiệm chi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "dividend",
+        "vie": "tiền lãi cổ phần / cổ tức",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "down payment",
+        "vie": "trả trước",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "lump sum",
+        "vie": "khoản tiền nhận 1 lần",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "mortgage",
+        "vie": "sự thế chấp",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "overdraft",
+        "vie": "số tiền dư trội / chi dôi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "brittle",
+        "vie": "giòn / dễ gãy",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "chip",
+        "vie": "làm sứt mẻ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "chip",
+        "vie": "mảnh vỡ",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "compact",
+        "vie": "kết lại / làm cho chắc hơn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "compact",
+        "vie": "nhỏ gọn",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "concentrate",
+        "vie": "cô đặc",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "crack",
+        "vie": "làm nứt",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "crack",
+        "vie": "vết nứt",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "eminent",
+        "vie": "xuất chúng / lỗi lạc",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "magnetism",
+        "vie": "từ tính",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "alchemy",
+        "vie": "thuật giả kim",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "unwitting",
+        "vie": "không cố ý / không chủ tâm",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "forage",
+        "vie": "lục lọi / tìm tòi thức ăn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "forage",
+        "vie": "cỏ cho gia súc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "vice versa",
+        "vie": "ngược lại",
+        "type": "adverb",
+        "level": "B2"
+    },
+    {
+        "eng": "juggle",
+        "vie": "tung hứng / trò tung hứng / lừa bịp",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "satiate",
+        "vie": "làm thỏa mãn",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "equilibrium",
+        "vie": "sự thăng bằng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "protagonist",
+        "vie": "vai chính / người giữ vai trò chủ đạo",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "entomologist",
+        "vie": "nhà côn trùng học",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "dispersal",
+        "vie": "sự phân tán",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "suspension",
+        "vie": "sự đình chỉ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "prevalence",
+        "vie": "sự phổ biến",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "contingency",
+        "vie": "phương án dự phòng / sự việc bất ngờ",
+        "type": "noun",
+        "level": "C1"
+    }
+]

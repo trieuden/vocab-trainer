@@ -1,0 +1,353 @@
+[
+    {
+        "eng": "correspondent",
+        "vie": "thông tín viên / phóng viên báo chí",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "solicit",
+        "vie": "nài nỉ / cố đạt cho được",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "amputation",
+        "vie": "thủ thuật cắt cụt",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "nerve",
+        "vie": "dây thần kinh",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "miserable",
+        "vie": "bần cùng / khổ sở",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "implicit",
+        "vie": "ngầm hiểu / ấn ngầm / hoàn toàn",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "didactic",
+        "vie": "thiết kế để dạy người khác",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "narcissistic",
+        "vie": "tự luyến",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "mausoleum",
+        "vie": "lăng mộ / lăng tẩm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "susceptible",
+        "vie": "dễ bị ảnh hưởng bởi",
+        "type": "adjective",
+        "level": "B2",
+        "complement": "+ to"
+    },
+    {
+        "eng": "feat",
+        "vie": "sự kỳ công",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "rant",
+        "vie": "lảm nhảm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "quibble",
+        "vie": "nói nước đôi / lý sự cùn",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "placard",
+        "vie": "áp phích / tranh cổ động",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "petition",
+        "vie": "đơn kiến nghị",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "murmur",
+        "vie": "thì thầm / nói thầm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "murmur",
+        "vie": "tiếng rì rầm / thì thầm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "mumble",
+        "vie": "lầm bầm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "mumble",
+        "vie": "tiếng nói lầm bầm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "allege",
+        "vie": "cáo buộc / tuyên bố",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "ambiguous",
+        "vie": "mơ hồ / nhập nhằng / có nhiều hơn một nghĩa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "assert",
+        "vie": "khẳng định",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "innocent",
+        "vie": "vô tội",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "blunt",
+        "vie": "thẳng thắn / nói không giữ ý tứ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "boast",
+        "vie": "lời nói khoác lác / lời nói khoe khoan",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "clarification",
+        "vie": "sự làm cho sáng sủa / sự làm cho dễ hiểu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "colloquial",
+        "vie": "thông tục",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "confide",
+        "vie": "thổ lộ / tâm sự",
+        "type": "verb",
+        "level": "B2",
+        "complement": "+ in"
+    },
+    {
+        "eng": "denounce",
+        "vie": "tố giác / vạch mặt ra công chúng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "disclose",
+        "vie": "tiết lộ / phơi bày",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "exaggerate",
+        "vie": "phóng đại / làm quá",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "flatter",
+        "vie": "tâng bốc / nịnh bợ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "gist",
+        "vie": "ý chính / thực chất của một vấn đề",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "illegible",
+        "vie": "không đọc được / khó đọc",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "jargon",
+        "vie": "thuật ngữ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "literal",
+        "vie": "theo nghĩa đen",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "skip",
+        "vie": "nhảy chân sáo",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "slip",
+        "vie": "trượt chân",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "stride",
+        "vie": "bước dài sải chân",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "trip",
+        "vie": "vấp ngã",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "velocity",
+        "vie": "vận tốc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "wander",
+        "vie": "đi lang thang / đi vẩn vơ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "carriage",
+        "vie": "toa hành khách",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "charter",
+        "vie": "thuê máy bay / thuê tàu",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "hiker",
+        "vie": "người đi bộ đường dài",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "hitchhiker",
+        "vie": "người đi nhờ xe / người đi nhờ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "jet lag",
+        "vie": "mệt mỏi vì lệch múi giờ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "legroom",
+        "vie": "chỗ duỗi chân",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "passerby",
+        "vie": "người qua đường",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "pier",
+        "vie": "bến tàu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "quay",
+        "vie": "kè / bến cảng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "return fare",
+        "vie": "tiền khứ hồi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "round trip",
+        "vie": "đi và về trong ngày",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "steer",
+        "vie": "lái",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "steward",
+        "vie": "người phục vụ trên tàu / người phục vụ trên máy bay / tiếp viên",
+        "type": "noun",
+        "level": "B2"
+    }
+]

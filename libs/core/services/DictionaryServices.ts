@@ -28,7 +28,7 @@ export const getPhoneticsByWord = async (word: string): Promise<Phonetic[]> => {
         const response = await fetch(`${baseUrl}/${encodeURIComponent(word)}`);
 
         if (!response.ok) {
-            throw new Error(`Dictionary API error: ${response.status}`);
+            return [];
         }
 
         const data: DictionaryEntry[] = await response.json();
@@ -49,15 +49,11 @@ export const getDictionaryEntry = async (word: string): Promise<DictionaryEntry 
     try {
         const response = await fetch(`${baseUrl}/${encodeURIComponent(word)}`);
 
-        if (!response.ok) {
-            throw new Error(`Dictionary API error: ${response.status}`);
-        }
 
         const data: DictionaryEntry[] = await response.json();
 
         return data && data.length > 0 ? data[0] : null;
-    } catch (error) {
-        console.error("Error fetching dictionary entry:", error);
+    } catch {
         return null;
     }
 };

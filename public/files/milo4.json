@@ -1,0 +1,314 @@
+[
+    {
+        "eng": "magnitude",
+        "vie": "tầm rộng lớn / tầm quan trọng / nghiêm trọng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "intensity",
+        "vie": "cường độ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "heap",
+        "vie": "đống",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "fraction",
+        "vie": "phân số",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "finite",
+        "vie": "có hạn / có chừng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "extent",
+        "vie": "phạm vi / quy mô",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "equidistant",
+        "vie": "ở khoảng cách bằng nhau",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "equation",
+        "vie": "phương trình / sự làm cho bằng nhau",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "dimension",
+        "vie": "chiều / khổ / cỡ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "countless",
+        "vie": "nhiều vô kể",
+        "type": "adjective",
+        "level": "B1"
+    },
+    {
+        "eng": "batch",
+        "vie": "đợt / chuyến / khóa học",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "scarce",
+        "vie": "khan hiếm",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "instinct",
+        "vie": "bản năng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "famine",
+        "vie": "nạn đói kém",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "exploit",
+        "vie": "khai thác / lợi dụng / bóc lột",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "catastrophe",
+        "vie": "thảm họa / tai ương",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "embryo",
+        "vie": "phôi thai / mầm",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "permeate",
+        "vie": "thấm qua / tràn lan ra / lan khắp",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "illiterate",
+        "vie": "dốt nát / mù chữ / không hiểu biết",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "versatile",
+        "vie": "tháo vát / đa năng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "seize up",
+        "vie": "bị kẹt và hỏng máy",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "vindicate",
+        "vie": "minh oan",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "remunerate",
+        "vie": "trả công / đền đáp",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "spontaneous",
+        "vie": "tự phát / tự nguyện từ bên trong",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "startle",
+        "vie": "làm giật mình",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "stray",
+        "vie": "đi lang thang / đi lạc",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "stray",
+        "vie": "lạc / mất",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "transpire",
+        "vie": "xảy ra",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "wobble",
+        "vie": "loạng choạng",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "ascribe",
+        "vie": "đổ cho / gán cho",
+        "type": "verb",
+        "level": "C1",
+        "complement": "+ to"
+    },
+    {
+        "eng": "assign",
+        "vie": "phân công / bổ nhiệm",
+        "type": "verb",
+        "level": "B2",
+        "complement": "+ to"
+    },
+    {
+        "eng": "blow",
+        "vie": "cú đánh đòn / tai họa / điều bất hạnh",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "coincidence",
+        "vie": "sự trùng hợp ngẫu nhiên",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "curse",
+        "vie": "nguyền rủa",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "curse",
+        "vie": "sự nguyền rủa",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "fluctuate",
+        "vie": "dao động / biến động / thay đổi bất thường",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "foresee",
+        "vie": "nhìn thấy trước / đoán trước",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "freak",
+        "vie": "điều kỳ dị",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "gamble",
+        "vie": "cược / đánh bài may rủi",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "haphazard",
+        "vie": "bừa bãi / lung tung",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "hazard",
+        "vie": "mối nguy hiểm / rủi ro",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "instrumental",
+        "vie": "có công làm gì",
+        "type": "adjective",
+        "level": "C1",
+        "complement": "+ in"
+    },
+    {
+        "eng": "jinxed",
+        "vie": "mang vận xui xẻo",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "likelihood",
+        "vie": "khả năng xảy ra",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "lucky charm",
+        "vie": "bùa may mắn",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "meander",
+        "vie": "đi vòng vèo / uốn khúc / đi vẩn vơ vô định",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "mishap",
+        "vie": "lỗi nhỏ / tai nạn nhỏ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "mutate",
+        "vie": "biến đổi gen",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "odds",
+        "vie": "cơ hội điều gì xảy ra",
+        "type": "noun",
+        "level": "B2"
+    }
+]

@@ -1,0 +1,323 @@
+[
+    {
+        "eng": "lump",
+        "vie": "gộp lại thành đống / cho là một giộc / vón lại",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "lump",
+        "vie": "cục / tảng",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "mould",
+        "vie": "đúc / nặn",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "mould",
+        "vie": "khuôn",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "opaque",
+        "vie": "mờ đục",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "pat",
+        "vie": "vỗ nhẹ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "pat",
+        "vie": "cái vỗ nhẹ",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "pile",
+        "vie": "xếp thành đống",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "pile",
+        "vie": "chồng / đống",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "polish",
+        "vie": "đánh bóng",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "polish",
+        "vie": "xi đánh bóng",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "scratch",
+        "vie": "gãi / cào xước / quẹt",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "scratch",
+        "vie": "vết xước",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "scrub",
+        "vie": "cọ rửa",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "scrub",
+        "vie": "sự cọ rửa",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "smash",
+        "vie": "đập nát thành mảnh",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "speck",
+        "vie": "vệt nhỏ / đốm nhỏ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "squash",
+        "vie": "nén / ép",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "squash",
+        "vie": "đám đông chen nhau",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "squeeze",
+        "vie": "ép / vắt / siết chặt",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "squeeze",
+        "vie": "sự ép / vắt / nén",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "stack",
+        "vie": "chồng thành đống",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "stack",
+        "vie": "chồng đống",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "crumb",
+        "vie": "mảnh vụn rơi ra",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "dense",
+        "vie": "nặng (kim loại)",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "dilute",
+        "vie": "pha loãng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "dilute",
+        "vie": "loãng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "dissolve",
+        "vie": "hòa tan / giải thể",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "flake",
+        "vie": "bong / tróc",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "flake",
+        "vie": "mảnh / vảy",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "friction",
+        "vie": "sự ma sát",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "grain",
+        "vie": "hạt / bột",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "grind",
+        "vie": "xay / nghiền / mài giũa",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "hollow",
+        "vie": "rỗng / hăm hở",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "cyclone",
+        "vie": "lốc / gió xoáy",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "diameter",
+        "vie": "đường kính",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "torrential",
+        "vie": "chảy xiết / cuồn cuộn / xối xả",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "extinguish",
+        "vie": "dập tắt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "personnel",
+        "vie": "cán bộ công nhân viên",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "limp",
+        "vie": "không có sức mạnh hoặc năng lượng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "limp",
+        "vie": "đi khập khiễng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "almond",
+        "vie": "hạt hạnh nhân",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "liberal",
+        "vie": "tự do / không thành kiến",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "legitimate",
+        "vie": "hợp pháp / chính đáng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "illusion",
+        "vie": "ảo giác / ảo tưởng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "illuminate",
+        "vie": "chiếu sáng / làm sáng tỏ",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "contradict",
+        "vie": "mâu thuẫn với / phản đối",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "degrade",
+        "vie": "làm giảm sút / làm suy yếu",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "hinder",
+        "vie": "cản trở",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "legacy",
+        "vie": "tài sản để lại / di sản",
+        "type": "noun",
+        "level": "B2"
+    }
+]

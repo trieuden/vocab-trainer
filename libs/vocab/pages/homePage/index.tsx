@@ -1,24 +1,28 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Box, Stack, Typography, TextField, Dialog, IconButton, useMediaQuery, useTheme, Checkbox } from "@mui/material";
-import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, Settings, LibraryBooks, FiberManualRecord } from "@mui/icons-material";
-import { PrimaryButton } from "../../../core/component";
+import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, Settings, LibraryBooks, FiberManualRecord, Info } from "@mui/icons-material";
+import { PrimaryButton, TextButton } from "../../../core/component";
 import { LevelSlider } from "../../component/LevelSlider";
-import Library from "./Library";
+import { Library, GuideModal } from "@/vocab/pages";
 import { ReadDefaultFile } from "@/core/services/WordServices";
 import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
 import { getSentence } from "@/core/services/SentenceServices";
 import { WordModel } from "@/core/models/WordModel";
 import { LibraryModel } from "@/core/models/LibraryModel";
+import { useNotification } from "@/vocab/providers/NotificationProvider";
 
 type InputModeType = "enToVi" | "viToEn";
 type PageStateType = "match" | "synonyms" | "fill" | "translate";
+type ModalStateType = "settings" | "library" | "guide";
 
 const defaultImage = "/images/default.png";
 
 export const HomePage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    const { setNotification } = useNotification();
 
     const [libraries, setLibraries] = useState<LibraryModel[]>([]);
     const [checkedLibraries, setCheckedLibraries] = useState<string[]>([]);
@@ -41,28 +45,33 @@ export const HomePage = () => {
 
     const [isListening, setIsListening] = useState(false);
 
-    const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
-    const [libraryDialogOpen, setLibraryDialogOpen] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [modalState, setModalState] = useState<ModalStateType>("guide");
     const [pageState, setPageState] = useState<PageStateType>("translate");
 
     const [level, setLevel] = useState(100);
     const [onlyThisLevel, setOnlyThisLevel] = useState(false);
     const [reverse, setReverse] = useState(0);
     const [inputMode, setInputMode] = useState<InputModeType>("enToVi");
-    
 
     useEffect(() => {
         const fetchData = async () => {
-            const words = await ReadDefaultFile("milo.json");
-            if (words.length > 0) {
-                const data = {
-                    id: crypto.randomUUID?.() || Math.random().toString(),
-                    title: "Milo",
-                    image: defaultImage,
-                    wordList: words,
-                };
-                setLibraries([...libraries, data]);
+            const newLibraries: LibraryModel[] = [];
+
+            for (let index = 0; index < 8; index++) {
+                const words = await ReadDefaultFile(`milo${index}.json`);
+                if (words.length > 0) {
+                    const data = {
+                        id: crypto.randomUUID?.() || Math.random().toString(),
+                        title: "Milo" + index,
+                        image: defaultImage,
+                        wordList: words,
+                    };
+                    newLibraries.push(data);
+                }
             }
+
+            setLibraries(newLibraries);
         };
         fetchData();
     }, []);
@@ -106,7 +115,6 @@ export const HomePage = () => {
         setCurrentWord(newWords[0]);
     }, [checkedLibraries, level, onlyThisLevel, libraries]);
 
-
     useEffect(() => {
         if (!currentWord) return;
 
@@ -140,6 +148,35 @@ export const HomePage = () => {
         fetchPhonetics();
     }, [pageState, reverse, currentWord]);
 
+    // ...existing code...
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            // Ctrl: Đọc (phát âm)
+            if (event.ctrlKey && !event.shiftKey && event.key !== "Enter") {
+                event.preventDefault();
+                handleSpeak();
+            }
+
+            // Shift: Hiện kết quả
+            else if (event.shiftKey && !event.ctrlKey && event.key !== "Enter") {
+                event.preventDefault();
+                handleShowResult();
+            }
+
+            // Enter: Kiểm tra đáp án
+            else if (event.key === "Enter" && !event.ctrlKey && !event.shiftKey) {
+                event.preventDefault();
+                handleCheckAnswer();
+            }
+        };
+
+        // Thêm event listener
+        document.addEventListener("keydown", handleKeyDown);
+    }, [currentWord]);
+
+    // ...existing code...
+
     const handleCheckAnswer = () => {
         if (!currentWord) return;
         let answerToCheck = "";
@@ -158,7 +195,12 @@ export const HomePage = () => {
             default:
                 break;
         }
-        if (answer.toLocaleLowerCase() === answerToCheck.toLocaleLowerCase()) {
+        const normalizedAnswerToCheck = answerToCheck.trim().toLocaleLowerCase();
+        const meanings = answer.split("/").map((part) => part.trim().toLocaleLowerCase());
+        console.log(meanings);
+
+        const isCorrect = meanings.filter((part) => part === normalizedAnswerToCheck);
+        if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
             if (nextIndex < wordList.length) {
                 setCurrentWord(wordList[nextIndex]);
@@ -186,10 +228,13 @@ export const HomePage = () => {
                 break;
             case "translate":
                 if (inputMode === "enToVi") {
-                    setAnswer(currentWord.vie);
+                    const meanings = currentWord.vie.split("/")[0];
+                    setAnswer(meanings);
+                    setResultText(currentWord.vie);
                 }
                 if (inputMode === "viToEn") {
                     setAnswer(currentWord.eng);
+                    setResultText("Nhớ kĩ cho tao: " + currentWord.eng);
                 }
                 break;
             default:
@@ -201,15 +246,36 @@ export const HomePage = () => {
         }
     };
 
-    const handleSpeak = () => {
+    const handleSpeak = async () => {
         if (!currentWord) return;
+
+        // Ưu tiên audio gốc
         if (currentAudio) {
             const audio = new Audio(currentAudio);
-            audio.play().catch((error) => {
-                console.error("Error playing audio:", error);
-            });
+            audio.play();
+            return;
         } else {
-            alert("Không có âm thanh cho từ này");
+            if ("speechSynthesis" in window) {
+                speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(currentWord.eng);
+                utterance.lang = "en-US";
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+
+                // Tìm giọng tiếng Anh tốt nhất
+                const voices = speechSynthesis.getVoices();
+                const englishVoice = voices.find((voice) => voice.lang.startsWith("en") && voice.name.includes("Female")) || voices.find((voice) => voice.lang.startsWith("en"));
+
+                if (englishVoice) {
+                    utterance.voice = englishVoice;
+                }
+
+                speechSynthesis.speak(utterance);
+            } else {
+                setNotification("Không hỗ trợ phát âm trên trình duyệt này", "error");
+            }
         }
     };
 
@@ -378,10 +444,22 @@ export const HomePage = () => {
                 <Stack direction="row" spacing={1} alignItems="center">
                     {isMobile && (
                         <>
-                            <IconButton onClick={() => setSettingsDialogOpen(true)} className="text-white">
+                            <IconButton
+                                onClick={() => {
+                                    setIsOpenModal(true);
+                                    setModalState("settings");
+                                }}
+                                className="text-white"
+                            >
                                 <Settings />
                             </IconButton>
-                            <IconButton onClick={() => setLibraryDialogOpen(true)} className="text-white">
+                            <IconButton
+                                onClick={() => {
+                                    setIsOpenModal(true);
+                                    setModalState("library");
+                                }}
+                                className="text-white"
+                            >
                                 <LibraryBooks />
                             </IconButton>
                         </>
@@ -416,7 +494,7 @@ export const HomePage = () => {
                             }
                         })()}
                     </span>
-                    <Stack alignItems={'center'} className="bg-[#444] w-full text-center min-h-[120px] py-4 rounded-3xl">
+                    <Stack alignItems={"center"} justifyContent={"center"} className="bg-[#444] w-full text-center min-h-[120px] py-4 rounded-3xl">
                         <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] `}>
                             {pageState === "fill" ? currentSentence : inputMode === "enToVi" ? currentWord?.eng : currentWord?.vie}
                         </span>
@@ -442,6 +520,7 @@ export const HomePage = () => {
                                 },
                                 mb: 2,
                                 width: "auto",
+                                ml: 4,
                             }}
                         />
                         <HighlightOutlined className={`transform rotate-[-135deg] rounded-full animate-bounce  ${wrongState === true ? "text-red-500" : "text-yellow-500"}`} />
@@ -486,10 +565,9 @@ export const HomePage = () => {
                 )}
             </Stack>
 
-            {/* Settings Dialog for Mobile */}
             <Dialog
-                open={settingsDialogOpen}
-                onClose={() => setSettingsDialogOpen(false)}
+                open={isOpenModal}
+                onClose={() => setIsOpenModal(false)}
                 maxWidth="sm"
                 fullWidth
                 slotProps={{
@@ -499,32 +577,35 @@ export const HomePage = () => {
                             color: "white",
                             borderRadius: "16px",
                             padding: "16px",
+                            boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
                         },
                     },
                 }}
             >
-                <Setting />
+                {modalState === "settings" && <Setting />}
+                {modalState === "library" && <Libraries />}
+                {modalState === "guide" && <GuideModal />}
             </Dialog>
 
-            {/* Library Dialog for Mobile */}
-            <Dialog
-                open={libraryDialogOpen}
-                onClose={() => setLibraryDialogOpen(false)}
-                maxWidth="sm"
-                fullWidth
-                slotProps={{
-                    paper: {
-                        sx: {
-                            bgcolor: "#333",
-                            color: "white",
-                            borderRadius: "16px",
-                            padding: "16px",
-                        },
-                    },
+            {/* Floating Action Button */}
+            <Stack
+                sx={{
+                    position: "fixed",
+                    bottom: "140px",
+                    right: 16,
                 }}
+                className="z-5 bg-[#b3b3ff] rounded-full h-12 w-12 items-center justify-center flex"
             >
-                <Libraries />
-            </Dialog>
+                <TextButton
+                    title="Hdsd"
+                    fontSize={"14px"}
+                    color="#0000ff"
+                    handleClick={() => {
+                        setIsOpenModal(true);
+                        setModalState("guide");
+                    }}
+                />
+            </Stack>
         </Box>
     );
 };

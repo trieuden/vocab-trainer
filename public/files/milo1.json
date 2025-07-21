@@ -1,0 +1,93 @@
+[
+    {
+        "eng": "extract",
+        "vie": "chiết xuất / trích",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "extract",
+        "vie": "đoạn trích / tinh chất",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "gravel",
+        "vie": "sỏi",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "accumulate",
+        "vie": "tích lũy / chồng chất",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "saturated",
+        "vie": "thấm ướt đẫm / bão hòa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "deficiency of",
+        "vie": "sự thiếu hụt",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "graze",
+        "vie": "gặm cỏ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "alienate",
+        "vie": "làm cho xa lánh ai",
+        "type": "verb",
+        "level": "C1",
+        "complement": "+ object"
+    },
+    {
+        "eng": "advocate",
+        "vie": "tán thành / chủ trương",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "gravitate",
+        "vie": "hướng về",
+        "type": "verb",
+        "level": "C1",
+        "complement": "+ to/towards"
+    },
+    {
+        "eng": "surmise",
+        "vie": "phỏng đoán",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "wrist",
+        "vie": "cổ tay",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "arthritis",
+        "vie": "bệnh viêm khớp",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "dementia",
+        "vie": "chứng loạn trí / chứng mất trí",
+        "type": "noun",
+        "level": "B2"
+    }
+]

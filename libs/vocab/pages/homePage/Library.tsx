@@ -6,7 +6,7 @@ type LibraryProps = {
     isChecked: boolean;
     setIsChecked: (id: boolean) => void;
 };
-const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
+export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
     return (
         <Stack direction={"row"} className="items-center gap-2 py-2 cursor-pointer rounded-md bg-[#444]" onClick={() => setIsChecked(!isChecked)}>
             <Checkbox
@@ -27,4 +27,3 @@ const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
         </Stack>
     );
 };
-export default Library;

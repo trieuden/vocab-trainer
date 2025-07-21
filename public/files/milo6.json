@@ -1,0 +1,410 @@
+[
+    {
+        "eng": "headhunt",
+        "vie": "tìm và tuyển mộ chuyên viên giỏi",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "sack",
+        "vie": "sa thải",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "accelerate",
+        "vie": "làm nhanh thêm / thúc đẩy",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "ascend",
+        "vie": "đi lên / leo lên",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "bounce",
+        "vie": "nảy lên",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "bounce",
+        "vie": "sự bật nảy lên",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "clamber",
+        "vie": "trèo / leo trèo",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "clench",
+        "vie": "nghiến / siết / nắm chặt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "crawl",
+        "vie": "bò / trườn",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "creep",
+        "vie": "đi lén lút / rón rén",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "dash",
+        "vie": "lao tới",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "drift",
+        "vie": "trôi dạt / lênh đênh",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "emigrate",
+        "vie": "di cư",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "fumble",
+        "vie": "sờ soạn / lần mò",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "glide",
+        "vie": "trượt / lướt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "hop",
+        "vie": "nhảy lò cò",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "immigrant",
+        "vie": "người nhập cư",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "leap",
+        "vie": "nhảy qua thứ gì",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "march",
+        "vie": "hành quân",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "refugee",
+        "vie": "người tị nạn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "roam",
+        "vie": "đi lang thang / dạo chơi",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "skid",
+        "vie": "trượt",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "skid",
+        "vie": "sự trượt bánh xe",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "commemorate",
+        "vie": "tưởng niệm",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "scarlet",
+        "vie": "màu đỏ tươi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "staunch",
+        "vie": "trung thành",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "faithful",
+        "vie": "trung thành",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "prowess",
+        "vie": "tài năng / kỹ năng xuất chúng",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "prestigious",
+        "vie": "có uy tín / có danh tiếng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "immense",
+        "vie": "cực kỳ lớn / rộng lớn",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "interim",
+        "vie": "thời gian chuyển tiếp",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "interim",
+        "vie": "tạm thời / lâm thời",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "interval",
+        "vie": "thời gian giữa hai sự kiện / khoảng thời gian giải lao ngắn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "lapse",
+        "vie": "sự sai sót / quên làm điều gì đó / lỡ / khoảng / quãng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "lapse",
+        "vie": "mất hiệu lực / sa ngã",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "millennium",
+        "vie": "thiên niên kỷ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "obsolete",
+        "vie": "lỗi thời / cổ xưa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "provisional",
+        "vie": "lâm thời",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "the provisional government",
+        "vie": "chính phủ lâm thời",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "simultaneous",
+        "vie": "đồng thời",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "span",
+        "vie": "khoảng thời gian kéo dài",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "span",
+        "vie": "kéo dài qua",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "sovereignty",
+        "vie": "chủ quyền",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "crevasse",
+        "vie": "kẽ nứt",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "rudimentary",
+        "vie": "sơ sài / thô sơ",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "hostile",
+        "vie": "thù địch / khắc nghiệt",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "encircle",
+        "vie": "bao vây / bao quanh",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "perilous",
+        "vie": "rất nguy hiểm",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "meticulous",
+        "vie": "tỉ mỉ / chi tiết",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "tragic",
+        "vie": "bi thảm / bi thương",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "insulated",
+        "vie": "cách nhiệt",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "insulated wires",
+        "vie": "dây điện cách nhiệt",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "frigid",
+        "vie": "lạnh buốt xương / lạnh lùng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "plummet",
+        "vie": "rơi đột ngột / tụt dốc",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "viscous",
+        "vie": "nhớt / nhầy",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "fluid",
+        "vie": "chất dịch",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "fluid",
+        "vie": "hay thay đổi",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "fateful",
+        "vie": "định mệnh",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "allegiance",
+        "vie": "lòng trung thành",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "ironic",
+        "vie": "mỉa mai / châm biếm",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "silted up",
+        "vie": "bồi lấp / bồi đắp phù sa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "swamp",
+        "vie": "đầm lầy",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "sewer",
+        "vie": "cống rãnh / cống",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "neolithic",
+        "vie": "thời kỳ đồ đá mới",
+        "type": "adjective",
+        "level": "C1"
+    }
+]
