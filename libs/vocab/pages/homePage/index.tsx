@@ -1,225 +1,530 @@
-'use client'
-import { useEffect, useRef, useState } from "react";
-import { Box, Button, Container, Stack, Typography, TextField, Checkbox, FormControlLabel, Tooltip, IconButton } from "@mui/material";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+"use client";
+import { useEffect, useState } from "react";
+import { Box, Stack, Typography, TextField, Dialog, IconButton, useMediaQuery, useTheme, Checkbox } from "@mui/material";
+import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, Settings, LibraryBooks, FiberManualRecord } from "@mui/icons-material";
+import { PrimaryButton } from "../../../core/component";
+import { LevelSlider } from "../../component/LevelSlider";
+import Library from "./Library";
+import { ReadDefaultFile } from "@/core/services/WordServices";
+import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
+import { getSentence } from "@/core/services/SentenceServices";
+import { WordModel } from "@/core/models/WordModel";
+import { LibraryModel } from "@/core/models/LibraryModel";
 
-declare global {
-    interface Window {
-        SpeechRecognition: any;
-        webkitSpeechRecognition: any;
-    }
-}
+type InputModeType = "enToVi" | "viToEn";
+type PageStateType = "match" | "synonyms" | "fill" | "translate";
 
-type SpeechRecognition = typeof window.webkitSpeechRecognition;
+const defaultImage = "/images/default.png";
 
 export const HomePage = () => {
-    const [data, setData] = useState<Record<string, string>>({});
-    const [keys, setKeys] = useState<string[]>([]);
-    const [currentWord, setCurrentWord] = useState("");
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    const [libraries, setLibraries] = useState<LibraryModel[]>([]);
+    const [checkedLibraries, setCheckedLibraries] = useState<string[]>([]);
+
+    const [currentWord, setCurrentWord] = useState<WordModel>();
+    const [currentSentence, setCurrentSentence] = useState<string>("");
+    const [currentAudio, setCurrentAudio] = useState<string>();
+    const [currentPhonetic, setCurrentPhonetic] = useState<string>("");
+
+    const [wordList, setWordList] = useState<WordModel[]>([]);
+
     const [answer, setAnswer] = useState("");
     const [resultText, setResultText] = useState("");
+
+    const [wrongState, setWrongState] = useState(false);
+    const [showResultState, setShowResultState] = useState(false);
+
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
-    const [isReverse, setIsReverse] = useState(false);
-    const [fileNameDisplay, setFileNameDisplay] = useState("Chưa chọn file");
-    const [isRecording, setIsRecording] = useState(false);
-    const recognitionRef = useRef<SpeechRecognition | null>(null);
-    const showVocRef = useRef(false);
+
+    const [isListening, setIsListening] = useState(false);
+
+    const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
+    const [libraryDialogOpen, setLibraryDialogOpen] = useState(false);
+    const [pageState, setPageState] = useState<PageStateType>("translate");
+
+    const [level, setLevel] = useState(100);
+    const [onlyThisLevel, setOnlyThisLevel] = useState(false);
+    const [reverse, setReverse] = useState(0);
+    const [inputMode, setInputMode] = useState<InputModeType>("enToVi");
+    
 
     useEffect(() => {
-        if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
-            const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-            const recognition = new SpeechRecognition();
-            recognition.lang = "vi-VN";
-            recognition.continuous = false;
-            recognition.interimResults = false;
-
-            recognition.onresult = function (event: any) {
-                let transcript = event.results[0][0].transcript;
-                transcript = transcript.replace(/\.$/, "");
-                setAnswer(transcript);
-                stopRecording();
-            };
-
-            recognition.onerror = recognition.onend = () => stopRecording();
-            recognitionRef.current = recognition;
-        }
+        const fetchData = async () => {
+            const words = await ReadDefaultFile("milo.json");
+            if (words.length > 0) {
+                const data = {
+                    id: crypto.randomUUID?.() || Math.random().toString(),
+                    title: "Milo",
+                    image: defaultImage,
+                    wordList: words,
+                };
+                setLibraries([...libraries, data]);
+            }
+        };
+        fetchData();
     }, []);
 
-    const normalize = (text: string) =>
-        text
-            .replace(/\([^)]*\)/g, "")
-            .replace(/\/[^/]*\//g, "")
-            .replace(/\s+/g, " ")
-            .trim()
-            .toLowerCase();
-
-    const pickRandomWord = (dataset = data) => {
-        const keysArray = Object.keys(dataset);
-        const randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
-        setCurrentWord(randomKey);
+    useEffect(() => {
+        setCurrentWord(undefined);
+        setCurrentSentence("");
+        setCurrentAudio("");
+        setCurrentPhonetic("");
         setAnswer("");
-        setResultText("");
-    };
+        if (libraries.length === 0) return;
+        const newWords: WordModel[] = [];
 
-    const speakWord = () => {
+        checkedLibraries.forEach((libraryId) => {
+            const library = libraries.find((lib) => lib.id === libraryId);
+            if (library) {
+                newWords.push(
+                    ...library.wordList.filter((word) => {
+                        switch (level) {
+                            case 0:
+                                return word.level === "A";
+                            case 25:
+                                return onlyThisLevel ? word.level === "B1" : word.level === "B1" || word.level === "A";
+                            case 50:
+                                return onlyThisLevel ? word.level === "B2" : word.level === "B2" || word.level === "B1" || word.level === "A";
+                            case 75:
+                                return onlyThisLevel ? word.level === "C1" : word.level === "C1" || word.level === "B2" || word.level === "B1" || word.level === "A";
+                            case 100:
+                                return onlyThisLevel ? word.level === "C2" : word.level === "C2" || word.level === "C1" || word.level === "B2" || word.level === "B1" || word.level === "A";
+                        }
+                    })
+                );
+            }
+        });
+        // Shuffle bằng Fisher–Yates
+        for (let i = newWords.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newWords[i], newWords[j]] = [newWords[j], newWords[i]];
+        }
+        setWordList(newWords);
+        setCurrentWord(newWords[0]);
+    }, [checkedLibraries, level, onlyThisLevel, libraries]);
+
+
+    useEffect(() => {
         if (!currentWord) return;
-        const textToSpeak = isReverse ? data[currentWord].split("/")[0] : currentWord;
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = isReverse ? "vi-VN" : "en-US";
-        utterance.rate = 0.8;
-        window.speechSynthesis.speak(utterance);
-    };
 
-    const checkAnswer = () => {
-        const userInput = normalize(answer);
-        let correct = false;
-
-        if (isReverse) {
-            const correctAns = normalize(currentWord);
-            correct = userInput === correctAns;
-        } else {
-            const correctAns = data[currentWord]
-                .toLowerCase()
-                .split("/")
-                .map((x) => normalize(x));
-            correct = correctAns.includes(userInput);
+        switch (reverse) {
+            case 0:
+                setInputMode("enToVi");
+                break;
+            case 50:
+                setInputMode("viToEn");
+                break;
+            case 100:
+                setInputMode(Math.random() < 0.5 ? "enToVi" : "viToEn");
+                break;
+            default:
+                break;
         }
 
-        if (correct) {
-            if (!showVocRef.current) setCorrectCount((c) => c + 1);
-            showVocRef.current = false;
-            pickRandomWord();
-        } else {
-            setResultText("Sai rồi! Bớt ngu lại con chó.");
-        }
-    };
+        const fetchPhonetics = async () => {
+            if (inputMode === "enToVi") {
+                const phonetics = await getPhoneticsByWord(currentWord.eng);
+                setCurrentAudio(phonetics[0]?.audio || "");
+                setCurrentPhonetic(phonetics[0]?.text || "");
+            }
 
-    const showResult = () => {
-        if (!currentWord) return;
-        if (!showVocRef.current) setWrongCount((w) => w + 1);
-        showVocRef.current = true;
-
-        if (isReverse) {
-            const result = normalize(currentWord);
-            setAnswer(result);
-            setResultText(`Từ đúng là: "${result}"`);
-        } else {
-            const result = data[currentWord];
-            const meaning = result.split("/")[0];
-            setAnswer(meaning);
-            setResultText(`Nhớ kĩ cho tao: "${result}"`);
-        }
-    };
-
-    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        setFileNameDisplay(file.name);
-
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const lines = (event.target?.result as string).split("\n");
-            const tempData: Record<string, string> = {};
-            lines.forEach((line) => {
-                const [key, value] = line.split(":");
-                if (key && value) tempData[key.trim()] = value.trim();
-            });
-            setData(tempData);
-            setKeys(Object.keys(tempData));
-            pickRandomWord(tempData);
+            if (pageState === "fill") {
+                const sentence = await getSentence(currentWord.eng);
+                setCurrentSentence(sentence);
+            }
         };
-        reader.readAsText(file);
+
+        fetchPhonetics();
+    }, [pageState, reverse, currentWord]);
+
+    const handleCheckAnswer = () => {
+        if (!currentWord) return;
+        let answerToCheck = "";
+        switch (pageState) {
+            case "fill":
+                answerToCheck = currentWord.eng;
+                break;
+            case "translate":
+                if (inputMode === "enToVi") {
+                    answerToCheck = currentWord.vie;
+                }
+                if (inputMode === "viToEn") {
+                    answerToCheck = currentWord.eng;
+                }
+                break;
+            default:
+                break;
+        }
+        if (answer.toLocaleLowerCase() === answerToCheck.toLocaleLowerCase()) {
+            const nextIndex = wordList.indexOf(currentWord) + 1;
+            if (nextIndex < wordList.length) {
+                setCurrentWord(wordList[nextIndex]);
+            } else {
+                setCurrentWord(wordList[0]);
+            }
+
+            if (!showResultState) {
+                setCorrectCount(correctCount + 1);
+            }
+            setAnswer("");
+            setShowResultState(false);
+            setResultText(``);
+        } else {
+            setResultText(`Sai rồi cưng ơi, cưng còn non lắm`);
+            setWrongState(true);
+        }
     };
 
-    const startRecording = () => {
-        setIsRecording(true);
-        recognitionRef.current?.start();
+    const handleShowResult = () => {
+        if (!currentWord) return;
+        switch (pageState) {
+            case "fill":
+                setAnswer(currentWord.eng);
+                break;
+            case "translate":
+                if (inputMode === "enToVi") {
+                    setAnswer(currentWord.vie);
+                }
+                if (inputMode === "viToEn") {
+                    setAnswer(currentWord.eng);
+                }
+                break;
+            default:
+                break;
+        }
+        if (!showResultState) {
+            setWrongCount(wrongCount + 1);
+            setShowResultState(true);
+        }
     };
 
-    const stopRecording = () => {
-        setIsRecording(false);
-        recognitionRef.current?.stop();
+    const handleSpeak = () => {
+        if (!currentWord) return;
+        if (currentAudio) {
+            const audio = new Audio(currentAudio);
+            audio.play().catch((error) => {
+                console.error("Error playing audio:", error);
+            });
+        } else {
+            alert("Không có âm thanh cho từ này");
+        }
     };
 
-    const toggleVoiceRecognition = () => {
-        if (!recognitionRef.current) {
-            alert("Trình duyệt không hỗ trợ nhận diện giọng nói.");
+    const handleSpeechRecognition = () => {
+        if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
+            alert("Speech recognition not supported in this browser");
             return;
         }
-        isRecording ? stopRecording() : startRecording();
+
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = "vi-VN";
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onstart = () => {
+            setIsListening(true);
+        };
+
+        recognition.onresult = (event: any) => {
+            let transcript = event.results[0][0].transcript;
+            transcript = transcript.replace(/\.$/, "");
+            setAnswer(transcript);
+            setIsListening(false);
+        };
+
+        recognition.onerror = () => {
+            setIsListening(false);
+        };
+
+        recognition.start();
+    };
+
+    const Setting = () => {
+        return (
+            <>
+                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                    <h1 className="text-xl font-bold">Tùy chỉnh nâng cao</h1>
+                </Stack>
+                {pageState === "translate" && (
+                    <Stack className="mt-6 px-10 bg-[#444] rounded-2xl shadow-lg">
+                        <LevelSlider
+                            mark={reverse}
+                            setMark={setReverse}
+                            marks={[
+                                { value: 0, label: "Tiếng Anh" },
+                                { value: 50, label: "Tiếng Việt" },
+                                { value: 100, label: "Ngẫu nhiên" },
+                            ]}
+                            title="Đảo chiều"
+                            textColor="#0073e6"
+                        />
+                    </Stack>
+                )}
+                <Stack className="mt-6 px-10 bg-[#444] rounded-2xl shadow-lg">
+                    <LevelSlider
+                        mark={level}
+                        setMark={setLevel}
+                        marks={[
+                            { value: 0, label: "A" },
+                            { value: 25, label: "B1" },
+                            { value: 50, label: "B2" },
+                            { value: 75, label: "C1" },
+                            { value: 100, label: "C2" },
+                        ]}
+                        title="Cấp độ từ vựng"
+                        textColor="#ff9800"
+                    />
+                    <Stack direction="row" className="items-center justify-center">
+                        <Checkbox
+                            sx={{
+                                color: "#1a8cff",
+                                "&.Mui-checked": {
+                                    color: "#1a8cff",
+                                },
+                            }}
+                            size="small"
+                            checked={onlyThisLevel}
+                            onChange={(e) => {
+                                setOnlyThisLevel(e.target.checked);
+                            }}
+                        />
+                        <span className="text-sm text-gray-400">Chỉ học cấp độ này</span>
+                    </Stack>
+                </Stack>
+                {!isMobile && (
+                    <Stack className="mt-6" direction={"row"} justifyContent="space-around" alignItems="center" spacing={2}>
+                        <ButtonControl />
+                    </Stack>
+                )}
+            </>
+        );
+    };
+
+    const Libraries = () => {
+        return (
+            <>
+                <Stack direction="row" spacing={2} alignItems="center">
+                    <h1 className="text-xl font-bold">Thư viện</h1>
+                </Stack>
+                <Stack mt={2} spacing={1.5}>
+                    {libraries.map((library, index) => (
+                        <Library
+                            key={index}
+                            library={library}
+                            isChecked={checkedLibraries.includes(library.id)}
+                            setIsChecked={(checked) => {
+                                if (checked) {
+                                    setCheckedLibraries([...checkedLibraries, library.id]);
+                                } else {
+                                    setCheckedLibraries(checkedLibraries.filter((id) => id !== library.id));
+                                }
+                            }}
+                        />
+                    ))}
+                </Stack>
+            </>
+        );
+    };
+
+    const ButtonControl = () => {
+        return (
+            <>
+                <Stack spacing={2}>
+                    <PrimaryButton
+                        title="Nối từ"
+                        // handleClick={() => {
+                        //     setPageState("match");
+                        // }}
+                        bgColor="#ff3333"
+                    />
+                    <PrimaryButton
+                        title="Điền khuyết"
+                        handleClick={() => {
+                            setPageState("fill");
+                        }}
+                    />
+                </Stack>
+                <Stack spacing={2}>
+                    <PrimaryButton
+                        title="Từ đồng nghĩa"
+                        // handleClick={() => {
+                        //     setPageState("synonyms");
+                        // }}
+                        bgColor="#cccc00"
+                    />
+                    <PrimaryButton
+                        title="Nhập nghĩa"
+                        handleClick={() => {
+                            setPageState("translate");
+                        }}
+                        bgColor="#2eb82e"
+                    />
+                </Stack>
+            </>
+        );
     };
 
     return (
-        <Container maxWidth="sm" sx={{ py: 4 }}>
-            <Box sx={{ bgcolor: "#333", color: "#fff", p: 3, borderRadius: 2, boxShadow: 3 }}>
-                <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                    <Typography variant="caption">@trieuden</Typography>
-                    <Tooltip
-                        title={
-                            <ul>
-                                <li>
-                                    <kbd>Ctrl</kbd> để phát âm
-                                </li>
-                                <li>
-                                    <kbd>Shift</kbd> để hiện kết quả
-                                </li>
-                            </ul>
-                        }
-                    >
-                        <IconButton size="small" sx={{ color: "#fff" }}>
-                            <HelpOutlineIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-                </Box>
+        <Box className="rounded-2xl h-100vh shadow-2xl text-white bg-[#222]">
+            <Stack className="bg-[#444] px-4 py-2 justify-between h-full items-center" direction={"row"}>
+                <Stack direction="column" spacing={0.5}>
+                    <h1 className="font-bold">Vocab Trainer</h1>
+                </Stack>
+                <Stack direction="row" spacing={1} alignItems="center">
+                    {isMobile && (
+                        <>
+                            <IconButton onClick={() => setSettingsDialogOpen(true)} className="text-white">
+                                <Settings />
+                            </IconButton>
+                            <IconButton onClick={() => setLibraryDialogOpen(true)} className="text-white">
+                                <LibraryBooks />
+                            </IconButton>
+                        </>
+                    )}
+                    <Box component={"img"} src={defaultImage} className="rounded-full h-[45px] w-[45px] object-cover" />
+                </Stack>
+            </Stack>
 
-                <Typography variant="h4" gutterBottom>
-                    {isReverse ? data[currentWord]?.split("/")[0] : currentWord || "..."}
-                </Typography>
+            <Stack direction={"row"} className="justify-between items-center p-2 " spacing={2} sx={{ height: "calc(100vh - 61px)" }}>
+                {/* Settings Sidebar - Hidden on mobile */}
+                {!isMobile && (
+                    <Stack flex={1} className={`bg-[#333] p-4 rounded-lg h-full`}>
+                        <Setting />
+                    </Stack>
+                )}
 
-                <TextField
-                    fullWidth
-                    placeholder="Nhập nghĩa"
-                    value={answer}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    sx={{ mb: 2, bgcolor: "#fff", borderRadius: 1 }}
-                    inputProps={{ style: { color: "#000" } }}
-                />
+                {/* Main Content */}
+                <Stack spacing={2} flex={isMobile ? 1 : 2} className={`bg-[#333] ${isMobile ? "p-2" : "p-4"} rounded-lg h-full items-center`}>
+                    <span className="text-xl font-bold ">
+                        {(() => {
+                            switch (pageState) {
+                                case "match":
+                                    return "Nối từ";
+                                case "fill":
+                                    return "Điền khuyết";
+                                case "synonyms":
+                                    return "Từ đồng nghĩa";
+                                case "translate":
+                                    return "Nhập nghĩa";
+                                default:
+                                    return "";
+                            }
+                        })()}
+                    </span>
+                    <Stack alignItems={'center'} className="bg-[#444] w-full text-center min-h-[120px] py-4 rounded-3xl">
+                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] `}>
+                            {pageState === "fill" ? currentSentence : inputMode === "enToVi" ? currentWord?.eng : currentWord?.vie}
+                        </span>
+                        <i>{pageState === "translate" && currentWord?.type}</i>
+                        <span>{pageState === "translate" && currentPhonetic}</span>
+                    </Stack>
+                    <Box>
+                        <TextField
+                            fullWidth
+                            placeholder="..."
+                            value={answer}
+                            onChange={(e) => {
+                                setAnswer(e.target.value);
+                                setWrongState(false);
+                                setResultText("");
+                            }}
+                            variant="standard"
+                            sx={{
+                                input: {
+                                    color: "#fff",
+                                    textAlign: "center",
+                                    fontSize: isMobile ? "20px" : "28px",
+                                },
+                                mb: 2,
+                                width: "auto",
+                            }}
+                        />
+                        <HighlightOutlined className={`transform rotate-[-135deg] rounded-full animate-bounce  ${wrongState === true ? "text-red-500" : "text-yellow-500"}`} />
+                    </Box>
+                    <Stack spacing={2} className={`${isMobile ? "px-4" : "px-16"} w-full flex`} direction={"column"}>
+                        <Stack direction={isMobile ? "column" : "row"} spacing={2} alignItems="center" className="flex w-full">
+                            <PrimaryButton width={isMobile ? "100%" : "60%"} title="Kiểm tra" handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} />
+                            <PrimaryButton width={isMobile ? "100%" : "40%"} title="Hiện kết quả" handleClick={handleShowResult} bgColor="#33cc33" />
+                        </Stack>
+                        <Stack direction={isMobile ? "column" : "row"} spacing={2} justifyContent="center" alignItems="center" width={"100%"}>
+                            <PrimaryButton width={isMobile ? "100%" : "40%"} title="Phát âm" handleClick={handleSpeak} icon={<VolumeUpOutlined />} bgColor="#ffb31a" />
+                            <PrimaryButton
+                                width={isMobile ? "100%" : "60%"}
+                                title={`${isListening ? "Đang lắng nghe" : "Nói"}`}
+                                handleClick={handleSpeechRecognition}
+                                icon={isListening ? <FiberManualRecord sx={{ color: "#800000" }} /> : <KeyboardVoiceOutlined />}
+                                bgColor="#ff1a1a"
+                                isTransform
+                            />
+                        </Stack>
+                    </Stack>
 
-                <Stack spacing={1} mb={2}>
-                    <Button variant="contained" onClick={checkAnswer} color="success">
-                        Kiểm tra
-                    </Button>
-                    <Button variant="contained" onClick={showResult} color="info">
-                        Hiện kết quả
-                    </Button>
-                    <Button variant="contained" onClick={speakWord} color="warning">
-                        🔊 Phát âm
-                    </Button>
-                    <Button variant="contained" onClick={toggleVoiceRecognition} color={isRecording ? "error" : "secondary"}>
-                        {isRecording ? "🔴 Đang nghe..." : "🎤 Nói"}
-                    </Button>
+                    <Typography color="error" fontWeight="bold">
+                        {resultText}
+                    </Typography>
+                    <Typography mt={2} color="gray">
+                        Đúng: <b style={{ color: "lightgreen" }}>{correctCount}</b> | Sai: <b style={{ color: "salmon" }}>{wrongCount}</b>
+                    </Typography>
+
+                    {isMobile && (
+                        <Stack className="flex-1" direction={"row"} justifyContent="end" alignItems="end" spacing={2}>
+                            <ButtonControl />
+                        </Stack>
+                    )}
                 </Stack>
 
-                <FormControlLabel control={<Checkbox checked={isReverse} onChange={(e) => setIsReverse(e.target.checked)} />} label="Advance" />
+                {/* Library Sidebar - Hidden on mobile */}
+                {!isMobile && (
+                    <Stack flex={1} className="bg-[#333] p-4 rounded-lg h-full">
+                        <Libraries />
+                    </Stack>
+                )}
+            </Stack>
 
-                <Typography color="error" fontWeight="bold">
-                    {resultText}
-                </Typography>
-                <Typography mt={2} color="gray">
-                    Đúng: <b style={{ color: "lightgreen" }}>{correctCount}</b> | Sai: <b style={{ color: "salmon" }}>{wrongCount}</b>
-                </Typography>
+            {/* Settings Dialog for Mobile */}
+            <Dialog
+                open={settingsDialogOpen}
+                onClose={() => setSettingsDialogOpen(false)}
+                maxWidth="sm"
+                fullWidth
+                slotProps={{
+                    paper: {
+                        sx: {
+                            bgcolor: "#333",
+                            color: "white",
+                            borderRadius: "16px",
+                            padding: "16px",
+                        },
+                    },
+                }}
+            >
+                <Setting />
+            </Dialog>
 
-                <Box mt={3}>
-                    <Button variant="outlined" component="label">
-                        Import file
-                        <input hidden type="file" accept=".txt" onChange={handleFileUpload} />
-                    </Button>
-                    <Typography variant="caption" display="block" mt={1}>
-                        {fileNameDisplay}
-                    </Typography>
-                </Box>
-            </Box>
-        </Container>
+            {/* Library Dialog for Mobile */}
+            <Dialog
+                open={libraryDialogOpen}
+                onClose={() => setLibraryDialogOpen(false)}
+                maxWidth="sm"
+                fullWidth
+                slotProps={{
+                    paper: {
+                        sx: {
+                            bgcolor: "#333",
+                            color: "white",
+                            borderRadius: "16px",
+                            padding: "16px",
+                        },
+                    },
+                }}
+            >
+                <Libraries />
+            </Dialog>
+        </Box>
     );
 };
