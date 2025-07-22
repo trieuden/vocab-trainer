@@ -436,11 +436,11 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     };
 
     return (
-        <Box className="h-100vh shadow-2xl p-1 text-white bg-[#000]">
+        <Box className="shadow-2xl p-1 text-white bg-[#000]">
             {/* Header */}
             <Header setIsOpenModal={setIsOpenModal} setModalState={setModalState} currentUser={currentUser} setIsOpenAccMenu={setIsOpenAccMenu} setPageState={setPageState} pageState={pageState} />
 
-            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: "calc(100vh - 89px)" }}>
+            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: isMobile ? "auto" : "calc(100vh - 89px)" }}>
                 {/* Settings Sidebar - Hidden on mobile */}
                 {!isMobile && (
                     <Stack flex={1} className={`bg-[#333] p-4 rounded-3xl h-full`}>
