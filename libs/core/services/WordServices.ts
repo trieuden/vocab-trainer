@@ -4,7 +4,8 @@ const defaultImage = "/images/default.png";
 
 export const ReadDefaultFile = async (fileName: string): Promise<WordModel[]> => {
     try {
-        const res = await fetch(`/files/${fileName}`);
+        
+        const res = await fetch(`${window.location.origin}/files/${fileName}`);
         const json = await res.json();
 
         const mapped: WordModel[] = json.map((item: Partial<WordModel>) => ({

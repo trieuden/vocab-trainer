@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { HomePage } from "../libs/vocab/pages";
-import { Login } from "@/vocab/component";
+import React, { useEffect, useState } from "react";;
+import { HomePage } from "@/vocab/pages";
+import { AccountMenu } from "@/vocab/component";
 import { UserModel } from "@/core/models/UserModel";
 
 const defaultUser: UserModel = {
@@ -11,7 +11,7 @@ const defaultUser: UserModel = {
 };
 
 const Pages = () => {
-    const [isOpenLogin, setIsOpenLogin] = useState(false);
+    const [isOpenAccMenu, setIsOpenAccMenu] = useState(false);
     const [currentUser, setCurrentUser] = useState<UserModel>(defaultUser);
     const [isReady, setIsReady] = useState(false);
 
@@ -30,7 +30,6 @@ const Pages = () => {
             localStorage.setItem("currentUser", JSON.stringify(defaultUser));
             setCurrentUser(defaultUser);
         }
-
         setIsReady(true);
     }, []);
 
@@ -38,8 +37,8 @@ const Pages = () => {
 
     return (
         <>
-            <HomePage setIsOpenLogin={setIsOpenLogin} currentUser={currentUser} />
-            <Login isOpenLogin={isOpenLogin} setIsOpenLogin={setIsOpenLogin} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <HomePage setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} />
+            <AccountMenu isOpenAccMenu={isOpenAccMenu} setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </>
     );
 };

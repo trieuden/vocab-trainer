@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Box, Stack, Typography, TextField, Dialog, IconButton, useMediaQuery, useTheme, Checkbox } from "@mui/material";
-import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, Settings, LibraryBooks, FiberManualRecord, Info } from "@mui/icons-material";
+import { Box, Stack, Typography, TextField, Dialog, useMediaQuery, useTheme, Checkbox } from "@mui/material";
+import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, FiberManualRecord } from "@mui/icons-material";
 import { PrimaryButton, TextButton } from "../../../core/component";
 import { LevelSlider } from "../../component/LevelSlider";
-import { Library, GuideModal } from "@/vocab/pages";
+import { Library, GuideModal, Header } from "@/vocab/pages";
 import { GetMiloLibraries, GetTrieudenLibraries } from "@/core/services/WordServices";
 import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
 import { getSentence } from "@/core/services/SentenceServices";
@@ -13,20 +13,21 @@ import { LibraryModel } from "@/core/models/LibraryModel";
 import { UserModel } from "@/core/models/UserModel";
 import { useNotification } from "@/vocab/providers/NotificationProvider";
 
+import { useTranslation } from "react-i18next";
+
 type InputModeType = "enToVi" | "viToEn";
 type PageStateType = "match" | "synonyms" | "fill" | "translate";
 type ModalStateType = "settings" | "library" | "guide";
 
-const defaultImage = "/images/default.png";
-
 type HomePageProps = {
-    setIsOpenLogin: (isOpen: boolean) => void;
+    setIsOpenAccMenu: (isOpen: boolean) => void;
     currentUser: UserModel;
 };
 
-export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
+export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const { t } = useTranslation();
 
     const { setNotification } = useNotification();
 
@@ -168,28 +169,30 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
     // ...existing code...
 
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            // Ctrl: Đọc (phát âm)
-            if (event.ctrlKey && !event.shiftKey && event.key !== "Enter") {
-                event.preventDefault();
-                handleSpeak();
-            }
+        if (!isMobile) {
+            const handleKeyDown = (event: KeyboardEvent) => {
+                // Ctrl: Đọc (phát âm)
+                if (event.ctrlKey && !event.shiftKey && event.key !== "Enter") {
+                    event.preventDefault();
+                    handleSpeak();
+                }
 
-            // Shift: Hiện kết quả
-            else if (event.shiftKey && !event.ctrlKey && event.key !== "Enter") {
-                event.preventDefault();
-                handleShowResult();
-            }
+                // Shift: Hiện kết quả
+                else if (event.shiftKey && !event.ctrlKey && event.key !== "Enter") {
+                    event.preventDefault();
+                    handleShowResult();
+                }
 
-            // Enter: Kiểm tra đáp án
-            else if (event.key === "Enter" && !event.ctrlKey && !event.shiftKey) {
-                event.preventDefault();
-                handleCheckAnswer();
-            }
-        };
+                // Enter: Kiểm tra đáp án
+                else if (event.key === "Enter" && !event.ctrlKey && !event.shiftKey) {
+                    event.preventDefault();
+                    handleCheckAnswer();
+                }
+            };
 
-        // Thêm event listener
-        document.addEventListener("keydown", handleKeyDown);
+            // Thêm event listener
+            document.addEventListener("keydown", handleKeyDown);
+        }
     }, [currentWord]);
 
     // ...existing code...
@@ -295,6 +298,10 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
     };
 
     const handleSpeechRecognition = () => {
+        if (isListening) {
+            setIsListening(false);
+            return;
+        }
         if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
             return;
         }
@@ -328,7 +335,7 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
         return (
             <>
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <h1 className="text-xl font-bold">Tùy chỉnh nâng cao</h1>
+                    <h1 className="text-xl font-bold">{t("advanced_customization")}</h1>
                 </Stack>
                 {pageState === "translate" && (
                     <Stack className="mt-6 px-10 bg-[#444] rounded-2xl shadow-lg">
@@ -366,6 +373,9 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
                                 "&.Mui-checked": {
                                     color: "#1a8cff",
                                 },
+                                "& .MuiSvgIcon-root": {
+                                    fontSize: 22,
+                                },
                             }}
                             size="small"
                             checked={onlyThisLevel}
@@ -376,11 +386,6 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
                         <span className="text-sm text-gray-400">Chỉ học cấp độ này</span>
                     </Stack>
                 </Stack>
-                {!isMobile && (
-                    <Stack className="mt-6" direction={"row"} justifyContent="space-around" alignItems="center" spacing={2}>
-                        <ButtonControl />
-                    </Stack>
-                )}
             </>
         );
     };
@@ -394,7 +399,7 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
                 <Stack
                     mt={2}
                     spacing={1.5}
-                    className="overflow-y-auto h-[calc(100vh-90px)]"
+                    className={`overflow-y-auto ${isMobile ? "h-[300px]" : "h-[calc(100vh-90px)]"}`}
                     sx={{
                         scrollBehavior: "smooth",
                         "&::-webkit-scrollbar": {
@@ -429,87 +434,21 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
         );
     };
 
-    const ButtonControl = () => {
-        return (
-            <>
-                <Stack spacing={2}>
-                    <PrimaryButton
-                        title="Nối từ"
-                        // handleClick={() => {
-                        //     setPageState("match");
-                        // }}
-                        bgColor="#ff3333"
-                    />
-                    <PrimaryButton
-                        title="Điền khuyết"
-                        handleClick={() => {
-                            setPageState("fill");
-                        }}
-                    />
-                </Stack>
-                <Stack spacing={2}>
-                    <PrimaryButton
-                        title="Từ đồng nghĩa"
-                        // handleClick={() => {
-                        //     setPageState("synonyms");
-                        // }}
-                        bgColor="#cccc00"
-                    />
-                    <PrimaryButton
-                        title="Nhập nghĩa"
-                        handleClick={() => {
-                            setPageState("translate");
-                        }}
-                        bgColor="#2eb82e"
-                    />
-                </Stack>
-            </>
-        );
-    };
-
     return (
-        <Box className="rounded-2xl h-100vh shadow-2xl text-white bg-[#222]">
-            <Stack className="bg-[#444] px-4 py-2 justify-between h-full items-center" direction={"row"}>
-                <Stack direction="column" spacing={0.5}>
-                    <h1 className="font-bold">Vocab Trainer</h1>
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                    {isMobile && (
-                        <>
-                            <IconButton
-                                onClick={() => {
-                                    setIsOpenModal(true);
-                                    setModalState("settings");
-                                }}
-                                className="text-white"
-                            >
-                                <Settings />
-                            </IconButton>
-                            <IconButton
-                                onClick={() => {
-                                    setIsOpenModal(true);
-                                    setModalState("library");
-                                }}
-                                className="text-white"
-                            >
-                                <LibraryBooks />
-                            </IconButton>
-                        </>
-                    )}
-                    <Box component={"img"} src={currentUser?.avatar} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" onClick={() => setIsOpenLogin(true)} />
-                </Stack>
-            </Stack>
+        <Box className="h-100vh shadow-2xl p-1 text-white bg-[#000]">
+            {/* Header */}
+            <Header setIsOpenModal={setIsOpenModal} setModalState={setModalState} currentUser={currentUser} setIsOpenAccMenu={setIsOpenAccMenu} setPageState={setPageState} pageState={pageState} />
 
-            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: "calc(100vh - 65px)" }}>
+            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: "calc(100vh - 89px)" }}>
                 {/* Settings Sidebar - Hidden on mobile */}
                 {!isMobile && (
-                    <Stack flex={1} className={`bg-[#333] p-4 rounded-lg h-full`}>
+                    <Stack flex={1} className={`bg-[#333] p-4 rounded-3xl h-full`}>
                         <Setting />
                     </Stack>
                 )}
 
                 {/* Main Content */}
-                <Stack spacing={2} flex={isMobile ? 1 : 2} className={`bg-[#333] ${isMobile ? "p-2" : "p-4"} rounded-lg h-full items-center`}>
+                <Stack spacing={2} flex={isMobile ? 1 : 2} className={`bg-[#333] p-4 rounded-3xl h-full items-center`}>
                     <span className="text-xl font-bold ">
                         {(() => {
                             switch (pageState) {
@@ -583,15 +522,34 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
                     </Typography>
 
                     {isMobile && (
-                        <Stack className="flex-1" direction={"row"} justifyContent="end" alignItems="end" spacing={2}>
-                            <ButtonControl />
+                        <Stack className="flex-1" direction={"row"} width={"100%"} justifyContent="end" spacing={2}>
+                            <Stack width={"100%"} justifyContent={"end"} spacing={2}>
+                                <TextButton title="Nối từ" color={pageState === "match" ? "#0000ff" : "#ccc"} />
+                                <TextButton
+                                    title="Nhập nghĩa"
+                                    handleClick={() => {
+                                        setPageState("translate");
+                                    }}
+                                    color={pageState === "translate" ? "#0000ff" : "#ccc"}
+                                />
+                            </Stack>
+                            <Stack width={"100%"} justifyContent={"end"} spacing={2}>
+                                <TextButton
+                                    title="Điền khuyết"
+                                    handleClick={() => {
+                                        setPageState("fill");
+                                    }}
+                                    color={pageState === "fill" ? "#0000ff" : "#ccc"}
+                                />
+                                <TextButton title="Từ đồng nghĩa" color={pageState === "synonyms" ? "#0000ff" : "#ccc"} />
+                            </Stack>
                         </Stack>
                     )}
                 </Stack>
 
                 {/* Library Sidebar - Hidden on mobile */}
                 {!isMobile && (
-                    <Stack flex={1} className="bg-[#333] p-4 rounded-lg h-full">
+                    <Stack flex={1} className="bg-[#333] p-4 rounded-3xl h-full">
                         <Libraries />
                     </Stack>
                 )}
@@ -612,32 +570,17 @@ export const HomePage = ({ setIsOpenLogin, currentUser }: HomePageProps) => {
                             boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
                         },
                     },
+                    backdrop: {
+                        sx: {
+                            backgroundColor: "rgba(0, 0, 0, 0.8)", // Đậm hơn mặc định
+                        },
+                    },
                 }}
             >
                 {modalState === "settings" && <Setting />}
                 {modalState === "library" && <Libraries />}
                 {modalState === "guide" && <GuideModal />}
             </Dialog>
-
-            {/* Floating Action Button */}
-            <Stack
-                sx={{
-                    position: "fixed",
-                    bottom: "140px",
-                    right: 16,
-                }}
-                className="z-5 bg-[#b3b3ff] rounded-full h-12 w-12 items-center justify-center flex"
-            >
-                <TextButton
-                    title="Hdsd"
-                    fontSize={"14px"}
-                    color="#0000ff"
-                    handleClick={() => {
-                        setIsOpenModal(true);
-                        setModalState("guide");
-                    }}
-                />
-            </Stack>
         </Box>
     );
 };

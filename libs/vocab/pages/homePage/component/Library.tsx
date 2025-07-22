@@ -8,7 +8,7 @@ type LibraryProps = {
 };
 export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
     return (
-        <Stack direction={"row"} className="items-center gap-2 py-2 cursor-pointer rounded-md bg-[#444]" onClick={() => setIsChecked(!isChecked)}>
+        <Stack direction={"row"} className="items-center gap-2 py-2 cursor-pointer border-b-2 border-[#444]" onClick={() => setIsChecked(!isChecked)}>
             <Checkbox
                 sx={{
                     color: "#1a8cff",
@@ -16,7 +16,7 @@ export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
                         color: "#1a8cff",
                     },
                     "& .MuiSvgIcon-root": {
-                        fontSize: 30,
+                        fontSize: 25,
                     },
                 }}
                 checked={isChecked}
