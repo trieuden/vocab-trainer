@@ -217,8 +217,9 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
         const normalizedAnswerToCheck = answerToCheck.trim().toLocaleLowerCase();
         const meanings = answer.split("/").map((part) => part.trim().toLocaleLowerCase());
-
-        const isCorrect = meanings.filter((part) => part === normalizedAnswerToCheck);
+        
+        const isCorrect = meanings.find((part) => part === normalizedAnswerToCheck);
+        
         if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
             if (nextIndex < wordList.length) {
