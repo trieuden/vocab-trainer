@@ -218,8 +218,13 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
 
             // Thêm event listener
             document.addEventListener("keydown", handleKeyDown);
+
+            // Cleanup function để remove event listener
+            return () => {
+                document.removeEventListener("keydown", handleKeyDown);
+            };
         }
-    }, [currentWord]);
+    }, [currentWord, answer]);
 
     const handleCheckAnswer = async () => {
         if (!currentWord) return;

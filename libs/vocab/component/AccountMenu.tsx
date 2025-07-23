@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { CustomSwitch, TextButton } from "@/core/component";
 import { Stack, Box, Radio, RadioGroup, Dialog, useMediaQuery, useTheme } from "@mui/material";
+import { ArrowForwardIos } from "@mui/icons-material";
 import { UserModel } from "@/core/models/UserModel";
 import { SunIcon, MoonIcon, VIEIcon, ENGIcon } from "@/core/icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
+import { GuideModal } from "../pages";
 
 type AccountMenuModalProps = {
     isOpenAccMenu: boolean;
@@ -22,6 +24,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
     const [user, setUser] = useState(currentUser?.id);
     const [language, setLanguage] = useState("vi");
     const [darkMode, setDarkMode] = useState(true);
+    const [isOpenGuide, setIsOpenGuide] = useState(false);
 
     const handleChooseUser = (user: string) => {
         setUser(user);
@@ -40,7 +43,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
         setLanguage(lang);
 
         const darkModeCookie = Cookies.get("darkMode");
-        if(darkModeCookie) {
+        if (darkModeCookie) {
             setDarkMode(darkModeCookie === "en" ? false : true);
         }
     }, []);
@@ -96,7 +99,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                     </Stack>
                 </RadioGroup>
 
-                <Stack className="w-full px-5" mt={2} spacing={2}>
+                <Stack className="w-full px-5 font-semibold" mt={2} spacing={2}>
                     <Stack direction="row" spacing={2} className="w-full items-center justify-between border-b border-gray-600 pb-2" sx={{ color: theme.palette.text.primary }}>
                         <span>{t("interface")}</span>
                         <CustomSwitch
@@ -118,7 +121,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                             onChange={(e) => {
                                 const lang = e.target.checked ? "vi" : "en";
                                 setLanguage(lang);
-                                Cookies.set("lang", lang, { expires: 7 });
+                                Cookies.set("lang", lang);
                                 window.location.reload(); // để load lại i18n
                             }}
                             checkedIcon={VIEIcon}
@@ -126,11 +129,40 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                             customColor="#0066ff"
                         />
                     </Stack>
+                    <Stack direction="row" spacing={2} className="w-full items-center justify-between cursor-pointer pb-2" sx={{ color: theme.palette.text.primary }}>
+                        <TextButton title={t("guide")} color={theme.palette.text.primary} fontSize={"17px"} handleClick={() => setIsOpenGuide(true)} />
+                        <TextButton icon={<ArrowForwardIos />} color={theme.palette.text.primary} fontSize={"20px"} handleClick={() => setIsOpenGuide(true)} />
+                    </Stack>
                 </Stack>
             </Stack>
             <Stack mt={2} className="flex items-end w-full">
                 <TextButton title={t("exit")} handleClick={() => setIsOpenAccMenu(false)} fontSize={"16px"} color="#999" />
             </Stack>
+
+            {/* guide */}
+            <Dialog
+                open={isOpenGuide}
+                onClose={() => setIsOpenGuide(false)}
+                maxWidth="sm"
+                fullWidth
+                slotProps={{
+                    paper: {
+                        sx: {
+                            color: "white",
+                            borderRadius: "16px",
+                            padding: "16px",
+                            boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
+                        },
+                    },
+                    backdrop: {
+                        sx: {
+                            backgroundColor: "rgba(0, 0, 0, 0.8)",
+                        },
+                    },
+                }}
+            >
+                <GuideModal />
+            </Dialog>
         </Dialog>
     );
 };
