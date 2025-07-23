@@ -164,7 +164,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
         setWordList(newWords);
         setCurrentWord(newWords[0]);
-        if(checkedLibraries.length > 0) {
+        if(newWords.length > 0) {
             fetchWordData(newWords[0]);
         }
     }, [checkedLibraries, level, onlyThisLevel, libraries]);
