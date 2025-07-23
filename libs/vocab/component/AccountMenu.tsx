@@ -44,7 +44,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
 
         const darkModeCookie = Cookies.get("darkMode");
         if (darkModeCookie) {
-            setDarkMode(darkModeCookie === "en" ? false : true);
+            setDarkMode(darkModeCookie === "true" ? true : false);
         }
     }, []);
 
