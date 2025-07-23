@@ -76,19 +76,18 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         setResultText("");
     };
 
-    const fetchWordData = async () => {
-        if (!currentWord) return;
+    const fetchWordData = async (word: WordModel) => {
         if (inputMode === "enToVi" && pageState === "translate") {
-            const phonetics = await getPhoneticsByWord(currentWord?.eng || "");
+            const phonetics = await getPhoneticsByWord(word?.eng || "");
             setCurrentAudio(phonetics[0]?.audio || "");
             setCurrentPhonetic(phonetics[0]?.text || "");
         }
 
         if (pageState === "fill") {
             setLoadingSentence(true);
-            const res = await getSentence(currentWord?.eng || "");
-            const lowerWord = (currentWord?.eng || "").toLowerCase();
-            const sentence = res.toLowerCase().includes(lowerWord) ? res.replace(new RegExp(`\\b${currentWord?.eng}\\b`, "gi"), "______") : res;
+            const res = await getSentence(word?.eng || "");
+            const lowerWord = (word?.eng || "").toLowerCase();
+            const sentence = res.toLowerCase().includes(lowerWord) ? res.replace(new RegExp(`\\b${word?.eng}\\b`, "gi"), "______") : res;
 
             setCurrentSentence(sentence);
             setLoadingSentence(false);
@@ -165,7 +164,9 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
         setWordList(newWords);
         setCurrentWord(newWords[0]);
-        fetchWordData();
+        if(checkedLibraries.length > 0) {
+            fetchWordData(newWords[0]);
+        }
     }, [checkedLibraries, level, onlyThisLevel, libraries]);
 
     useEffect(() => {
@@ -185,13 +186,14 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                 break;
         }
 
-        fetchWordData();
+        fetchWordData(currentWord);
     }, [reverse]);
 
     useEffect(() => {
+        setCurrentSentence("");
         if (!currentWord) return;
 
-        fetchWordData();
+        fetchWordData(currentWord);
     }, [pageState]);
 
     useEffect(() => {
@@ -254,7 +256,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
             if (nextIndex < wordList.length) setCurrentWord(wordList[nextIndex]);
             else setCurrentWord(wordList[0]);
 
-            await fetchWordData();
+            await fetchWordData(currentWord);
 
             //kiểm tra có phải là hiện câu hỏi hay không
             if (!showResultState) setCorrectCount(correctCount + 1);
