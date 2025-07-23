@@ -34,14 +34,14 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                 main: "#0066ff",
             },
             background: {
-                default: isDarkMode ? "#000" : "#fff",
-                paper: isDarkMode ? "#333" : "#f5f5f5",
+                default: isDarkMode ? "#000" : "#f5f5f5",
+                paper: isDarkMode ? "#333" : "#e6e6e6",
             },
             text: {
                 primary: isDarkMode ? "#fff" : "#000",
                 secondary: isDarkMode ? "#ccc" : "#666",
             },
-            divider: isDarkMode ? "#444" : "#999999",
+            divider: isDarkMode ? "#444" : "#b3b3b3",
             
         },
         components: {

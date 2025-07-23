@@ -8,7 +8,7 @@ import { UserModel } from "@/core/models/UserModel";
 const defaultUser: UserModel = {
     id: "guest",
     name: "guest",
-    avatar: "./images/default.png",
+    avatar: "/images/default.png",
 };
 
 const Pages = () => {

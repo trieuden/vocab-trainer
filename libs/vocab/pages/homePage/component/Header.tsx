@@ -20,88 +20,92 @@ export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModal
     const { t } = useTranslation();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     return (
-        <Stack className="px-4 py-4 justify-between h-full items-center" direction={"row"}>
-            <Stack direction="row" alignItems={"center"} spacing={1} borderRadius={"16px"}>
-                <Box component={"img"} src={"/images/logo.PNG"} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" />
-                <h1 className="font-bold">Vision</h1>
-            </Stack>
-            {!isMobile && (
-                <Stack className=" p-2 px-4" direction={"row"} justifyContent="space-center" alignItems="center" spacing={8}>
-                    <Typography
-                        fontWeight={550}
-                        fontSize={"18px"}
-                        className={`cursor-pointer`}
-                        sx={{
-                            color: pageState === "translate" ? "#3b82f6" : theme.palette.text.primary,
-                        }}
-                        onClick={() => setPageState("translate")}
-                    >
-                        {t("input_meaning")}
-                    </Typography>
-                    <Typography
-                        fontWeight={550}
-                        fontSize={"18px"}
-                        className="cursor-pointer"
-                        sx={{
-                            color: pageState === "fill" ? "#3b82f6" : theme.palette.text.primary,
-                        }}
-                        onClick={() => setPageState("fill")}
-                    >
-                        {t("fill_in_blank")}
-                    </Typography>
-                    <Typography
-                        fontWeight={550}
-                        fontSize={"18px"}
-                        className={`cursor-pointer`}
-                        sx={{
-                            color: pageState === "match" ? "#3b82f6" : theme.palette.text.primary,
-                        }}
-                        onClick={() => setPageState("match")}
-                    >
-                        {t("matching")}
-                    </Typography>
-                    <Typography
-                        fontWeight={550}
-                        fontSize={"18px"}
-                        className={`cursor-pointer`}
-                        sx={{
-                            color: pageState === "synonyms" ? "#3b82f6" : theme.palette.text.primary,
-                        }}
-                        onClick={() => setPageState("synonyms")}
-                    >
-                        {t("synonym")}
-                    </Typography>
+        <Stack className="w-full fixed p-3">
+            <Stack className="p-3 justify-between items-center rounded-4xl " sx={{ bgcolor: theme.palette.background.paper }} direction={"row"}>
+                <Stack direction="row" alignItems={"center"} spacing={1} borderRadius={"16px"}>
+                    <Box component={"img"} src={"/images/logo.PNG"} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" />
+                    <h1 className="font-bold" style={{ color: theme.palette.text.primary }}>
+                        Vision
+                    </h1>
                 </Stack>
-            )}
-            <Stack direction="row" spacing={1} alignItems="center">
-                {isMobile && (
-                    <>
-                        <IconButton
-                            onClick={() => {
-                                setIsOpenModal(true);
-                                setModalState("settings");
+                {!isMobile && (
+                    <Stack className=" p-2 px-4" direction={"row"} justifyContent="space-center" alignItems="center" spacing={8}>
+                        <Typography
+                            fontWeight={550}
+                            fontSize={"18px"}
+                            className={`cursor-pointer`}
+                            sx={{
+                                color: pageState === "translate" ? "#3b82f6" : theme.palette.text.primary,
                             }}
-                            className="text-white"
+                            onClick={() => setPageState("translate")}
                         >
-                            <Settings color="primary" />
-                        </IconButton>
-                        <IconButton
-                            onClick={() => {
-                                setIsOpenModal(true);
-                                setModalState("library");
+                            {t("input_meaning")}
+                        </Typography>
+                        <Typography
+                            fontWeight={550}
+                            fontSize={"18px"}
+                            className="cursor-pointer"
+                            sx={{
+                                color: pageState === "fill" ? "#3b82f6" : theme.palette.text.primary,
                             }}
-                            className="text-white"
+                            onClick={() => setPageState("fill")}
                         >
-                            <LibraryBooks color="primary" />
-                        </IconButton>
-                    </>
+                            {t("fill_in_blank")}
+                        </Typography>
+                        <Typography
+                            fontWeight={550}
+                            fontSize={"18px"}
+                            className={`cursor-pointer`}
+                            sx={{
+                                color: pageState === "match" ? "#3b82f6" : theme.palette.text.primary,
+                            }}
+                            // onClick={() => setPageState("match")}
+                        >
+                            {t("matching")}
+                        </Typography>
+                        <Typography
+                            fontWeight={550}
+                            fontSize={"18px"}
+                            className={`cursor-pointer`}
+                            sx={{
+                                color: pageState === "synonyms" ? "#3b82f6" : theme.palette.text.primary,
+                            }}
+                            // onClick={() => setPageState("synonyms")}
+                        >
+                            {t("synonym")}
+                        </Typography>
+                    </Stack>
                 )}
-                <Box
-                    component={"img"}
-                    src={currentUser?.avatar}
-                    className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer border-2 border-blue-600"
-                    onClick={() => setIsOpenAccMenu(true)}
-                />
+                <Stack direction="row" spacing={1} alignItems="center">
+                    {isMobile && (
+                        <>
+                            <IconButton
+                                onClick={() => {
+                                    setIsOpenModal(true);
+                                    setModalState("settings");
+                                }}
+                                className="text-white"
+                            >
+                                <Settings color="primary" />
+                            </IconButton>
+                            <IconButton
+                                onClick={() => {
+                                    setIsOpenModal(true);
+                                    setModalState("library");
+                                }}
+                                className="text-white"
+                            >
+                                <LibraryBooks color="primary" />
+                            </IconButton>
+                        </>
+                    )}
+                    <Box
+                        component={"img"}
+                        src={currentUser?.avatar}
+                        className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer border-2 border-blue-600"
+                        onClick={() => setIsOpenAccMenu(true)}
+                    />
+                </Stack>
             </Stack>
         </Stack>
     );

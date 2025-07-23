@@ -21,7 +21,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [user, setUser] = useState(currentUser?.id);
     const [language, setLanguage] = useState("vi");
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
 
     const handleChooseUser = (user: string) => {
         setUser(user);
@@ -40,8 +40,9 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
         setLanguage(lang);
 
         const darkModeCookie = Cookies.get("darkMode");
-        const isDarkMode = darkModeCookie ? darkModeCookie === "true" : false;
-        setDarkMode(isDarkMode);
+        if(darkModeCookie) {
+            setDarkMode(darkModeCookie === "en" ? false : true);
+        }
     }, []);
 
     return (

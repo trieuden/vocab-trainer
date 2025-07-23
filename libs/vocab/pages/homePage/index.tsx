@@ -53,6 +53,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     const [wrongCount, setWrongCount] = useState(0);
 
     const [isListening, setIsListening] = useState(false);
+    const [loadingSentence, setLoadingSentence] = useState(false);
 
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [modalState, setModalState] = useState<ModalStateType>("guide");
@@ -73,6 +74,25 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         setCurrentPhonetic("");
         setAnswer("");
         setResultText("");
+    };
+
+    const fetchWordData = async () => {
+        if (!currentWord) return;
+        if (inputMode === "enToVi" && pageState === "translate") {
+            const phonetics = await getPhoneticsByWord(currentWord?.eng || "");
+            setCurrentAudio(phonetics[0]?.audio || "");
+            setCurrentPhonetic(phonetics[0]?.text || "");
+        }
+
+        if (pageState === "fill") {
+            setLoadingSentence(true);
+            const res = await getSentence(currentWord?.eng || "");
+            const lowerWord = (currentWord?.eng || "").toLowerCase();
+            const sentence = res.toLowerCase().includes(lowerWord) ? res.replace(new RegExp(`\\b${currentWord?.eng}\\b`, "gi"), "______") : res;
+
+            setCurrentSentence(sentence);
+            setLoadingSentence(false);
+        }
     };
 
     useEffect(() => {
@@ -145,6 +165,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
         setWordList(newWords);
         setCurrentWord(newWords[0]);
+        fetchWordData();
     }, [checkedLibraries, level, onlyThisLevel, libraries]);
 
     useEffect(() => {
@@ -164,21 +185,14 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                 break;
         }
 
-        const fetchPhonetics = async () => {
-            if (inputMode === "enToVi") {
-                const phonetics = await getPhoneticsByWord(currentWord.eng);
-                setCurrentAudio(phonetics[0]?.audio || "");
-                setCurrentPhonetic(phonetics[0]?.text || "");
-            }
+        fetchWordData();
+    }, [reverse]);
 
-            if (pageState === "fill") {
-                const sentence = await getSentence(currentWord.eng);
-                setCurrentSentence(sentence);
-            }
-        };
+    useEffect(() => {
+        if (!currentWord) return;
 
-        fetchPhonetics();
-    }, [pageState, reverse, currentWord]);
+        fetchWordData();
+    }, [pageState]);
 
     useEffect(() => {
         if (!isMobile) {
@@ -207,7 +221,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
     }, [currentWord]);
 
-    const handleCheckAnswer = () => {
+    const handleCheckAnswer = async () => {
         if (!currentWord) return;
         let answerToCheck = "";
         switch (pageState) {
@@ -232,15 +246,14 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
 
         if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
-            if (nextIndex < wordList.length) {
-                setCurrentWord(wordList[nextIndex]);
-            } else {
-                setCurrentWord(wordList[0]);
-            }
+            if (nextIndex < wordList.length) setCurrentWord(wordList[nextIndex]);
+            else setCurrentWord(wordList[0]);
 
-            if (!showResultState) {
-                setCorrectCount(correctCount + 1);
-            }
+            await fetchWordData();
+
+            //kiểm tra có phải là hiện câu hỏi hay không
+            if (!showResultState) setCorrectCount(correctCount + 1);
+
             setAnswer("");
             setShowResultState(false);
             setResultText(``);
@@ -450,11 +463,11 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     };
 
     return (
-        <Box className={`shadow-2xl p-1 text-white bg-[${theme.palette.background.default}]`}>
+        <Box className={`shadow-2xl text-white bg-[${theme.palette.background.default}]`}>
             {/* Header */}
             <Header setIsOpenModal={setIsOpenModal} setModalState={setModalState} currentUser={currentUser} setIsOpenAccMenu={setIsOpenAccMenu} setPageState={setPageState} pageState={pageState} />
 
-            <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: isMobile ? "auto" : "calc(100vh - 89px)" }}>
+            <Stack direction={"row"} className="justify-between items-center p-3 pt-[95px]" spacing={2} sx={{ height: isMobile ? "auto" : "100vh" }}>
                 {/* SideBar bên trái khi ở pc */}
                 {!isMobile && (
                     <Stack
@@ -487,9 +500,23 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                             }
                         })()}
                     </span>
-                    <Stack alignItems={"center"} justifyContent={"center"} className="w-full text-center min-h-[120px] py-4 rounded-3xl" boxShadow={3} sx={{ bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}>
+                    <Stack
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                        className="w-full text-center min-h-[120px] py-4 rounded-3xl"
+                        boxShadow={3}
+                        sx={{ bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}
+                    >
                         <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] `}>
-                            {pageState === "fill" ? currentSentence : inputMode === "enToVi" ? currentWord?.eng : currentWord?.vie}
+                            {loadingSentence ? (
+                                <img src="/animatedIcon/loading.svg" alt="Loading..." className="w-8 h-8 animate-spin" />
+                            ) : pageState === "fill" ? (
+                                currentSentence
+                            ) : inputMode === "enToVi" ? (
+                                currentWord?.eng
+                            ) : (
+                                currentWord?.vie
+                            )}
                         </span>
                         <i>{pageState === "translate" && currentWord?.type}</i>
                         <span>{pageState === "translate" && currentPhonetic}</span>
