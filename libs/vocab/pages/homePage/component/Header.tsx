@@ -1,6 +1,7 @@
 import React from "react";
-import { Stack, IconButton, Box, useMediaQuery, useTheme, Typography, colors } from "@mui/material";
+import { Stack, IconButton, Box, useMediaQuery, useTheme, Typography } from "@mui/material";
 import { Settings, LibraryBooks } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 type ModalStateType = "settings" | "library" | "guide";
 type PageStateType = "match" | "synonyms" | "fill" | "translate";
@@ -16,26 +17,59 @@ type HeaderProps = {
 
 export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModalState, setPageState, pageState }: HeaderProps) => {
     const theme = useTheme();
+    const { t } = useTranslation();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     return (
         <Stack className="px-4 py-4 justify-between h-full items-center" direction={"row"}>
-            <Stack direction="row" alignItems={'center'} spacing={1} borderRadius={'16px'}>
-                <Box component={"img"} src={'/images/logo.PNG'} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer"/>
+            <Stack direction="row" alignItems={"center"} spacing={1} borderRadius={"16px"}>
+                <Box component={"img"} src={"/images/logo.PNG"} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" />
                 <h1 className="font-bold">Vision</h1>
             </Stack>
             {!isMobile && (
-                <Stack className=" p-2 px-4 rounded-3xl" boxShadow={2} direction={"row"} justifyContent="space-center" alignItems="center" spacing={8}>
-                    <Typography fontWeight={550} fontSize={"18px"} className={`cursor-pointer ${pageState === "translate" && "text-blue-500"}`} onClick={() => setPageState("translate")}>
-                        Nhập Nghĩa
+                <Stack className=" p-2 px-4" direction={"row"} justifyContent="space-center" alignItems="center" spacing={8}>
+                    <Typography
+                        fontWeight={550}
+                        fontSize={"18px"}
+                        className={`cursor-pointer`}
+                        sx={{
+                            color: pageState === "translate" ? "#3b82f6" : theme.palette.text.primary,
+                        }}
+                        onClick={() => setPageState("translate")}
+                    >
+                        {t("input_meaning")}
                     </Typography>
-                    <Typography fontWeight={550} fontSize={"18px"} className={`cursor-pointer ${pageState === "fill" && "text-blue-500"}`} onClick={() => setPageState("fill")}>
-                        Điền Khuyết
+                    <Typography
+                        fontWeight={550}
+                        fontSize={"18px"}
+                        className="cursor-pointer"
+                        sx={{
+                            color: pageState === "fill" ? "#3b82f6" : theme.palette.text.primary,
+                        }}
+                        onClick={() => setPageState("fill")}
+                    >
+                        {t("fill_in_blank")}
                     </Typography>
-                    <Typography fontWeight={550} fontSize={"18px"} className={`cursor-pointer ${pageState === "match" && "text-blue-500"}`} onClick={() => setPageState("match")}>
-                        Nối Từ
+                    <Typography
+                        fontWeight={550}
+                        fontSize={"18px"}
+                        className={`cursor-pointer`}
+                        sx={{
+                            color: pageState === "match" ? "#3b82f6" : theme.palette.text.primary,
+                        }}
+                        onClick={() => setPageState("match")}
+                    >
+                        {t("matching")}
                     </Typography>
-                    <Typography fontWeight={550} fontSize={"18px"} className={`cursor-pointer ${pageState === "synonyms" && "text-blue-500"}`} onClick={() => setPageState("synonyms")}>
-                        Từ Đồng Nghĩa
+                    <Typography
+                        fontWeight={550}
+                        fontSize={"18px"}
+                        className={`cursor-pointer`}
+                        sx={{
+                            color: pageState === "synonyms" ? "#3b82f6" : theme.palette.text.primary,
+                        }}
+                        onClick={() => setPageState("synonyms")}
+                    >
+                        {t("synonym")}
                     </Typography>
                 </Stack>
             )}
@@ -62,7 +96,12 @@ export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModal
                         </IconButton>
                     </>
                 )}
-                <Box component={"img"} src={currentUser?.avatar} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer border-2 border-blue-600" onClick={() => setIsOpenAccMenu(true)} />
+                <Box
+                    component={"img"}
+                    src={currentUser?.avatar}
+                    className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer border-2 border-blue-600"
+                    onClick={() => setIsOpenAccMenu(true)}
+                />
             </Stack>
         </Stack>
     );

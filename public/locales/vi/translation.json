@@ -1,3 +1,27 @@
 {
-    "advanced_customization": "Tùy chỉnh nâng cao"
+    "advanced_customization": "Tùy chỉnh nâng cao",
+    "enter_meaning": "Nhập nghĩa",
+    "answer_result": "Hiện kết quả",
+    "check": "Kiểm tra",
+    "pronunciation": "Phát âm",
+    "voice": "Nói",
+
+    "matching": "Nối từ",
+    "fill_in_blank": "Điền Khuyết",
+    "input_meaning": "Nhập nghĩa",
+    "synonym": "Từ đồng nghĩa",
+    "library": "Thư viện",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt",
+    "random": "Ngẫu nhiên",
+    "vocab_level": "Cấp độ từ vựng",
+    "only_this_level": "Chỉ học cấp độ này",
+    "correct": "Đúng",
+    "incorrect": "Sai",
+    "who_are_you": "Bạn Là Ai",
+    "interface": "Giao diện",
+    "language": "Ngôn ngữ",
+    "listening": "Lắng nghe",
+    "exit": "Thoát",
+    "reverse_direction": "Đảo chiều"
 }

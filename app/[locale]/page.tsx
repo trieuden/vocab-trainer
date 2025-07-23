@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";;
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { HomePage } from "@/vocab/pages";
 import { AccountMenu } from "@/vocab/component";
 import { UserModel } from "@/core/models/UserModel";
@@ -16,20 +17,21 @@ const Pages = () => {
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("currentUser");
+        const cookieUser = Cookies.get("currentUser");
 
-        if (storedUser) {
+        if (cookieUser) {
             try {
-                const parsedUser = JSON.parse(storedUser);
+                const parsedUser = JSON.parse(cookieUser);
                 setCurrentUser(parsedUser);
             } catch {
-                localStorage.setItem("currentUser", JSON.stringify(defaultUser));
+                Cookies.set("currentUser", JSON.stringify(defaultUser));
                 setCurrentUser(defaultUser);
             }
         } else {
-            localStorage.setItem("currentUser", JSON.stringify(defaultUser));
+            Cookies.set("currentUser", JSON.stringify(defaultUser));
             setCurrentUser(defaultUser);
         }
+
         setIsReady(true);
     }, []);
 
@@ -38,7 +40,15 @@ const Pages = () => {
     return (
         <>
             <HomePage setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} />
-            <AccountMenu isOpenAccMenu={isOpenAccMenu} setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <AccountMenu
+                isOpenAccMenu={isOpenAccMenu}
+                setIsOpenAccMenu={setIsOpenAccMenu}
+                currentUser={currentUser}
+                setCurrentUser={(user) => {
+                    setCurrentUser(user);
+                    Cookies.set("currentUser", JSON.stringify(user));
+                }}
+            />
         </>
     );
 };

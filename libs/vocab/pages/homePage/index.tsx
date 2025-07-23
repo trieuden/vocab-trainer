@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 import { Box, Stack, Typography, TextField, Dialog, useMediaQuery, useTheme, Checkbox } from "@mui/material";
 import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, FiberManualRecord } from "@mui/icons-material";
 import { PrimaryButton, TextButton } from "../../../core/component";
+
 import { LevelSlider } from "../../component/LevelSlider";
 import { Library, GuideModal, Header } from "@/vocab/pages";
+
 import { GetMiloLibraries, GetTrieudenLibraries } from "@/core/services/WordServices";
 import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
 import { getSentence } from "@/core/services/SentenceServices";
-import { WordModel } from "@/core/models/WordModel";
-import { LibraryModel } from "@/core/models/LibraryModel";
-import { UserModel } from "@/core/models/UserModel";
-import { useNotification } from "@/vocab/providers/NotificationProvider";
+import { WordModel, LibraryModel, UserModel } from "@/core/models";
 
+import { useNotification, useThemeMode } from "@/vocab/providers";
+import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 
 type InputModeType = "enToVi" | "viToEn";
@@ -30,6 +31,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     const { t } = useTranslation();
 
     const { setNotification } = useNotification();
+    const { isDarkMode } = useThemeMode();
 
     const [libraries, setLibraries] = useState<LibraryModel[]>([]);
     const [checkedLibraries, setCheckedLibraries] = useState<string[]>([]);
@@ -75,6 +77,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
 
     useEffect(() => {
         refreshData();
+
         const fetchData = async () => {
             if (currentUser.id === "guest") {
                 const milo = await GetMiloLibraries();
@@ -92,6 +95,17 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
             }
         };
         fetchData();
+
+        const current = Cookies.get("libraries");
+        let list: string[] = [];
+        if (current) {
+            try {
+                list = JSON.parse(current);
+            } catch {
+                list = [];
+            }
+        }
+        setCheckedLibraries(list);
     }, [currentUser]);
 
     useEffect(() => {
@@ -103,8 +117,8 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         if (libraries.length === 0) return;
         const newWords: WordModel[] = [];
 
-        checkedLibraries.forEach((libraryId) => {
-            const library = libraries.find((lib) => lib.id === libraryId);
+        checkedLibraries.forEach((libraryTitle) => {
+            const library = libraries.find((lib) => lib.title === libraryTitle);
             if (library) {
                 newWords.push(
                     ...library.wordList.filter((word) => {
@@ -166,8 +180,6 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         fetchPhonetics();
     }, [pageState, reverse, currentWord]);
 
-    // ...existing code...
-
     useEffect(() => {
         if (!isMobile) {
             const handleKeyDown = (event: KeyboardEvent) => {
@@ -195,8 +207,6 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         }
     }, [currentWord]);
 
-    // ...existing code...
-
     const handleCheckAnswer = () => {
         if (!currentWord) return;
         let answerToCheck = "";
@@ -216,10 +226,10 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                 break;
         }
         const normalizedAnswerToCheck = answerToCheck.trim().toLocaleLowerCase();
-        const meanings = answer.split("/").map((part) => part.trim().toLocaleLowerCase());
-        
-        const isCorrect = meanings.find((part) => part === normalizedAnswerToCheck);
-        
+        const meanings = normalizedAnswerToCheck.split("/").map((part) => part.trim().toLocaleLowerCase());
+
+        const isCorrect = meanings.includes(answer.trim().toLocaleLowerCase());
+
         if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
             if (nextIndex < wordList.length) {
@@ -336,24 +346,26 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         return (
             <>
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <h1 className="text-xl font-bold">{t("advanced_customization")}</h1>
+                    <h1 className={`text-xl font-bold`} style={{ color: theme.palette.text.primary }}>
+                        {t("advanced_customization")}
+                    </h1>
                 </Stack>
                 {pageState === "translate" && (
-                    <Stack className="mt-6 px-10 bg-[#444] rounded-2xl shadow-lg">
+                    <Stack className="mt-6 px-10 rounded-2xl" boxShadow={3} sx={{ bgcolor: theme.palette.background.paper }}>
                         <LevelSlider
                             mark={reverse}
                             setMark={setReverse}
                             marks={[
-                                { value: 0, label: "Tiếng Anh" },
-                                { value: 50, label: "Tiếng Việt" },
-                                { value: 100, label: "Ngẫu nhiên" },
+                                { value: 0, label: t("english") },
+                                { value: 50, label: t("vietnamese") },
+                                { value: 100, label: t("random") },
                             ]}
-                            title="Đảo chiều"
+                            title={t("reverse_direction")}
                             textColor="#0073e6"
                         />
                     </Stack>
                 )}
-                <Stack className="mt-6 px-10 bg-[#444] rounded-2xl shadow-lg">
+                <Stack className="mt-6 px-10 rounded-2xl" boxShadow={3} sx={{ bgcolor: theme.palette.background.paper }}>
                     <LevelSlider
                         mark={level}
                         setMark={setLevel}
@@ -364,7 +376,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                             { value: 75, label: "C1" },
                             { value: 100, label: "C2" },
                         ]}
-                        title="Cấp độ từ vựng"
+                        title={t("vocab_level")}
                         textColor="#ff9800"
                     />
                     <Stack direction="row" className="items-center justify-center">
@@ -384,7 +396,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                                 setOnlyThisLevel(e.target.checked);
                             }}
                         />
-                        <span className="text-sm text-gray-400">Chỉ học cấp độ này</span>
+                        <span className="text-sm text-gray-400">{t("only_this_level")}</span>
                     </Stack>
                 </Stack>
             </>
@@ -395,7 +407,9 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         return (
             <>
                 <Stack direction="row" spacing={2} alignItems="center">
-                    <h1 className="text-xl font-bold">Thư viện</h1>
+                    <h1 className="text-xl font-bold" style={{ color: theme.palette.text.primary }}>
+                        {t("library")}
+                    </h1>
                 </Stack>
                 <Stack
                     mt={2}
@@ -407,11 +421,11 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                             width: "4px",
                         },
                         "&::-webkit-scrollbar-track": {
-                            backgroundColor: "#f1f1f1",
+                            backgroundColor: isDarkMode ? "#333" : "#f1f1f1",
                             borderRadius: "10px",
                         },
                         "&::-webkit-scrollbar-thumb": {
-                            backgroundColor: "#888",
+                            backgroundColor: isDarkMode ? "#f1f1f1" : "#b3b3b3",
                             borderRadius: "10px",
                         },
                     }}
@@ -420,12 +434,12 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                         <Library
                             key={index}
                             library={library}
-                            isChecked={checkedLibraries.includes(library.id)}
+                            isChecked={checkedLibraries.includes(library.title)}
                             setIsChecked={(checked) => {
                                 if (checked) {
-                                    setCheckedLibraries([...checkedLibraries, library.id]);
+                                    setCheckedLibraries([...checkedLibraries, library.title]);
                                 } else {
-                                    setCheckedLibraries(checkedLibraries.filter((id) => id !== library.id));
+                                    setCheckedLibraries(checkedLibraries.filter((title) => title !== library.title));
                                 }
                             }}
                         />
@@ -436,37 +450,44 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     };
 
     return (
-        <Box className="shadow-2xl p-1 text-white bg-[#000]">
+        <Box className={`shadow-2xl p-1 text-white bg-[${theme.palette.background.default}]`}>
             {/* Header */}
             <Header setIsOpenModal={setIsOpenModal} setModalState={setModalState} currentUser={currentUser} setIsOpenAccMenu={setIsOpenAccMenu} setPageState={setPageState} pageState={pageState} />
 
             <Stack direction={"row"} className="justify-between items-center p-2 mt-1" spacing={2} sx={{ height: isMobile ? "auto" : "calc(100vh - 89px)" }}>
-                {/* Settings Sidebar - Hidden on mobile */}
+                {/* SideBar bên trái khi ở pc */}
                 {!isMobile && (
-                    <Stack flex={1} className={`bg-[#333] p-4 rounded-3xl h-full`}>
+                    <Stack
+                        flex={1}
+                        className={` p-4 rounded-3xl h-full`}
+                        sx={{
+                            bgcolor: theme.palette.background.paper,
+                        }}
+                        boxShadow={3}
+                    >
                         <Setting />
                     </Stack>
                 )}
 
                 {/* Main Content */}
-                <Stack spacing={2} flex={isMobile ? 1 : 2} className={`bg-[#333] p-4 rounded-3xl h-full items-center`}>
-                    <span className="text-xl font-bold ">
+                <Stack spacing={2} flex={isMobile ? 1 : 2} className={`p-4 rounded-3xl h-full items-center`} sx={{ bgcolor: theme.palette.background.paper }} boxShadow={3}>
+                    <span className="text-xl font-bold " style={{ color: theme.palette.text.primary }}>
                         {(() => {
                             switch (pageState) {
                                 case "match":
-                                    return "Nối từ";
+                                    return `${t("matching")}`;
                                 case "fill":
-                                    return "Điền khuyết";
+                                    return `${t("fill_in_blank")}`;
                                 case "synonyms":
-                                    return "Từ đồng nghĩa";
+                                    return `${t("synonym")}`;
                                 case "translate":
-                                    return "Nhập nghĩa";
+                                    return `${t("input_meaning")}`;
                                 default:
                                     return "";
                             }
                         })()}
                     </span>
-                    <Stack alignItems={"center"} justifyContent={"center"} className="bg-[#444] w-full text-center min-h-[120px] py-4 rounded-3xl">
+                    <Stack alignItems={"center"} justifyContent={"center"} className="w-full text-center min-h-[120px] py-4 rounded-3xl" boxShadow={3} sx={{ bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}>
                         <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] `}>
                             {pageState === "fill" ? currentSentence : inputMode === "enToVi" ? currentWord?.eng : currentWord?.vie}
                         </span>
@@ -486,7 +507,8 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                             variant="standard"
                             sx={{
                                 input: {
-                                    color: "#fff",
+                                    color: theme.palette.text.primary,
+                                    bgcolor: theme.palette.background.paper,
                                     textAlign: "center",
                                     fontSize: isMobile ? "20px" : "28px",
                                 },
@@ -499,14 +521,14 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                     </Box>
                     <Stack spacing={2} className={`${isMobile ? "px-4" : "px-16"} w-full flex`} direction={"column"}>
                         <Stack direction={isMobile ? "column" : "row"} spacing={2} alignItems="center" className="flex w-full">
-                            <PrimaryButton width={isMobile ? "100%" : "60%"} title="Kiểm tra" handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} />
-                            <PrimaryButton width={isMobile ? "100%" : "40%"} title="Hiện kết quả" handleClick={handleShowResult} bgColor="#33cc33" />
+                            <PrimaryButton width={isMobile ? "100%" : "40%"} title={t("answer_result")} handleClick={handleShowResult} bgColor="#33cc33" />
+                            <PrimaryButton width={isMobile ? "100%" : "60%"} title={t("check")} handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} />
                         </Stack>
                         <Stack direction={isMobile ? "column" : "row"} spacing={2} justifyContent="center" alignItems="center" width={"100%"}>
-                            <PrimaryButton width={isMobile ? "100%" : "40%"} title="Phát âm" handleClick={handleSpeak} icon={<VolumeUpOutlined />} bgColor="#ffb31a" />
+                            <PrimaryButton width={isMobile ? "100%" : "60%"} title={t("pronunciation")} handleClick={handleSpeak} icon={<VolumeUpOutlined />} bgColor="#ffb31a" />
                             <PrimaryButton
-                                width={isMobile ? "100%" : "60%"}
-                                title={`${isListening ? "Đang lắng nghe" : "Nói"}`}
+                                width={isMobile ? "100%" : "40%"}
+                                title={`${isListening ? t("listening") : t("voice")}`}
                                 handleClick={handleSpeechRecognition}
                                 icon={isListening ? <FiberManualRecord sx={{ color: "#800000" }} /> : <KeyboardVoiceOutlined />}
                                 bgColor="#ff1a1a"
@@ -519,15 +541,15 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                         {resultText}
                     </Typography>
                     <Typography mt={2} color="gray">
-                        Đúng: <b style={{ color: "lightgreen" }}>{correctCount}</b> | Sai: <b style={{ color: "salmon" }}>{wrongCount}</b>
+                        {t("correct")}: <b style={{ color: "lightgreen" }}>{correctCount}</b> | {t("incorrect")}: <b style={{ color: "salmon" }}>{wrongCount}</b>
                     </Typography>
-
+                    {/* Các nút chuyển trang khi ở mobile */}
                     {isMobile && (
                         <Stack className="flex-1" direction={"row"} width={"100%"} justifyContent="end" spacing={2}>
                             <Stack width={"100%"} justifyContent={"end"} spacing={2}>
-                                <TextButton title="Nối từ" color={pageState === "match" ? "#0000ff" : "#ccc"} />
+                                <TextButton title={t("matching")} color={pageState === "match" ? "#0000ff" : "#ccc"} />
                                 <TextButton
-                                    title="Nhập nghĩa"
+                                    title={t("enter_meaning")}
                                     handleClick={() => {
                                         setPageState("translate");
                                     }}
@@ -536,21 +558,21 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                             </Stack>
                             <Stack width={"100%"} justifyContent={"end"} spacing={2}>
                                 <TextButton
-                                    title="Điền khuyết"
+                                    title={t("fill_in_blank")}
                                     handleClick={() => {
                                         setPageState("fill");
                                     }}
                                     color={pageState === "fill" ? "#0000ff" : "#ccc"}
                                 />
-                                <TextButton title="Từ đồng nghĩa" color={pageState === "synonyms" ? "#0000ff" : "#ccc"} />
+                                <TextButton title={t("synonym")} color={pageState === "synonyms" ? "#0000ff" : "#ccc"} />
                             </Stack>
                         </Stack>
                     )}
                 </Stack>
 
-                {/* Library Sidebar - Hidden on mobile */}
+                {/*Sidebar bên phải khi ở pc */}
                 {!isMobile && (
-                    <Stack flex={1} className="bg-[#333] p-4 rounded-3xl h-full">
+                    <Stack flex={1} className=" p-4 rounded-3xl h-full" sx={{ bgcolor: theme.palette.background.paper }} boxShadow={3}>
                         <Libraries />
                     </Stack>
                 )}
@@ -564,7 +586,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                 slotProps={{
                     paper: {
                         sx: {
-                            bgcolor: "#333",
+                            bgcolor: theme.palette.background.paper,
                             color: "white",
                             borderRadius: "16px",
                             padding: "16px",

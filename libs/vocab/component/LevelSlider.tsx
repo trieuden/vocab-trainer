@@ -1,6 +1,8 @@
 "use client";
-import { Slider, Box, Stack } from "@mui/material";
+import { Slider, Box, Stack, colors } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
+import { t } from "i18next";
 
 // Custom Slider
 const ColoredSlider = styled(Slider)<{ value: number }>(({ theme, value }) => ({
@@ -32,7 +34,7 @@ const ColoredSlider = styled(Slider)<{ value: number }>(({ theme, value }) => ({
         top: "0px",
         height: 24,
         width: 16,
-        backgroundColor: "white",
+        backgroundColor: theme.palette.primary.main,
         border: "2px solid white",
         borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
         clipPath: "polygon(50% 100%, 0 50%, 100% 50%)",
@@ -43,7 +45,7 @@ const ColoredSlider = styled(Slider)<{ value: number }>(({ theme, value }) => ({
 
     // Label (text dưới mốc)
     "& .MuiSlider-markLabel": {
-        color: "white",
+        color: theme.palette.text.primary,
         fontWeight: "bold",
         fontSize: "0.85rem",
         marginTop: 6,
@@ -59,6 +61,8 @@ type LevelSliderProps = {
 };
 
 export const LevelSlider = ({ mark = 0, setMark, marks, title, textColor }: LevelSliderProps) => {
+    const theme = useTheme();
+
     const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
         if (Array.isArray(newValue)) {
             setMark(newValue[0]);

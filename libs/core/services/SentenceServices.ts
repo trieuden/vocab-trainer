@@ -1,6 +1,6 @@
 export const getSentence = async ( word: string) => {
     try {
-        const response = await fetch("api/getGroqAI", {
+        const response = await fetch("/api/getGroqAI", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
