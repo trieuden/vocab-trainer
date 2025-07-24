@@ -15,9 +15,14 @@ const Pages = () => {
     const [isOpenAccMenu, setIsOpenAccMenu] = useState(false);
     const [currentUser, setCurrentUser] = useState<UserModel>(defaultUser);
     const [isReady, setIsReady] = useState(false);
+    const [isShortcutKeys, setIsShortcutKeys] = useState(true);
 
     useEffect(() => {
         const cookieUser = Cookies.get("currentUser");
+        const cookieShortcutKeys = Cookies.get("isShortcutKeys");
+        if (cookieShortcutKeys) {
+            setIsShortcutKeys(cookieShortcutKeys === "on");
+        }
 
         if (cookieUser) {
             try {
@@ -39,7 +44,7 @@ const Pages = () => {
 
     return (
         <>
-            <HomePage setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} />
+            <HomePage setIsOpenAccMenu={setIsOpenAccMenu} currentUser={currentUser} isShortcutKeys={isShortcutKeys}/>
             <AccountMenu
                 isOpenAccMenu={isOpenAccMenu}
                 setIsOpenAccMenu={setIsOpenAccMenu}
@@ -48,6 +53,8 @@ const Pages = () => {
                     setCurrentUser(user);
                     Cookies.set("currentUser", JSON.stringify(user));
                 }}
+                isShortcutKeys={isShortcutKeys}
+                setIsShortcutKeys={setIsShortcutKeys}
             />
         </>
     );

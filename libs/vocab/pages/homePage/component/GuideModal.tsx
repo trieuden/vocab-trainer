@@ -23,6 +23,7 @@ export const GuideModal = () => {
                         <Typography variant="body1">4. Nhấn phím Ctrl để nghe từ vựng hoặc câu</Typography>
                         <Typography variant="body1">5. Nhấn phím Enter để kiểm tra</Typography>
                         <Typography variant="body1">6. Nhấn phím Shift để hiện kết quả</Typography>
+                        <Typography variant="body1">7. Tắt phím tắt để dùng các chức năng như Ctrl + C, ...</Typography>
                     </>
                 )}
                 <i className="text-gray-400">Đối với trả lời đúng sẽ được + 1 đúng, hiện kết quả sẽ +1 sai</i>

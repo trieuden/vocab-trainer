@@ -27,9 +27,9 @@ export const CustomSwitch = styled(Switch, {
                 "& + .MuiSwitch-track": {
                     opacity: 1,
                     backgroundColor: customColor ? customColor : "#aab4be",
-                    ...theme.applyStyles("dark", {
-                        backgroundColor: "#8796A5",
-                    }),
+                    // ...theme.applyStyles("dark", {
+                    //     backgroundColor: "#8796A5",
+                    // }),
                 },
             },
         },
@@ -49,16 +49,16 @@ export const CustomSwitch = styled(Switch, {
                 backgroundImage: unCheckedIcon ? `url(${unCheckedIcon})` : "",
             },
             ...theme.applyStyles("dark", {
-                backgroundColor: "#003892",
+                backgroundColor: "#666666",
             }),
         },
         "& .MuiSwitch-track": {
             opacity: 1,
-            backgroundColor: customColor ? customColor : "#aab4be",
+            backgroundColor: "#aab4be",
             borderRadius: 20 / 2,
-            ...theme.applyStyles("dark", {
-                backgroundColor: "#8796A5",
-            }),
+            // ...theme.applyStyles("dark", {
+            //     backgroundColor: "#8796A5",
+            // }),
         },
     };
 });

@@ -24,5 +24,6 @@
     "listening": "Listening",
     "exit": "Exit",
     "reverse_direction": "Reverse Direction",
-    "guide": "User Guide"
+    "guide": "User Guide",
+    "shortcut_keys": "Shortcut Keys"
 }

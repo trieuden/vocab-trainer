@@ -4,7 +4,7 @@ import { CustomSwitch, TextButton } from "@/core/component";
 import { Stack, Box, Radio, RadioGroup, Dialog, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowForwardIos } from "@mui/icons-material";
 import { UserModel } from "@/core/models/UserModel";
-import { SunIcon, MoonIcon, VIEIcon, ENGIcon } from "@/core/icons";
+import { SunIcon, MoonIcon, VIEIcon, ENGIcon, OnIcon, OffIcon } from "@/core/icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import { GuideModal } from "../pages";
@@ -14,9 +14,11 @@ type AccountMenuModalProps = {
     setIsOpenAccMenu: (isOpen: boolean) => void;
     currentUser: UserModel;
     setCurrentUser: (user: UserModel) => void;
+    isShortcutKeys: boolean;
+    setIsShortcutKeys: (isShortcut: boolean) => void;
 };
 
-export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, currentUser }: AccountMenuModalProps) => {
+export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, currentUser, isShortcutKeys, setIsShortcutKeys }: AccountMenuModalProps) => {
     const theme = useTheme();
     const { t } = useTranslation();
 
@@ -128,6 +130,18 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                             }}
                             checkedIcon={VIEIcon}
                             unCheckedIcon={ENGIcon}
+                        />
+                    </Stack>
+                    <Stack direction="row" spacing={2} className="w-full items-center justify-between border-b border-gray-600 pb-2" sx={{ color: theme.palette.text.primary }}>
+                        <span>{t("shortcut_keys")}</span>
+                        <CustomSwitch
+                            checked={isShortcutKeys}
+                            onChange={(e) => {
+                                setIsShortcutKeys(e.target.checked);
+                                Cookies.set("isShortcutKeys", e.target.checked ? "on" : "off");
+                            }}
+                            checkedIcon={OnIcon}
+                            unCheckedIcon={OffIcon}
                             customColor="#0066ff"
                         />
                     </Stack>

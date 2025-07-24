@@ -23,9 +23,10 @@ type ModalStateType = "settings" | "library" | "guide";
 type HomePageProps = {
     setIsOpenAccMenu: (isOpen: boolean) => void;
     currentUser: UserModel;
+    isShortcutKeys: boolean;
 };
 
-export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
+export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: HomePageProps) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const { t } = useTranslation();
@@ -197,7 +198,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
     }, [pageState]);
 
     useEffect(() => {
-        if (!isMobile) {
+        if (!isMobile && isShortcutKeys) {
             const handleKeyDown = (event: KeyboardEvent) => {
                 // Ctrl: Đọc (phát âm)
                 if (event.ctrlKey && !event.shiftKey && event.key !== "Enter") {
@@ -226,7 +227,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                 document.removeEventListener("keydown", handleKeyDown);
             };
         }
-    }, [currentWord, answer]);
+    }, [currentWord, answer, isShortcutKeys]);
 
     const handleCheckAnswer = async () => {
         if (!currentWord) return;
@@ -579,6 +580,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
                     <Typography mt={2} color="gray">
                         {t("correct")}: <b style={{ color: "lightgreen" }}>{correctCount}</b> | {t("incorrect")}: <b style={{ color: "salmon" }}>{wrongCount}</b>
                     </Typography>
+
                     {/* Các nút chuyển trang khi ở mobile */}
                     {isMobile && (
                         <Stack className="flex-1" direction={"row"} width={"100%"} justifyContent="end" spacing={2}>
@@ -638,7 +640,6 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
             >
                 {modalState === "settings" && <Setting />}
                 {modalState === "library" && <Libraries />}
-                {modalState === "guide" && <GuideModal />}
             </Dialog>
         </Box>
     );
