@@ -264,6 +264,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
             setAnswer("");
             setShowResultState(false);
             setResultText(``);
+            setCurrentPhonetic("");
         } else {
             setResultText(`Sai rồi cưng ơi, cưng còn non lắm`);
             setWrongState(true);
@@ -275,6 +276,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
         switch (pageState) {
             case "fill":
                 setAnswer(currentWord.eng);
+                setResultText(`${currentWord.eng}: ${currentWord.vie}`);
                 break;
             case "translate":
                 if (inputMode === "enToVi") {

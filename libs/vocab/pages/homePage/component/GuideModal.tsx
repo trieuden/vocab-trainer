@@ -11,7 +11,7 @@ export const GuideModal = () => {
     return (
         <>
             <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="h6" fontWeight="bold" color="#3333ff">
+                <Typography variant="h6" fontWeight="bold" color="#6666ff">
                     {t("guide")}
                 </Typography>
             </Stack>

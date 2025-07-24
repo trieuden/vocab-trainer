@@ -5,43 +5,42 @@ import { CssBaseline } from "@mui/material";
 import Cookies from "js-cookie";
 
 const ThemeContext = createContext({
-    isDarkMode: true,
+    isDarkMode: 'dark',
     toggleTheme: () => {},
 });
 
 export const useThemeMode = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState("dark");
 
     useEffect(() => {
         const savedTheme = Cookies.get("darkMode");
         if (savedTheme) {
-            setIsDarkMode(savedTheme === "true");
-        }
+            setIsDarkMode(savedTheme);
+        }        
     }, []);
 
     const toggleTheme = () => {
-        const newMode = !isDarkMode;
-        setIsDarkMode(newMode);
-        Cookies.set("darkMode", String(newMode), { expires: 7 });
+        setIsDarkMode(isDarkMode === "dark" ? "light" : "dark");
+        Cookies.set("darkMode", String(isDarkMode === "dark" ? "light" : "dark"));
     };
 
     const theme = createTheme({
         palette: {
-            mode: isDarkMode ? "dark" : "light",
+            mode: isDarkMode === "dark" ? "dark" : "light",
             primary: {
                 main: "#0066ff",
             },
             background: {
-                default: isDarkMode ? "#000" : "#f5f5f5",
-                paper: isDarkMode ? "#333" : "#e6e6e6",
+                default: isDarkMode === "dark" ? "#000" : "#f5f5f5",
+                paper: isDarkMode === "dark" ? "#333" : "#e6e6e6",
             },
             text: {
-                primary: isDarkMode ? "#fff" : "#000",
-                secondary: isDarkMode ? "#ccc" : "#666",
+                primary: isDarkMode === "dark" ? "#fff" : "#000",
+                secondary: isDarkMode === "dark" ? "#ccc" : "#666",
             },
-            divider: isDarkMode ? "#444" : "#b3b3b3",
+            divider: isDarkMode === "dark" ? "#444" : "#b3b3b3",
             
         },
         components: {
@@ -49,7 +48,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                 styleOverrides: {
                     root: {
                         "& .MuiInput-input": {
-                            color: isDarkMode ? "#fff" : "#000",
+                            color: isDarkMode === "dark" ? "#fff" : "#000",
                         },
                     },
                 },

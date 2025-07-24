@@ -23,7 +23,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [user, setUser] = useState(currentUser?.id);
     const [language, setLanguage] = useState("vi");
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState("dark");
     const [isOpenGuide, setIsOpenGuide] = useState(false);
 
     const handleChooseUser = (user: string) => {
@@ -44,7 +44,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
 
         const darkModeCookie = Cookies.get("darkMode");
         if (darkModeCookie) {
-            setDarkMode(darkModeCookie === "true" ? true : false);
+            setDarkMode(darkModeCookie);
         }
     }, []);
 
@@ -89,7 +89,9 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                                 sx={{ bgcolor: theme.palette.background.paper, color: theme.palette.text.primary }}
                                 onClick={() => handleChooseUser(u.id)}
                             >
-                                <Radio value={u.id} onChange={() => handleChooseUser(u.id)} />
+                                <Stack className="flex items-center justify-center">
+                                    <Radio value={u.id} onChange={() => handleChooseUser(u.id)} />
+                                </Stack>
                                 <Stack direction="column" alignItems="center" spacing={1}>
                                     <Box component={"img"} src={u.avatar} className="rounded-full h-[35px] w-[35px] object-cover" />
                                     <span className="text-center text-[14px] font-semibold">{u.name}</span>
@@ -103,11 +105,11 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                     <Stack direction="row" spacing={2} className="w-full items-center justify-between border-b border-gray-600 pb-2" sx={{ color: theme.palette.text.primary }}>
                         <span>{t("interface")}</span>
                         <CustomSwitch
-                            checked={darkMode}
+                            checked={darkMode === "dark"}
                             onChange={(e) => {
                                 const newMode = e.target.checked;
-                                setDarkMode(newMode);
-                                Cookies.set("darkMode", String(newMode));
+                                setDarkMode(newMode === true ? "dark" : "light");
+                                Cookies.set("darkMode", newMode === true ? "dark" : "light");
                                 window.location.reload(); // để load lại theme
                             }}
                             checkedIcon={SunIcon}
@@ -130,7 +132,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                         />
                     </Stack>
                     <Stack direction="row" spacing={2} className="w-full items-center justify-between cursor-pointer pb-2" sx={{ color: theme.palette.text.primary }}>
-                        <TextButton title={t("guide")} color={theme.palette.text.primary} fontSize={"17px"} handleClick={() => setIsOpenGuide(true)} />
+                        <span onClick={() => setIsOpenGuide(true)}>{t("guide")}</span>
                         <TextButton icon={<ArrowForwardIos />} color={theme.palette.text.primary} fontSize={"20px"} handleClick={() => setIsOpenGuide(true)} />
                     </Stack>
                 </Stack>
@@ -148,6 +150,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
                 slotProps={{
                     paper: {
                         sx: {
+                            bgcolor: theme.palette.background.default,
                             color: "white",
                             borderRadius: "16px",
                             padding: "16px",
