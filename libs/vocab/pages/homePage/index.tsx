@@ -255,10 +255,16 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
         if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
             setCurrentPhonetic("");
-            if (nextIndex < wordList.length) setCurrentWord(wordList[nextIndex]);
-            else setCurrentWord(wordList[0]);
-
-            await fetchWordData(currentWord);
+            setCurrentAudio("");
+            //cập nhật từ mới
+            if (nextIndex < wordList.length){
+                setCurrentWord(wordList[nextIndex]);
+                fetchWordData(wordList[nextIndex]);
+            } 
+            else {
+                setCurrentWord(wordList[0]);
+                fetchWordData(wordList[0]);
+            }
 
             //kiểm tra có phải là hiện câu hỏi hay không
             if (!showResultState) setCorrectCount(correctCount + 1);
