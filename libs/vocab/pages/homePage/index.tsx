@@ -253,6 +253,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
 
         if (isCorrect) {
             const nextIndex = wordList.indexOf(currentWord) + 1;
+            setCurrentPhonetic("");
             if (nextIndex < wordList.length) setCurrentWord(wordList[nextIndex]);
             else setCurrentWord(wordList[0]);
 
@@ -264,7 +265,6 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser }: HomePageProps) => {
             setAnswer("");
             setShowResultState(false);
             setResultText(``);
-            setCurrentPhonetic("");
         } else {
             setResultText(`Sai rồi cưng ơi, cưng còn non lắm`);
             setWrongState(true);
