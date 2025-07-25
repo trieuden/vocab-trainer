@@ -4,8 +4,8 @@ import { Box, Stack, Typography, TextField, Dialog, useMediaQuery, useTheme, Che
 import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, FiberManualRecord, ArrowForward } from "@mui/icons-material";
 import { PrimaryButton, TextButton } from "../../../core/component";
 
-import { LevelSlider } from "../../component";
-import { Library, Header, WordList } from "@/vocab/pages";
+import { LevelSlider, WordList } from "../../component";
+import { Library, Header } from "@/vocab/pages";
 
 import { GetMiloLibraries, GetTrieudenLibraries, GetDefaultLibraries } from "@/core/services/WordServices";
 import { getPhoneticsByWord } from "@/core/services/DictionaryServices";
@@ -571,7 +571,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                             },
                         }}
                     >
-                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] `}>
+                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] p-[1px]`}>
                             {loadingSentence ? (
                                 <img src="/animatedIcon/loading.svg" alt="Loading..." className="w-8 h-8 animate-spin" />
                             ) : (
@@ -595,6 +595,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                         <i>{pageState === "translate" && currentWord?.type}</i>
                         <span>{pageState === "translate" && currentPhonetic}</span>
                     </Stack>
+                    <i style={{color: theme.palette.text.secondary, fontSize: '14px'}}>Vui lòng chọn bộ câu hỏi trong thư viện để thực hiện !</i>
                     <Box className="relative w-full flex items-center justify-center">
                         <TextField
                             fullWidth
