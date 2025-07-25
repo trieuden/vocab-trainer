@@ -571,7 +571,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                             },
                         }}
                     >
-                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6]`}>
+                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold p-2 text-[#9999e6]`}>
                             {loadingSentence ? (
                                 <img src="/animatedIcon/loading.svg" alt="Loading..." className="w-8 h-8 animate-spin" />
                             ) : (
