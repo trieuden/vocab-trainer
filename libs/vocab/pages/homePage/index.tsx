@@ -208,6 +208,12 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
 
     useEffect(() => {
         setCurrentSentence("");
+        setCurrentPassage("");
+        setCurrentPhonetic("");
+        setCurrentAudio("");
+        setAnswer("");
+        setResultText("");
+        setIsWaitingNextWord(false);
         if (!currentWord) return;
 
         fetchWordData(currentWord);
@@ -637,7 +643,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                             <PrimaryButton
                                 width={isMobile ? "100%" : "60%"}
                                 title={isWaitingNextWord ? t("next_word") : t("check")}
-                                handleClick={isWaitingNextWord? handleNextWord : handleCheckAnswer}
+                                handleClick={isWaitingNextWord ? handleNextWord : handleCheckAnswer}
                                 bgColor="success"
                                 icon={isWaitingNextWord ? <ArrowForward /> : <Check />}
                             />
@@ -681,7 +687,13 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                     {isMobile && (
                         <Stack className="flex-1" direction={"row"} width={"100%"} justifyContent="end" spacing={2}>
                             <Stack width={"100%"} justifyContent={"end"} spacing={2}>
-                                <TextButton title={t("matching")} color={pageState === "translate_passage" ? "#0000ff" : "#ccc"} />
+                                <TextButton
+                                    title={t("translate_passage")}
+                                    color={pageState === "translate_passage" ? "#0000ff" : "#ccc"}
+                                    handleClick={() => {
+                                        setPageState("translate_passage");
+                                    }}
+                                />
                                 <TextButton
                                     title={t("enter_meaning")}
                                     handleClick={() => {
