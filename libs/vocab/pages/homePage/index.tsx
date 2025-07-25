@@ -214,7 +214,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     }, [pageState]);
 
     useEffect(() => {
-        if (!isMobile && isShortcutKeys) {
+        if (!isMobile && isShortcutKeys && pageState !== "translate_passage") {
             const handleKeyDown = (event: KeyboardEvent) => {
                 // Ctrl: Đọc (phát âm)
                 if (event.ctrlKey && !event.shiftKey && event.key !== "Enter") {
