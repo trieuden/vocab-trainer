@@ -41,7 +41,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                 secondary: isDarkMode === "dark" ? "#ccc" : "#666",
             },
             divider: isDarkMode === "dark" ? "#444" : "#b3b3b3",
-            
         },
         components: {
             MuiTextField: {
@@ -54,6 +53,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                 },
             },
         },
+
     });
 
     return (

@@ -1,5 +1,7 @@
 import { LibraryModel } from "@/core/models/LibraryModel";
 import { Stack, Box, Checkbox } from "@mui/material";
+import { TextButton } from "@/core/component";
+import { Article } from "@mui/icons-material";
 import Cookies from "js-cookie";
 import { useTheme } from "@mui/material/styles";
 
@@ -7,9 +9,10 @@ type LibraryProps = {
     library: LibraryModel;
     isChecked: boolean;
     setIsChecked: (checked: boolean) => void;
+    handleOpenLibrary: (library: LibraryModel) => void;
 };
 
-export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
+export const Library = ({ library, isChecked, setIsChecked, handleOpenLibrary }: LibraryProps) => {
     const theme = useTheme();
 
     const handleChange = (checked: boolean) => {
@@ -43,28 +46,37 @@ export const Library = ({ library, isChecked, setIsChecked }: LibraryProps) => {
     return (
         <Stack
             direction={"row"}
-            className="items-center gap-2 py-2 cursor-pointer border-b-2 border-[#444]"
-            sx={{ bgcolor: theme.palette.background.paper, borderColor: theme.palette.divider }}
-            onClick={() => handleChange(!isChecked)}
+            className="justify-between items-center py-2 cursor-pointer border-b-2 border-[#444]"
+            sx={{
+                bgcolor: theme.palette.background.paper,
+                borderColor: theme.palette.divider,
+                transition: "all 0.3s ease-in-out",
+                "&:hover": {
+                    borderColor: "rgba(117, 26, 255, 0.5)",
+                },
+            }}
         >
-            <Checkbox
-                sx={{
-                    color: "#1a8cff",
-                    "&.Mui-checked": {
+            <Stack direction={"row"} className="items-center" spacing={1} onClick={() => handleChange(!isChecked)}>
+                <Checkbox
+                    sx={{
                         color: "#1a8cff",
-                    },
-                    "& .MuiSvgIcon-root": {
-                        fontSize: 25,
-                    },
-                }}
-                checked={isChecked}
-                onChange={(e) => handleChange(e.target.checked)}
-                onClick={(e) => e.stopPropagation()}
-            />
-            <Box component={"img"} src={library.image} className="rounded-full h-[32px] w-[32px] object-cover" />
-            <span className="font-bold" style={{ color: theme.palette.text.primary }}>
-                {library.title}
-            </span>
+                        "&.Mui-checked": {
+                            color: "#1a8cff",
+                        },
+                        "& .MuiSvgIcon-root": {
+                            fontSize: 25,
+                        },
+                    }}
+                    checked={isChecked}
+                    onChange={(e) => handleChange(e.target.checked)}
+                    onClick={(e) => e.stopPropagation()}
+                />
+                <Box component={"img"} src={library.image} className="rounded-full h-[32px] w-[32px] object-cover" />
+                <span className="font-bold" style={{ color: theme.palette.text.primary }}>
+                    {library.title}
+                </span>
+            </Stack>
+            <TextButton color={theme.palette.text.secondary} icon={<Article />} handleClick={() => handleOpenLibrary(library)} />
         </Stack>
     );
 };

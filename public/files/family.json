@@ -1,0 +1,125 @@
+[
+    {
+        "eng": "sibling",
+        "vie": "anh chị em",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "nurture",
+        "vie": "nuôi dưỡng",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "kin",
+        "vie": "họ hàng",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "reunion",
+        "vie": "sự đoàn tụ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "upbringing",
+        "vie": "sự nuôi dạy",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "spouse",
+        "vie": "vợ/chồng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "parenting",
+        "vie": "việc nuôi dạy con",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "ancestor",
+        "vie": "tổ tiên",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "household",
+        "vie": "hộ gia đình",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "bond",
+        "vie": "sự gắn kết",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "divorce",
+        "vie": "ly hôn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "custody",
+        "vie": "quyền nuôi con",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "inherit",
+        "vie": "thừa kế",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "lineage",
+        "vie": "dòng dõi",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "relative",
+        "vie": "người thân",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "foster",
+        "vie": "nuôi dưỡng (con nuôi)",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "adoption",
+        "vie": "sự nhận nuôi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "sibling rivalry",
+        "vie": "sự cạnh tranh giữa anh chị em",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "dependant",
+        "vie": "người phụ thuộc",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "kinship",
+        "vie": "mối quan hệ họ hàng",
+        "type": "noun",
+        "level": "C1"
+    }
+]

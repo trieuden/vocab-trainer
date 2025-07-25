@@ -25,5 +25,8 @@
     "exit": "Exit",
     "reverse_direction": "Reverse Direction",
     "guide": "User Guide",
-    "shortcut_keys": "Shortcut Keys"
+    "shortcut_keys": "Shortcut Keys",
+    "animals": "Animals",
+    "translate_passage": "Translate Passage",
+    "next_word": "Next Word"
 }

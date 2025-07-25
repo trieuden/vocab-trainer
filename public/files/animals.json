@@ -1,0 +1,127 @@
+[
+    {
+        "eng": "predator",
+        "vie": "động vật săn mồi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "hibernate",
+        "vie": "ngủ đông",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "mammal",
+        "vie": "động vật có vú",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "camouflage",
+        "vie": "ngụy trang",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "graze",
+        "vie": "gặm cỏ",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "carnivore",
+        "vie": "động vật ăn thịt",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "herbivore",
+        "vie": "động vật ăn cỏ",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "migration",
+        "vie": "sự di cư",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "instinct",
+        "vie": "bản năng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "endangered",
+        "vie": "bị đe dọa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "habitat",
+        "vie": "môi trường sống",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "prey",
+        "vie": "con mồi",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "scavenge",
+        "vie": "ăn xác thối",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "feline",
+        "vie": "họ mèo",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "canine",
+        "vie": "họ chó",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "reptile",
+        "vie": "động vật bò sát",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "amphibian",
+        "vie": "động vật lưỡng cư",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "tame",
+        "vie": "thuần hóa",
+        "type": "verb",
+        "level": "B1",
+        "complement": ""
+    },
+    {
+        "eng": "extinct",
+        "vie": "tuyệt chủng",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "breed",
+        "vie": "giống / sinh sản",
+        "type": "noun/verb",
+        "level": "B2",
+        "complement": ""
+    }
+]

@@ -1,0 +1,124 @@
+[
+    {
+        "eng": "curriculum",
+        "vie": "chương trình học",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "detention",
+        "vie": "việc giữ lại sau giờ học",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "enroll",
+        "vie": "ghi danh / đăng ký học",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "syllabus",
+        "vie": "đề cương môn học",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "extracurricular",
+        "vie": "ngoại khóa",
+        "type": "adjective",
+        "level": "B2"
+    },
+    {
+        "eng": "principal",
+        "vie": "hiệu trưởng",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "assignment",
+        "vie": "bài tập",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "tuition",
+        "vie": "học phí",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "scholarship",
+        "vie": "học bổng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "discipline",
+        "vie": "kỷ luật",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "lecture",
+        "vie": "bài giảng",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "attendance",
+        "vie": "sự chuyên cần / điểm danh",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "expel",
+        "vie": "đuổi học",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "grade",
+        "vie": "điểm số / lớp học",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "tutor",
+        "vie": "gia sư",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "semester",
+        "vie": "học kỳ",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "plagiarism",
+        "vie": "đạo văn",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "faculty",
+        "vie": "khoa / đội ngũ giảng viên",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "dropout",
+        "vie": "bỏ học",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "assessment",
+        "vie": "sự đánh giá",
+        "type": "noun",
+        "level": "B2"
+    }
+]

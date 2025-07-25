@@ -4,7 +4,7 @@ import { Settings, LibraryBooks } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
 type ModalStateType = "settings" | "library" | "guide";
-type PageStateType = "match" | "synonyms" | "fill" | "translate";
+type PageStateType = "translate_passage" | "synonyms" | "fill" | "translate";
 
 type HeaderProps = {
     setIsOpenModal: (isOpen: boolean) => void;
@@ -24,7 +24,7 @@ export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModal
             <Stack className="p-3 justify-between items-center rounded-4xl " sx={{ bgcolor: theme.palette.background.paper }} direction={"row"}>
                 <Stack direction="row" alignItems={"center"} spacing={1} borderRadius={"16px"}>
                     <Box component={"img"} src={"/images/logo.PNG"} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" />
-                    <h1 className="font-bold" style={{ color: theme.palette.text.primary }}>
+                    <h1 className="font-bold" style={{ color: theme.palette.text.primary,  }}>
                         Vision
                     </h1>
                 </Stack>
@@ -57,11 +57,11 @@ export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModal
                             fontSize={"18px"}
                             className={`cursor-pointer`}
                             sx={{
-                                color: pageState === "match" ? "#3b82f6" : theme.palette.text.primary,
+                                color: pageState === "translate_passage" ? "#3b82f6" : theme.palette.text.primary,
                             }}
-                            // onClick={() => setPageState("match")}
+                            onClick={() => setPageState("translate_passage")}
                         >
-                            {t("matching")}
+                            {t("translate_passage")}
                         </Typography>
                         <Typography
                             fontWeight={550}

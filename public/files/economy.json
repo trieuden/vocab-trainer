@@ -1,0 +1,123 @@
+[
+    {
+        "eng": "inflation",
+        "vie": "lạm phát",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "subsidy",
+        "vie": "trợ cấp",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "fluctuate",
+        "vie": "biến động",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "deficit",
+        "vie": "thâm hụt",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "monopoly",
+        "vie": "độc quyền",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "recession",
+        "vie": "suy thoái kinh tế",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "gross domestic product",
+        "vie": "tổng sản phẩm quốc nội",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "trade",
+        "vie": "thương mại",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "tariff",
+        "vie": "thuế quan",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "investment",
+        "vie": "sự đầu tư",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "capital",
+        "vie": "vốn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "depreciation",
+        "vie": "khấu hao",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "supply",
+        "vie": "cung",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "demand",
+        "vie": "cầu",
+        "type": "noun",
+        "五": "B2"
+    },
+    {
+        "eng": "market",
+        "vie": "thị trường",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "interest rate",
+        "vie": "lãi suất",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "fiscal",
+        "vie": "thuộc về tài chính",
+        "type": "adjective",
+        "level": "C1"
+    },
+    {
+        "eng": "globalization",
+        "vie": "toàn cầu hóa",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "embargo",
+        "vie": "lệnh cấm vận",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "entrepreneurship",
+        "vie": "tinh thần kinh doanh",
+        "type": "noun",
+        "level": "B2"
+    }
+]

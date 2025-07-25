@@ -1,0 +1,126 @@
+[
+    {
+        "eng": "entrepreneur",
+        "vie": "doanh nhân",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "revenue",
+        "vie": "doanh thu",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "merge",
+        "vie": "sáp nhập",
+        "type": "verb",
+        "level": "B2",
+        "complement": ""
+    },
+    {
+        "eng": "liability",
+        "vie": "trách nhiệm pháp lý / khoản nợ",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "stakeholder",
+        "vie": "bên liên quan",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "profit",
+        "vie": "lợi nhuận",
+        "type": "noun",
+        "level": "B1"
+    },
+    {
+        "eng": "bankruptcy",
+        "vie": "phá sản",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "invest",
+        "vie": "đầu tư",
+        "type": "verb",
+        "level": "B2",
+        "complement": "+ in"
+    },
+    {
+        "eng": "turnover",
+        "vie": "doanh thu / sự luân chuyển",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "acquisition",
+        "vie": "việc mua lại / thâu tóm",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "franchise",
+        "vie": "nhượng quyền",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "diversify",
+        "vie": "đa dạng hóa",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    },
+    {
+        "eng": "asset",
+        "vie": "tài sản",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "equity",
+        "vie": "vốn chủ sở hữu",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "downsizing",
+        "vie": "cắt giảm quy mô",
+        "type": "noun",
+        "level": "C1"
+    },
+    {
+        "eng": "startup",
+        "vie": "công ty khởi nghiệp",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "outsourcing",
+        "vie": "thuê ngoài",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "negotiation",
+        "vie": "đàm phán",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "corporation",
+        "vie": "tập đoàn",
+        "type": "noun",
+        "level": "B2"
+    },
+    {
+        "eng": "liquidate",
+        "vie": "thanh lý",
+        "type": "verb",
+        "level": "C1",
+        "complement": ""
+    }
+]

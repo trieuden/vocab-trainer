@@ -58,9 +58,10 @@ type LevelSliderProps = {
     marks: { value: number; label: string }[];
     title?: string;
     textColor?: string;
+    otherComponent?: React.ReactNode;
 };
 
-export const LevelSlider = ({ mark = 0, setMark, marks, title, textColor }: LevelSliderProps) => {
+export const LevelSlider = ({ mark = 0, setMark, marks, title, textColor, otherComponent }: LevelSliderProps) => {
     const theme = useTheme();
 
     const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
@@ -72,11 +73,29 @@ export const LevelSlider = ({ mark = 0, setMark, marks, title, textColor }: Leve
     };
 
     return (
-        <Stack className="mt-4">
-            <span className="text-center font-bold" style={{ color: textColor }}>{title}</span>
-            <Box sx={{width:'100%', mt: 2 }}>
-                <ColoredSlider value={mark} onChange={handleChange} step={null} marks={marks} min={0} max={100} valueLabelDisplay="off" />
-            </Box>
+        <Stack
+            className="mt-6 px-10 rounded-2xl"
+            boxShadow={3}
+            sx={{
+                bgcolor: theme.palette.background.paper,
+                border: "1px solid transparent",
+                borderRadius: "16px",
+                transition: "all 0.3s ease-in-out",
+                "&:hover": {
+                    boxShadow: "0 4px 20px rgba(117, 26, 255, 0.5)",
+                    border: "1px solid #751aff",
+                },
+            }}
+        >
+            <Stack className="mt-4">
+                <span className="text-center font-bold" style={{ color: textColor }}>
+                    {title}
+                </span>
+                <Box sx={{ width: "100%", mt: 2 }}>
+                    <ColoredSlider value={mark} onChange={handleChange} step={null} marks={marks} min={0} max={100} valueLabelDisplay="off" />
+                </Box>
+            </Stack>
+            {otherComponent}
         </Stack>
     );
 };
