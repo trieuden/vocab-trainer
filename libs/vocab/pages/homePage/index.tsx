@@ -1,8 +1,8 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Stack, Typography, TextField, Dialog, useMediaQuery, useTheme, Checkbox } from "@mui/material";
 import { Check, HighlightOutlined, VolumeUpOutlined, KeyboardVoiceOutlined, FiberManualRecord, ArrowForward } from "@mui/icons-material";
-import { PrimaryButton, TextButton } from "../../../core/component";
+import { PrimaryButton, TextButton, CustomDialog } from "../../../core/component";
 
 import { LevelSlider, WordList } from "../../component";
 import { Library, Header } from "@/vocab/pages";
@@ -46,7 +46,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
 
     const [answer, setAnswer] = useState("");
     const [resultText, setResultText] = useState("");
-    const [isWaitingNextWord, setIsWaitingNextWord] = useState(false);
+    const [isWaitingNextWord, setIsWaitingNextWord] = useState(0);
 
     const [wrongState, setWrongState] = useState(false);
     const [showResultState, setShowResultState] = useState(false);
@@ -72,10 +72,6 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     const [currentLibrary, setCurrentLibrary] = useState<LibraryModel>();
 
     const refreshData = () => {
-        setCheckedLibraries([]);
-        setLibraries([]);
-        setWordList([]);
-        setCurrentWord(undefined);
         setCurrentSentence("");
         setCurrentAudio("");
         setCurrentPhonetic("");
@@ -83,6 +79,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
         setResultText("");
         setCurrentPassage("");
         setScore("");
+        setIsWaitingNextWord(0);
     };
 
     const fetchWordData = async (word: WordModel) => {
@@ -111,12 +108,13 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
 
     useEffect(() => {
         refreshData();
+        setCheckedLibraries([]);
+        setLibraries([]);
+        setWordList([]);
 
         const fetchData = async () => {
             if (currentUser.id === "guest") {
                 const res = await GetDefaultLibraries();
-                console.log(res);
-
                 setLibraries(res);
             }
             if (currentUser.id === "milo") {
@@ -143,13 +141,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     }, [currentUser]);
 
     useEffect(() => {
-        setCurrentWord(undefined);
-        setCurrentSentence("");
-        setCurrentAudio("");
-        setCurrentPhonetic("");
-        setAnswer("");
-        setCurrentPassage("");
-        setScore("");
+        refreshData();
         if (libraries.length === 0) return;
         const newWords: WordModel[] = [];
 
@@ -207,13 +199,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     }, [reverse]);
 
     useEffect(() => {
-        setCurrentSentence("");
-        setCurrentPassage("");
-        setCurrentPhonetic("");
-        setCurrentAudio("");
-        setAnswer("");
-        setResultText("");
-        setIsWaitingNextWord(false);
+        refreshData();
         if (!currentWord) return;
 
         fetchWordData(currentWord);
@@ -254,10 +240,24 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     const handleCheckAnswer = async () => {
         if (!currentWord) return;
         if (pageState === "translate_passage") {
+            if (isWaitingNextWord > 1) {
+                setNotification("Một đoạn văn chỉ được trả lời 2 lần", "info");
+                return;
+            }
             if (answer) {
-                const score = await getTranslationScore(currentPassage, answer);
-                setScore(score);
-                setIsWaitingNextWord(true);
+                let rawScore = await getTranslationScore(currentPassage, answer);
+                let scoreStr = rawScore.toString();
+                let score;
+
+                if (scoreStr.length > 10) {
+                    // Lấy 2 ký tự số đầu tiên từ chuỗi
+                    const match = scoreStr.match(/\d{2}/); // tìm 2 chữ số liên tiếp đầu tiên
+                    score = match ? parseInt(match[0]) : 0; // fallback nếu không tìm thấy
+                } else {
+                    score = parseInt(scoreStr);
+                }
+                setScore(score.toString());
+                setIsWaitingNextWord(isWaitingNextWord + 1);
             }
             return;
         }
@@ -310,7 +310,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
         setAnswer("");
         setShowResultState(false);
         setResultText(``);
-        setIsWaitingNextWord(false);
+        setIsWaitingNextWord(0);
     };
 
     const handleShowResult = () => {
@@ -571,7 +571,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                             },
                         }}
                     >
-                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6] p-[1px]`}>
+                        <span className={`${isMobile ? "text-2xl" : "text-3xl"} font-bold text-[#9999e6]`}>
                             {loadingSentence ? (
                                 <img src="/animatedIcon/loading.svg" alt="Loading..." className="w-8 h-8 animate-spin" />
                             ) : (
@@ -595,7 +595,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                         <i>{pageState === "translate" && currentWord?.type}</i>
                         <span>{pageState === "translate" && currentPhonetic}</span>
                     </Stack>
-                    <i style={{color: theme.palette.text.secondary, fontSize: '14px'}}>Vui lòng chọn bộ câu hỏi trong thư viện để thực hiện !</i>
+                    {wordList.length < 1 && <i style={{ color: theme.palette.text.secondary, fontSize: "14px", textAlign: "center" }}>Vui lòng chọn bộ câu hỏi trong thư viện để thực hiện !</i>}
                     <Box className="relative w-full flex items-center justify-center">
                         <TextField
                             fullWidth
@@ -637,17 +637,13 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                         <Stack direction={isMobile ? "column" : "row"} spacing={2} alignItems="center" className="flex w-full">
                             <PrimaryButton
                                 width={isMobile ? "100%" : "40%"}
-                                title={t("answer_result")}
-                                handleClick={pageState === "translate_passage" ? undefined : handleShowResult}
-                                bgColor="#33cc33"
+                                title={pageState === "translate_passage" ? t("next_word") : t("answer_result")}
+                                handleClick={pageState === "translate_passage" ? handleNextWord : handleShowResult}
+                                bgColor="#29a329"
+                                icon={pageState === "translate_passage" ? <ArrowForward /> : undefined}
+                                tooltip={pageState === "translate_passage" ? undefined : "Shift"}
                             />
-                            <PrimaryButton
-                                width={isMobile ? "100%" : "60%"}
-                                title={isWaitingNextWord ? t("next_word") : t("check")}
-                                handleClick={isWaitingNextWord ? handleNextWord : handleCheckAnswer}
-                                bgColor="success"
-                                icon={isWaitingNextWord ? <ArrowForward /> : <Check />}
-                            />
+                            <PrimaryButton width={isMobile ? "100%" : "60%"} title={t("check")} handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} tooltip="Enter"/>
                         </Stack>
                         <Stack direction={isMobile ? "column" : "row"} spacing={2} justifyContent="center" alignItems="center" width={"100%"}>
                             <PrimaryButton
@@ -656,6 +652,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                                 handleClick={pageState != "translate" ? undefined : handleSpeak}
                                 icon={<VolumeUpOutlined />}
                                 bgColor="#ffb31a"
+                                tooltip={pageState != "translate" ? undefined : "Ctrl"}
                             />
                             <PrimaryButton
                                 width={isMobile ? "100%" : "40%"}
@@ -725,32 +722,15 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                 )}
             </Stack>
 
-            <Dialog
-                open={isOpenModal}
-                onClose={() => setIsOpenModal(false)}
-                maxWidth="sm"
-                fullWidth
-                slotProps={{
-                    paper: {
-                        sx: {
-                            bgcolor: theme.palette.background.paper,
-                            color: "white",
-                            borderRadius: "16px",
-                            padding: "16px",
-                            boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
-                        },
-                    },
-                    backdrop: {
-                        sx: {
-                            backgroundColor: "rgba(0, 0, 0, 0.8)", // Đậm hơn mặc định
-                        },
-                    },
-                }}
+            <CustomDialog
+                isOpenModal={isOpenModal}
+                setIsOpenModal={setIsOpenModal}
             >
                 {modalState === "settings" && <Setting />}
                 {modalState === "library" && <Libraries />}
                 {modalState === "wordList" && <WordList library={currentLibrary} />}
-            </Dialog>
+            </CustomDialog>
+
         </Box>
     );
 };

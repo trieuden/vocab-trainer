@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { CustomSwitch, TextButton } from "@/core/component";
+import { CustomSwitch, TextButton, CustomDialog } from "@/core/component";
 import { Stack, Box, Radio, RadioGroup, Dialog, useMediaQuery, useTheme } from "@mui/material";
 import { ArrowForwardIos } from "@mui/icons-material";
 import { UserModel } from "@/core/models/UserModel";
@@ -51,28 +51,7 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
     }, []);
 
     return (
-        <Dialog
-            open={isOpenAccMenu}
-            onClose={() => setIsOpenAccMenu(false)}
-            maxWidth="sm"
-            fullWidth
-            slotProps={{
-                paper: {
-                    sx: {
-                        bgcolor: theme.palette.background.default,
-                        color: "white",
-                        borderRadius: "16px",
-                        padding: "16px",
-                        boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
-                    },
-                },
-                backdrop: {
-                    sx: {
-                        backgroundColor: "rgba(0, 0, 0, 0.8)",
-                    },
-                },
-            }}
-        >
+        <CustomDialog isOpenModal={isOpenAccMenu} setIsOpenModal={setIsOpenAccMenu}>
             <Stack direction="column" alignItems="center" spacing={2} className={`overflow-y-auto ${isMobile && "h-[400px]"}`}>
                 <span className="text-2xl font-semibold text-[#6666ff]">{t("who_are_you")}</span>
                 <RadioGroup className="w-full" value={user}>
@@ -156,30 +135,9 @@ export const AccountMenu = ({ isOpenAccMenu, setIsOpenAccMenu, setCurrentUser, c
             </Stack>
 
             {/* guide */}
-            <Dialog
-                open={isOpenGuide}
-                onClose={() => setIsOpenGuide(false)}
-                maxWidth="sm"
-                fullWidth
-                slotProps={{
-                    paper: {
-                        sx: {
-                            bgcolor: theme.palette.background.default,
-                            color: "white",
-                            borderRadius: "16px",
-                            padding: "16px",
-                            boxShadow: "0px 4px 2px rgba(0, 0, 0, 0.2)",
-                        },
-                    },
-                    backdrop: {
-                        sx: {
-                            backgroundColor: "rgba(0, 0, 0, 0.8)",
-                        },
-                    },
-                }}
-            >
+            <CustomDialog isOpenModal={isOpenGuide} setIsOpenModal={setIsOpenGuide}>
                 <GuideModal />
-            </Dialog>
-        </Dialog>
+            </CustomDialog>
+        </CustomDialog>
     );
 };
