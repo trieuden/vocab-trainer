@@ -243,7 +243,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                 document.removeEventListener("keydown", handleKeyDown);
             };
         }
-    }, [currentWord, answer, isShortcutKeys]);
+    }, [currentWord, answer, isShortcutKeys, pageState, inputMode]);
 
     const handleCheckAnswer = async () => {
         if (!currentWord) return;
