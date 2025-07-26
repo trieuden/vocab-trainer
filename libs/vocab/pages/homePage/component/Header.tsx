@@ -20,7 +20,7 @@ export const Header = ({ setIsOpenModal, setIsOpenAccMenu, currentUser, setModal
     const { t } = useTranslation();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     return (
-        <Stack className="w-full fixed p-3">
+        <Stack className="w-full fixed p-3 z-10">
             <Stack className="p-3 justify-between items-center rounded-4xl " sx={{ bgcolor: theme.palette.background.paper }} direction={"row"}>
                 <Stack direction="row" alignItems={"center"} spacing={1} borderRadius={"16px"}>
                     <Box component={"img"} src={"/images/logo.PNG"} className="rounded-full h-[45px] w-[45px] object-cover cursor-pointer" />
