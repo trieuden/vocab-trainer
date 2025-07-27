@@ -479,25 +479,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                         {t("library")}
                     </h1>
                 </Stack>
-                <Stack
-                    mt={2}
-                    spacing={1.5}
-                    className={`overflow-y-auto ${isMobile ? "h-[300px]" : "h-[calc(100vh-90px)]"}`}
-                    sx={{
-                        scrollBehavior: "smooth",
-                        "&::-webkit-scrollbar": {
-                            width: "4px",
-                        },
-                        "&::-webkit-scrollbar-track": {
-                            backgroundColor: isDarkMode ? "#333" : "#f1f1f1",
-                            borderRadius: "10px",
-                        },
-                        "&::-webkit-scrollbar-thumb": {
-                            backgroundColor: isDarkMode ? "#f1f1f1" : "#b3b3b3",
-                            borderRadius: "10px",
-                        },
-                    }}
-                >
+                <Stack mt={2} spacing={1.5} className={`overflow-y-auto ${isMobile ? "h-[300px]" : "h-[calc(100vh-90px)]"}`}>
                     {libraries.map((library, index) => (
                         <Library
                             key={index}
@@ -519,7 +501,23 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
     };
 
     return (
-        <Box className={`shadow-2xl text-white bg-[${theme.palette.background.default}]`}>
+        <Box
+            className={`shadow-2xl overflow-y-auto text-white bg-[${theme.palette.background.default}]`}
+            sx={{
+                scrollBehavior: "smooth",
+                "&::-webkit-scrollbar": {
+                    width: "4px",
+                },
+                "&::-webkit-scrollbar-track": {
+                    backgroundColor: isDarkMode ? "#333" : "#f1f1f1",
+                    borderRadius: "10px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: isDarkMode ? "#f1f1f1" : "#b3b3b3",
+                    borderRadius: "10px",
+                },
+            }}
+        >
             {/* Header */}
             <Header setIsOpenModal={setIsOpenModal} setModalState={setModalState} currentUser={currentUser} setIsOpenAccMenu={setIsOpenAccMenu} setPageState={setPageState} pageState={pageState} />
 
@@ -565,6 +563,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                             bgcolor: theme.palette.background.paper,
                             color: theme.palette.text.primary,
                             transition: "all 0.3s ease-in-out",
+                            border: "1px solid transparent",
                             "&:hover": {
                                 boxShadow: "0 4px 20px rgba(117, 26, 255, 0.5)",
                                 border: "1px solid #751aff",
@@ -643,7 +642,7 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                                 icon={pageState === "translate_passage" ? <ArrowForward /> : undefined}
                                 tooltip={pageState === "translate_passage" ? undefined : "Shift"}
                             />
-                            <PrimaryButton width={isMobile ? "100%" : "60%"} title={t("check")} handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} tooltip="Enter"/>
+                            <PrimaryButton width={isMobile ? "100%" : "60%"} title={t("check")} handleClick={handleCheckAnswer} bgColor="success" icon={<Check />} tooltip="Enter" />
                         </Stack>
                         <Stack direction={isMobile ? "column" : "row"} spacing={2} justifyContent="center" alignItems="center" width={"100%"}>
                             <PrimaryButton
@@ -722,15 +721,11 @@ export const HomePage = ({ setIsOpenAccMenu, currentUser, isShortcutKeys }: Home
                 )}
             </Stack>
 
-            <CustomDialog
-                isOpenModal={isOpenModal}
-                setIsOpenModal={setIsOpenModal}
-            >
+            <CustomDialog isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}>
                 {modalState === "settings" && <Setting />}
                 {modalState === "library" && <Libraries />}
                 {modalState === "wordList" && <WordList library={currentLibrary} />}
             </CustomDialog>
-
         </Box>
     );
 };
