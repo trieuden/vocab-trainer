@@ -1,64 +1,79 @@
-import { styled } from "@mui/material/styles";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import { styled } from '@mui/material/styles';
+import Switch, { SwitchProps } from '@mui/material/Switch';
 
 interface CustomSwitchProps extends SwitchProps {
-    checkedIcon?: string;
-    unCheckedIcon?: string;
-    customColor?: string;
+  checkedIcon?: string;
+  unCheckedIcon?: string;
+  customColor?: string;
+  height?: number;
+  width?: number;
 }
 
 export const CustomSwitch = styled(Switch, {
-    shouldForwardProp: (prop) => prop !== "checkedIcon" && prop !== "unCheckedIcon" && prop !== "customColor",
-})<CustomSwitchProps>(({ theme, checkedIcon, unCheckedIcon, customColor }) => {
-    return {
-        width: 62,
-        height: 34,
-        padding: 7,
-        "& .MuiSwitch-switchBase": {
-            margin: 1,
-            padding: 0,
-            transform: "translateX(6px)",
-            "&.Mui-checked": {
-                color: "#fff",
-                transform: "translateX(22px)",
-                "& .MuiSwitch-thumb:before": {
-                    backgroundImage: checkedIcon ? `url(${checkedIcon})` : "",
-                },
-                "& + .MuiSwitch-track": {
-                    opacity: 1,
-                    backgroundColor: customColor ? customColor : "#aab4be",
-                    // ...theme.applyStyles("dark", {
-                    //     backgroundColor: "#8796A5",
-                    // }),
-                },
-            },
+  shouldForwardProp: (prop) => prop !== 'checkedIcon' && prop !== 'unCheckedIcon' && prop !== 'customColor' && prop !== 'height' && prop !== 'width',
+})<CustomSwitchProps>(({ theme, checkedIcon, unCheckedIcon, customColor, height = 34, width = 62 }) => {
+  const thumbSize = Math.round(height * 0.35); // nút tròn chiếm ~35% chiều cao
+  const translateX = width - height; // quãng đường dịch thumb
+  const iconSize = Math.round(height * 0.8); // icon nhỏ theo height
+
+  return {
+    width,
+    height,
+    padding: Math.round(height * 0.2),
+    position: 'relative',
+
+    '& .MuiSwitch-switchBase': {
+      top: (height - thumbSize) / 2,
+      left: thumbSize,
+      padding: 0,
+      transform: `translateX(0px)`,
+      '&.Mui-checked': {
+        transform: `translateX(${translateX}px)`,
+        '& + .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: customColor || 'white',
+          '&:before': { display: 'none' },
+          '&:after': { display: 'block' },
         },
-        "& .MuiSwitch-thumb": {
-            backgroundColor: "#001e3c",
-            width: 32,
-            height: 32,
-            "&::before": {
-                content: "''",
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                left: 0,
-                top: 0,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                backgroundImage: unCheckedIcon ? `url(${unCheckedIcon})` : "",
-            },
-            ...theme.applyStyles("dark", {
-                backgroundColor: "#666666",
-            }),
-        },
-        "& .MuiSwitch-track": {
-            opacity: 1,
-            backgroundColor: "#aab4be",
-            borderRadius: 20 / 2,
-            // ...theme.applyStyles("dark", {
-            //     backgroundColor: "#8796A5",
-            // }),
-        },
-    };
+      },
+    },
+
+    // Nút tròn
+    '& .MuiSwitch-thumb': {
+      backgroundColor: 'transparent',
+      width: thumbSize,
+      height: thumbSize,
+      border: '2px solid #6600cc',
+      borderRadius: '50%',
+    },
+
+    '& .MuiSwitch-track': {
+      opacity: 1,
+      backgroundColor: 'transparent',
+      borderRadius: height / 2,
+      position: 'relative',
+      border: '2px solid #6600cc',
+
+      '&:before, &:after': {
+        content: "''",
+        position: 'absolute',
+        width: iconSize,
+        height: iconSize,
+        top: '53%',
+        transform: 'translateY(-50%)',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
+      },
+      '&:before': {
+        left: translateX - iconSize / 3,
+        backgroundImage: unCheckedIcon ? `url(${unCheckedIcon})` : '',
+      },
+      '&:after': {
+        right: translateX - iconSize / 3,
+        display: 'none',
+        backgroundImage: checkedIcon ? `url(${checkedIcon})` : '',
+      },
+    },
+  };
 });
