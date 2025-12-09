@@ -11,7 +11,7 @@ type Option = {
 type SelectInputProps = {
   title?: string;
   value: Option[];
-  onChange: (name: string) => void;
+  onChange?: (name: string) => void;
   onSelectId?: (id: string) => void;
   selectedValue?: string;
   isValid?: boolean;
@@ -41,13 +41,13 @@ export const SelectInput = ({
 
   const handleChange = (_: any, newValue: Option | null) => {
     if (newValue && newValue[labelField]) {
-      onChange(newValue[labelField]);
+      onChange && onChange(newValue[labelField]);
       if (onSelectId) {
         const idOrCode = newValue.id ?? newValue.code ?? '';
         onSelectId(idOrCode);
       }
     } else {
-      onChange('');
+      onChange && onChange('');
       if (onSelectId) onSelectId('');
     }
 
@@ -56,14 +56,19 @@ export const SelectInput = ({
 
   const handleBlur = () => {
     if (selectedValue && !value.some((option) => option[labelField] === selectedValue)) {
-      onChange('');
+      onChange && onChange('');
       if (onSelectId) onSelectId('');
       if (setIsValid) setIsValid(false);
     }
   };
 
   return (
-    <Box display="flex" width="100%" flexDirection="column" sx={{ backgroundColor: 'white', width: width || '100%' }}>
+    <Box
+      display="flex"
+      width="100%"
+      flexDirection="column"
+      sx={{ backgroundColor: 'white', width: width || '100%', borderRadius: roundedWidth || 1 }}
+    >
       <Autocomplete
         size="small"
         disabled={disabled}

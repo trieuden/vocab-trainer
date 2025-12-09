@@ -1,11 +1,14 @@
+'use client';
 import type React from 'react';
 import { AdminSidebar } from '@/vocab/component/AdminSidebar';
 import { AdminHeader } from '@/vocab/component/AdminHeader';
+import { useFadeTransition } from '@/vocab/providers/FadeTransitionProvider';
 import { Box } from '@mui/material';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const { opacity } = useFadeTransition();
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', opacity }}>
       <AdminSidebar />
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <AdminHeader />

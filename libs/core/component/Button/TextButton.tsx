@@ -5,16 +5,32 @@ import CircularProgress from '@mui/material/CircularProgress';
 type TextButtonProps = {
   title?: string;
   handleClick?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void> | void;
-  icon?: React.ReactNode;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
   color?: string;
+  iconColor?: string;
   width?: string | number;
   disabled?: boolean;
   fontSize?: string | number;
   isHoverBgColor?: boolean;
   bgColor?: string;
+  height?: string | number;
 };
 
-export const TextButton = ({ title, handleClick, icon, color, width, disabled, fontSize, isHoverBgColor = false, bgColor }: TextButtonProps) => {
+export const TextButton = ({
+  title,
+  handleClick,
+  startIcon,
+  endIcon,
+  color,
+  iconColor,
+  width,
+  disabled,
+  fontSize,
+  isHoverBgColor = false,
+  bgColor,
+  height = '35px',
+}: TextButtonProps) => {
   const [loading, setLoading] = useState(false);
 
   const onClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,7 +50,8 @@ export const TextButton = ({ title, handleClick, icon, color, width, disabled, f
         variant="text"
         onClick={onClick}
         disabled={loading || disabled}
-        startIcon={!loading && icon}
+        startIcon={!loading && startIcon}
+        endIcon={!loading && endIcon}
         disableRipple
         disableTouchRipple
         sx={{
@@ -44,11 +61,22 @@ export const TextButton = ({ title, handleClick, icon, color, width, disabled, f
           fontSize: fontSize,
           borderRadius: 3,
           bgcolor: bgColor,
-          p: 1,
+          height: height,
+          width: width || '100%',
+          minWidth: 0,
+          p: 0,
           transition: 'none',
+
           '& .MuiButton-startIcon': {
             '& svg': {
               fontSize: fontSize,
+              color: iconColor ? iconColor : 'inherit',
+            },
+          },
+          '& .MuiButton-endIcon': {
+            '& svg': {
+              fontSize: fontSize,
+              color: iconColor ? iconColor : 'inherit',
             },
           },
           '&:hover': {

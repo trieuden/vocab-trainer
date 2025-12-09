@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { HomePage, StartPage } from '@/vocab/pages';
-import { AccountMenu } from '@/vocab/component';
 import { UserModel } from '@/core/models/UserModel';
 import { getMe } from '@/core/services/AuthServices';
 import { useUser } from '@/vocab/providers/UserProvider';
@@ -46,12 +45,6 @@ const Pages = () => {
       {accessToken ? (
         <>
           <HomePage setIsOpenAccMenu={setIsOpenAccMenu} isShortcutKeys={isShortcutKeys} />
-          <AccountMenu
-            isOpenAccMenu={isOpenAccMenu}
-            setIsOpenAccMenu={setIsOpenAccMenu}
-            isShortcutKeys={isShortcutKeys}
-            setIsShortcutKeys={setIsShortcutKeys}
-          />
         </>
       ) : (
         <StartPage />

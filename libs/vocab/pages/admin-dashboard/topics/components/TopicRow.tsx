@@ -1,4 +1,4 @@
-import { Stack, Dialog, Menu, MenuItem, Checkbox, Divider } from '@mui/material';
+import { Stack, Dialog, Menu, MenuItem, Checkbox, Divider, Box } from '@mui/material';
 import React, { useState } from 'react';
 import { MoreVert, DeleteForeverOutlined, AssessmentOutlined } from '@mui/icons-material';
 import { TextButton, CustomTextField, CustomDialog, TextFieldInput } from '@/core/component';
@@ -18,15 +18,21 @@ export const TopicRow = () => {
   };
   return (
     <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer p-3">
-      <Stack flex={1.2} direction={'row'} spacing={1}>
+      <Stack flex={1.2} direction={'row'} spacing={1} alignItems={'center'}>
         <Checkbox checked={false} className="h-6 w-6" />
+        <Box
+          component="img"
+          src="/images/trieuden.jpg"
+          alt="avatar"
+          className="rounded-full h-10 w-10 object-cover cursor-pointer hover:opacity-80 transition"
+        />
         <span>Road</span>
       </Stack>
       <Stack flex={1} direction={'row'} justifyContent={'space-between'} spacing={2} alignItems={'center'}>
         <span className="flex-1">It description</span>
         <Stack direction={'row'} spacing={2} className="flex-1" justifyContent={'space-around'} alignItems={'center'}>
           <span className="">20</span>
-          <TextButton icon={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
+          <TextButton startIcon={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
         </Stack>
         <Menu
           anchorEl={anchorEl}
@@ -59,7 +65,7 @@ export const TopicRow = () => {
         </Menu>
       </Stack>
       {/* Dialog */}
-      <CustomDialog isOpenModal={openDialog} setIsOpenModal={() => setOpenDialog(false)}>
+      <CustomDialog isOpenModal={openDialog} setIsOpenModal={() => setOpenDialog(false)} maxWidth="md">
         <TopicDetail setOpenDialog={setOpenDialog} />
       </CustomDialog>
     </Stack>

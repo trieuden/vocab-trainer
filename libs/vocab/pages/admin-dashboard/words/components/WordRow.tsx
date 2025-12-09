@@ -37,7 +37,7 @@ export const WordRow = () => {
 
         <Stack direction={'row'} spacing={2} className="flex-1" justifyContent={'space-between'} alignItems={'flex-start'}>
           <span className="flex-1">Con đường</span>
-          <TextButton icon={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
+          <TextButton startIcon={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
         </Stack>
         <Menu
           anchorEl={anchorEl}

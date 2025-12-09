@@ -1,4 +1,4 @@
 'use client';
-import { Login } from '@/vocab/pages';
+import { LoginForm } from '@/vocab/pages';
 
-export default Login;
+export default LoginForm;

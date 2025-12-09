@@ -23,6 +23,7 @@ type InputProps = {
   variant?: 'standard' | 'filled' | 'outlined';
   roundedWidth?: number | string;
   height?: number | string;
+  isBordered?: boolean;
 };
 
 const formatMoney = (value: number | string): string => {
@@ -54,6 +55,7 @@ export const TextFieldInput = ({
   variant = 'outlined',
   roundedWidth,
   height,
+  isBordered = true,
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -99,7 +101,10 @@ export const TextFieldInput = ({
           onChange={(e) => handleChange(e.target.value)}
           fullWidth
           type={isPassword ? (showPassword ? 'text' : 'password') : type}
-          onFocus={() => setIsFocused(true)}
+          onFocus={() => {
+            handleBlur?.();
+            setIsFocused(true);
+          }}
           onBlur={() => {
             setIsFocused(false);
             handleBlur?.();
@@ -109,6 +114,7 @@ export const TextFieldInput = ({
             '& .MuiOutlinedInput-root': {
               borderRadius: roundedWidth || 1,
               backgroundColor: disabled ? '#f5f5f5' : 'white',
+              border: isBordered ? '' : 'none',
             },
           }}
           InputProps={{

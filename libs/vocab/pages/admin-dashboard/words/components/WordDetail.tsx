@@ -14,7 +14,7 @@ export const WordDetail = ({ setIsOpenModal }: WordDetailProps) => {
     <Stack spacing={3} className="text-black">
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <h1 className="font-bold text-[18px] pl-3">Word Detail</h1>
-        <TextButton icon={<Clear />} width={'35px'} fontSize={23} handleClick={() => setIsOpenModal(false)} />
+        <TextButton startIcon={<Clear />} width={'35px'} fontSize={23} handleClick={() => setIsOpenModal(false)} />
       </Stack>
       <Stack spacing={4} direction={'row'} className="px-5">
         <Stack spacing={1} className="items-center">
@@ -41,16 +41,16 @@ export const WordDetail = ({ setIsOpenModal }: WordDetailProps) => {
                 )}
                 {isEditExample ? (
                   <Stack direction={'row'} spacing={1} alignItems={'center'}>
-                    <TextButton width={'25px'} icon={<Clear />} color="#ff0000" handleClick={() => setIsEditExample(false)} />
-                    <TextButton width={'25px'} icon={<Done />} handleClick={() => setIsEditExample(false)} />
+                    <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setIsEditExample(false)} />
+                    <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setIsEditExample(false)} />
                   </Stack>
                 ) : (
-                  <TextButton icon={<EditOutlined />} handleClick={() => setIsEditExample(true)} />
+                  <TextButton startIcon={<EditOutlined />} handleClick={() => setIsEditExample(true)} />
                 )}
               </Stack>
             </Stack>
             <Stack className="absolute top-0 right-0">
-              <TextButton icon={<DeleteOutline />} width={'10px'} fontSize={'20px'} color="red" />
+              <TextButton startIcon={<DeleteOutline />} width={'10px'} fontSize={'20px'} color="red" />
             </Stack>
           </Stack>
           <Stack className="flex-1" alignItems={'center'}>
@@ -61,7 +61,7 @@ export const WordDetail = ({ setIsOpenModal }: WordDetailProps) => {
         <Stack spacing={2} alignItems={'center'}>
           <Stack className="relative">
             <Stack className="absolute bottom-2 -right-2">
-              <TextButton icon={<Clear />} width={'10px'} fontSize={'15px'} color="red" />
+              <TextButton startIcon={<Clear />} width={'10px'} fontSize={'15px'} color="red" />
             </Stack>
             <span className="bg-[#d9d9d9] px-2 rounded-2xl flex-wrap">Travel</span>
           </Stack>

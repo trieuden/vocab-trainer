@@ -8,5 +8,6 @@ export * from './Dialog/CustomDialog';
 export * from './Input/TextFieldInput';
 export * from './Input/FractionInput';
 export * from './Input/SelectInput';
+export * from './Input/DateInput';
 
 export * from './TextField/CustomTextField';

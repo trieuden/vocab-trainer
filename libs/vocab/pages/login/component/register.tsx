@@ -3,7 +3,7 @@ import { OutlineButton, PrimaryButton, SelectInput, TextFieldInput } from '@/cor
 import { Box, Stack, Typography, useTheme, Checkbox } from '@mui/material';
 import { AccountCircle, Https, Google, Facebook, Email } from '@mui/icons-material';
 import { useThemeMode, useNotification } from '@/vocab/providers';
-import { ValidPassword } from '@/vocab/utils';
+import { validPassword } from '@/vocab/utils';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 

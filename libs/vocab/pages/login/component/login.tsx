@@ -3,12 +3,12 @@ import { OutlineButton, PrimaryButton, SelectInput, TextFieldInput } from '@/cor
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 import { AccountCircle, Https, Google, Facebook } from '@mui/icons-material';
 import { useThemeMode, useNotification } from '@/vocab/providers';
-import { LoginApi } from '@/core/services/AuthServices';
-import { ValidPassword } from '@/vocab/utils';
+import { Login } from '@/core/services/AuthServices';
+import { validPassword } from '@/vocab/utils';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
-export const Login = () => {
+export const LoginForm = () => {
   const theme = useTheme();
   const { isDarkMode } = useThemeMode();
   const { setNotification } = useNotification();
@@ -19,15 +19,22 @@ export const Login = () => {
 
   const handleLogin = async () => {
     try {
-      if (!ValidPassword(password)) {
+      if (!validPassword(password)) {
         setNotification('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.', 'error');
         return;
       }
-      const res = await LoginApi({ username, password });
+      const res = await Login({ username, password });
       Cookies.set('accessToken', res);
       router.replace('/');
     } catch (error) {
-      console.log(error);
+      if (error.response.statusCode === 401) {
+        setNotification('Invalid username or password.', 'error');
+        return;
+      }
+      if (error.response.statusCode === 403) {
+        setNotification('Your account is locked. Please contact support.', 'error');
+        return;
+      }
     }
   };
 

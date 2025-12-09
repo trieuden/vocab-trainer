@@ -1,7 +1,18 @@
 'use client';
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Box, Divider, Stack } from '@mui/material';
-import { Dashboard, People, Topic, LibraryBooks, Spellcheck, History, Menu } from '@mui/icons-material';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, Typography, Box, Divider, Stack } from '@mui/material';
+import {
+  Dashboard,
+  People,
+  Topic,
+  LibraryBooks,
+  Spellcheck,
+  History,
+  Menu,
+  LogoutOutlined,
+  HelpOutlineOutlined,
+  SettingsOutlined,
+} from '@mui/icons-material';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TextButton } from '@/core/component';
@@ -10,9 +21,15 @@ const menuItems = [
   { text: 'Dashboard', icon: <Dashboard />, href: '/admin/' },
   { text: 'Users', icon: <People />, href: '/admin/users/' },
   { text: 'Topics', icon: <Topic />, href: '/admin/topics/' },
-  { text: 'Library', icon: <LibraryBooks />, href: '/admin/library/' },
+  { text: 'Library', icon: <LibraryBooks />, href: '/admin/libraries/' },
   { text: 'Words', icon: <Spellcheck />, href: '/admin/words/' },
-  { text: 'Audit Log', icon: <History />, href: '/admin/audit-log/' },
+  { text: 'Audit Log', icon: <History />, href: '/admin/audit-logs/' },
+];
+
+const moreMenuItems = [
+  { text: 'Help', icon: <HelpOutlineOutlined />, href: '/help/' },
+  { text: 'Settings', icon: <SettingsOutlined />, href: '/settings/' },
+  { text: 'Logout', icon: <LogoutOutlined />, href: '/logout/' },
 ];
 
 export const AdminSidebar = () => {
@@ -46,8 +63,8 @@ export const AdminSidebar = () => {
         },
       }}
     >
-      <Stack spacing={2} direction={'row'} padding={1} alignItems="center" className="h-18">
-        <TextButton icon={<Menu />} width={'50px'} fontSize={'27px'} color="#404040" handleClick={() => setOpen((prev) => !prev)} />
+      <Stack component={'header'} spacing={2} direction={'row'} padding={1} alignItems="center" className="h-18">
+        <TextButton startIcon={<Menu />} width={'50px'} fontSize={'27px'} color="#404040" handleClick={() => setOpen((prev) => !prev)} />
         {open && (
           <Box>
             <Typography variant="h5" component="h1" sx={{ fontWeight: 700, color: '#33cc33' }}>
@@ -61,8 +78,9 @@ export const AdminSidebar = () => {
       </Stack>
 
       <Divider variant="middle" />
+      {/* Menu options */}
 
-      <List sx={{ pt: 2, pr: open ? 2 : 0, flex: 1 }}>
+      <List sx={{ pt: 2, pr: open ? 2 : 0, flex: 1 }} component={'section'}>
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding className="h-16">
             <ListItemButton
@@ -70,26 +88,53 @@ export const AdminSidebar = () => {
               href={item.href}
               selected={pathname === '/vi' + item.href}
               sx={{
-                borderTopRightRadius: 20,
-                borderBottomRightRadius: 20,
+                borderTopRightRadius: 30,
+                borderBottomRightRadius: 30,
                 backgroundColor: '#e6e6e6',
                 '&.Mui-selected': {
-                  backgroundColor: 'white',
+                  backgroundColor: '#00b300',
                 },
                 '&.Mui-selected:hover': {
-                  backgroundColor: '#f5f5f5', // Màu khi hover vào item đã chọn
+                  backgroundColor: '#1aff1a', // Màu khi hover vào item đã chọn
                 },
                 '&:hover': {
                   backgroundColor: '#ffffff', // Màu khi hover vào item chưa chọn
                 },
               }}
             >
-              <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
-              {open && <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: 500 }} />}
+              <ListItemIcon sx={{ minWidth: 40, color: pathname === '/vi' + item.href ? 'white' : '' }}>{item.icon}</ListItemIcon>
+              {open && <span className={`${pathname === '/vi' + item.href ? 'text-white' : ''} py-2 font-medium`}>{item.text}</span>}
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      {/* More options */}
+      <Box component={'section'}>
+        <Divider variant="middle" />
+        <List sx={{ pt: 2, pr: open ? 2 : 0, flex: 1 }}>
+          {moreMenuItems.map((item) => (
+            <ListItem key={item.text} disablePadding className="h-12">
+              <ListItemButton
+                component={Link}
+                href={item.href}
+                sx={{
+                  backgroundColor: '#e6e6e6',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                    color: '#00b300',
+                    '& .MuiListItemIcon-root, & .MuiSvgIcon-root': {
+                      color: '#00b300',
+                    },
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
+                {open && <span className={`${pathname === '/vi' + item.href ? 'text-white' : ''} py-2 font-medium`}>{item.text}</span>}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
     </Drawer>
   );
 };

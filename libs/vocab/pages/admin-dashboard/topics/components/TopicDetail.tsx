@@ -9,6 +9,14 @@ type TopicDetailProps = {
 };
 
 export const TopicDetail = ({ setOpenDialog }: TopicDetailProps) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log('Selected file:', file);
+      // TODO: xử lý upload hoặc hiển thị ảnh mới
+    }
+  };
+
   const [isEditTopicName, setIsEditTopicName] = useState(false);
   const [isEditDescription, setIsEditDescription] = useState(false);
   const [onAddNewWord, setOnAddNewWord] = useState(false);
@@ -18,46 +26,63 @@ export const TopicDetail = ({ setOpenDialog }: TopicDetailProps) => {
       {/* Header */}
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
         <h1 className="font-bold text-[16px] pl-3">Topic Detail</h1>
-        <TextButton icon={<Clear />} width={'35px'} fontSize={23} handleClick={() => setOpenDialog(false)} color="red" />
+        <TextButton startIcon={<Clear />} width={'35px'} fontSize={23} handleClick={() => setOpenDialog(false)} color="red" />
       </Stack>
       {/* Info */}
-      <Stack spacing={1} direction={'column'} boxShadow={2} className=" bg-[#e8e8e8] rounded-xl mt-2 mx-6 py-4 w-[80%] self-center">
-        {/* Topic Name */}
-        <Stack direction={'row'} spacing={8} alignItems={'center'} className="px-4 " justifyContent={'space-between'}>
-          <span className="text-[14px] text-black font-semibold w-[120px]">Topic Name</span>
-          <Stack direction={'row'} spacing={2} alignItems="center">
-            {isEditTopicName ? (
-              <TextFieldInput value={'The road was long and winding.'} setValue={() => {}} roundedWidth={3} height={'30px'} />
-            ) : (
-              <i className="text-[17px] text-[#151414] ">Animal</i>
-            )}
-            {isEditTopicName ? (
-              <Stack direction={'row'} spacing={1} alignItems={'center'}>
-                <TextButton width={'25px'} icon={<Clear />} color="#ff0000" handleClick={() => setIsEditTopicName(false)} />
-                <TextButton width={'25px'} icon={<Done />} handleClick={() => setIsEditTopicName(false)} />
-              </Stack>
-            ) : (
-              <TextButton icon={<EditOutlined />} handleClick={() => setIsEditTopicName(true)} />
-            )}
-          </Stack>
+      <Stack direction={'row'} flex={1}>
+        {/* Avatar */}
+        <Stack direction="row" className=" relative items-center">
+          <label htmlFor="avatar-upload">
+            <Box
+              component="img"
+              src="/images/trieuden.jpg"
+              alt="avatar"
+              className="rounded-full h-28 w-28 object-cover cursor-pointer hover:opacity-80 transition"
+            />
+          </label>
+          <Box className="absolute top-0 right-0">
+            <TextButton startIcon={<Clear />} width={'8px'} color="red" fontSize={'16px'} />
+          </Box>
+          <input id="avatar-upload" type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFileChange} />
         </Stack>
-        {/* Description */}
-        <Stack direction={'row'} spacing={8} alignItems={'center'} className="px-4" justifyContent={'space-between'}>
-          <span className="text-[14px] text-black font-semibold w-[120px]">Description</span>
-          <Stack direction={'row'} spacing={2} alignItems="center">
-            {isEditDescription ? (
-              <TextFieldInput value={'The road was long and winding.'} setValue={() => {}} roundedWidth={3} height={'30px'} />
-            ) : (
-              <span className="text-[14px] text-[#737373] text-end">Animal is animal animal animal</span>
-            )}
-            {isEditDescription ? (
-              <Stack direction={'row'} spacing={1} alignItems={'center'}>
-                <TextButton width={'25px'} icon={<Clear />} color="#ff0000" handleClick={() => setIsEditDescription(false)} />
-                <TextButton width={'25px'} icon={<Done />} handleClick={() => setIsEditDescription(false)} />
-              </Stack>
-            ) : (
-              <TextButton icon={<EditOutlined />} handleClick={() => setIsEditDescription(true)} />
-            )}
+        <Stack spacing={1} direction={'column'} boxShadow={2} className="flex-1 bg-[#e8e8e8] rounded-xl mt-2 mx-6 py-4 self-center">
+          {/* Topic Name */}
+          <Stack direction={'row'} spacing={8} alignItems={'center'} className="px-4 " justifyContent={'space-between'}>
+            <span className="text-[14px] text-black font-semibold ">Topic Name</span>
+            <Stack direction={'row'} spacing={2} alignItems="center">
+              {isEditTopicName ? (
+                <TextFieldInput value={'The road was long and winding.'} setValue={() => {}} roundedWidth={3} height={'30px'} />
+              ) : (
+                <i className="text-[17px] text-[#151414] ">Animal</i>
+              )}
+              {isEditTopicName ? (
+                <Stack direction={'row'} spacing={1} alignItems={'center'}>
+                  <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setIsEditTopicName(false)} />
+                  <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setIsEditTopicName(false)} />
+                </Stack>
+              ) : (
+                <TextButton startIcon={<EditOutlined />} handleClick={() => setIsEditTopicName(true)} />
+              )}
+            </Stack>
+          </Stack>
+          {/* Description */}
+          <Stack direction={'row'} spacing={8} alignItems={'center'} className="px-4" justifyContent={'space-between'}>
+            <span className="text-[14px] text-black font-semibold ">Description</span>
+            <Stack direction={'row'} spacing={2} alignItems="center">
+              {isEditDescription ? (
+                <TextFieldInput value={'The road was long and winding.'} setValue={() => {}} roundedWidth={3} height={'30px'} />
+              ) : (
+                <span className="text-[14px] text-[#737373] text-end">Animal is animal animal animal</span>
+              )}
+              {isEditDescription ? (
+                <Stack direction={'row'} spacing={1} alignItems={'center'}>
+                  <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setIsEditDescription(false)} />
+                  <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setIsEditDescription(false)} />
+                </Stack>
+              ) : (
+                <TextButton startIcon={<EditOutlined />} handleClick={() => setIsEditDescription(true)} />
+              )}
+            </Stack>
           </Stack>
         </Stack>
       </Stack>
@@ -76,8 +101,8 @@ export const TopicDetail = ({ setOpenDialog }: TopicDetailProps) => {
       {onAddNewWord && (
         <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'center'} className="p-2 rounded-xl" boxShadow={1}>
           <SelectInput title="New Word" value={[]} onChange={() => {}} width={'50%'} />
-          <TextButton width={'25px'} icon={<Clear />} color="#ff0000" handleClick={() => setOnAddNewWord(false)} />
-          <TextButton width={'25px'} icon={<Done />} handleClick={() => setOnAddNewWord(false)} />
+          <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setOnAddNewWord(false)} />
+          <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setOnAddNewWord(false)} />
         </Stack>
       )}
       {/* Word */}
@@ -113,7 +138,7 @@ export const TopicDetail = ({ setOpenDialog }: TopicDetailProps) => {
         >
           {[1, 2, 3, 4, 5].map((item, index) => (
             <div key={item}>
-              <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer p-3 relative">
+              <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer pl-3 pr-2 relative">
                 <Stack flex={1.2} direction={'row'} spacing={1} alignItems={'end'}>
                   <Checkbox checked={false} className="h-6 w-6" />
                   <span>Road</span>
@@ -121,9 +146,9 @@ export const TopicDetail = ({ setOpenDialog }: TopicDetailProps) => {
                 </Stack>
                 <Stack flex={1} direction={'row'} justifyContent={'space-between'} spacing={2} alignItems={'center'}>
                   <span className="flex-1">Con duong</span>
-                  <Stack direction={'row'} spacing={2} className="flex-1" justifyContent={'space-around'} alignItems={'center'}>
+                  <Stack direction={'row'} className="flex-1" justifyContent={'space-between'} alignItems={'center'}>
                     <span className="">C1</span>
-                    <TextButton icon={<DeleteOutlined />} width={'20px'} color="red" />
+                    <TextButton startIcon={<DeleteOutlined />} width={'50px'} color="red" />
                   </Stack>
                 </Stack>
                 <span className="absolute top-0 left-1 text-[9px]">{++index}</span>

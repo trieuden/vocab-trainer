@@ -4,7 +4,7 @@ import api from './api';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
-export const LoginApi = async (loginDto: LoginDto): Promise<string> => {
+export const Login = async (loginDto: LoginDto): Promise<string> => {
   try {
     const res = await api.post(`${API_URL}/auth/login`, loginDto);
     const data = res.data as { accessToken: string };
