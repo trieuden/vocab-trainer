@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Divider, Stack, Checkbox, Box } from '@mui/material';
 import { North, South } from '@mui/icons-material';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { CustomDialog, OutlineButton, TextButton } from '@/core/component';
-import { getUserByRole, searchUsersWithRole, deleteMultipleUsers } from '@/core/services/UserServices';
+import { searchUsersWithRole, deleteMultipleUsers } from '@/core/services/UserServices';
 import { useConfirmation, useNotification, useThemeMode } from '@/vocab/providers';
 import { handleSort } from '@/vocab/utils';
 
@@ -13,12 +13,12 @@ import { UserProfile } from './components/UserProfile';
 import { PaginationFooter } from '@/vocab/component/PaginationFooter';
 import { SelectedBar } from '@/vocab/component/SelectedBar';
 import { SearchBox } from '@/vocab/component';
-import { useQueryClient } from '@tanstack/react-query';
 import { UserModel } from '@/core/models';
 
 export const UserManagement = () => {
   const { isDarkMode } = useThemeMode();
   const queryClient = useQueryClient();
+
   const { setNotification } = useNotification();
   const { setConfirmation } = useConfirmation();
   const [adminUsers, setAdminUsers] = useState<UserModel[]>([]);
@@ -27,7 +27,7 @@ export const UserManagement = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
-  const [adPageSize, setAdPageSize] = useState(5);
+  const [adPageSize, setAdPageSize] = useState(1);
   const [currentAdPage, setCurrentAdPage] = useState(0);
 
   const [accPageSize, setAccPageSize] = useState(5);
@@ -36,25 +36,60 @@ export const UserManagement = () => {
   const [searchValue, setSearchValue] = useState('');
   const [sort, setSort] = useState<string>('');
 
-  const { data: fetchAminUsers = [] } = useQuery({
+  // Fetch users by tanstack query
+  const { data: fetchAminUsers = [], isLoading: isLoadingAdmin } = useQuery({
     queryKey: ['users', 'admin'],
     queryFn: () => searchUsersWithRole('admin', searchValue),
+    placeholderData: (previousData) => previousData,
   });
 
-  const { data: fetchAccountUsers = [] } = useQuery({
+  // Fetch users by tanstack query
+  const { data: fetchAccountUsers = [], isLoading: isLoadingAccount } = useQuery({
     queryKey: ['users', 'account'],
     queryFn: () => searchUsersWithRole('user', searchValue),
+    placeholderData: (previousData) => previousData,
   });
 
+  // Effects to update users when fetch data changes
   useEffect(() => {
-    if (fetchAminUsers) setAdminUsers(fetchAminUsers);
+    if (fetchAminUsers) {
+      setCurrentAdPage(0);
+      const data = fetchAminUsers.slice(0, adPageSize);
+      setAdminUsers(data);
+    }
     setSort('');
   }, [fetchAminUsers]);
 
+  // Effect to update account users
   useEffect(() => {
-    setAccountUsers(fetchAccountUsers);
+    if (fetchAccountUsers) {
+      setCurrentAccPage(0);
+      const data = fetchAccountUsers.slice(0, accPageSize);
+      setAccountUsers(data);
+    }
     setSort('');
   }, [fetchAccountUsers]);
+
+  // Pagination admin
+  useEffect(() => {
+    const pagedAdminUsers = fetchAminUsers.slice(currentAdPage * adPageSize, currentAdPage * adPageSize + adPageSize);
+    setAdminUsers(pagedAdminUsers);
+  }, [adPageSize, currentAdPage]);
+
+  // Pagination account
+  useEffect(() => {
+    const pagedAccountUsers = fetchAccountUsers.slice(currentAccPage * accPageSize, currentAccPage * accPageSize + accPageSize);
+    setAccountUsers(pagedAccountUsers);
+  }, [accPageSize, currentAccPage]);
+
+  // Handle checkboxes
+  const handleCheckedIds = (e: React.ChangeEvent<HTMLInputElement>, user: UserModel) => {
+    if (e.target.checked) {
+      setCheckedIds((prev) => [...prev, user.id]);
+    } else {
+      setCheckedIds((prev) => prev.filter((id) => id !== user.id));
+    }
+  };
 
   const handleSearch = async (value: string) => {
     setSearchValue(value);
@@ -64,7 +99,7 @@ export const UserManagement = () => {
 
   const handleDeleteUsers = async () => {
     if (checkedIds.length === 0) return;
-    if (await setConfirmation('Delete Users', `Are you sure you want to delete ${checkedIds.length} users?`)) {
+    if (await setConfirmation('Delete Users', `Are you sure you want to delete ${checkedIds.length} users ?`)) {
       const success = await deleteMultipleUsers(checkedIds);
       if (success) {
         await queryClient.invalidateQueries({ queryKey: ['users', 'admin'] });
@@ -178,23 +213,20 @@ export const UserManagement = () => {
                 </Box>
               </Stack>
             </Stack>
-            {adminUsers.length > 0 &&
+            {isLoadingAdmin ? (
+              <Box className="p-5 text-center">Loading...</Box>
+            ) : (
               adminUsers?.map((user, i) => (
-                <Stack direction={'row'} alignItems={'center'} key={user.id} className="hover:bg-gray-100 px-3">
-                  <Checkbox
-                    checked={checkedIds.includes(user.id)}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setCheckedIds((prev) => [...prev, user.id]);
-                      } else {
-                        setCheckedIds((prev) => prev.filter((id) => id !== user.id));
-                      }
-                    }}
-                  />
-                  <UserRow user={user} />
+                <Box key={user.id} className="hover:bg-gray-100 relative">
+                  <Stack direction={'row'} alignItems={'center'} className=" px-3 ">
+                    <Checkbox checked={checkedIds.includes(user.id)} onChange={(e) => handleCheckedIds(e, user)} />
+                    <UserRow user={user} />
+                  </Stack>
                   {i < adminUsers.length - 1 && <Divider />}
-                </Stack>
-              ))}
+                  <span className="absolute top-0 left-1 text-[9px]">{++i}</span>
+                </Box>
+              ))
+            )}
           </Stack>
         </Stack>
         {/* Admin pagination */}
@@ -203,7 +235,7 @@ export const UserManagement = () => {
           setPageSize={setAdPageSize}
           offset={currentAdPage}
           setOffset={setCurrentAdPage}
-          totalItems={adminUsers.length}
+          totalItems={fetchAminUsers.length}
         />
       </Stack>
       <Divider />
@@ -290,22 +322,17 @@ export const UserManagement = () => {
                 </Box>
               </Stack>
             </Stack>
-            {accountUsers.map((user, i) => (
-              <Stack direction={'row'} alignItems={'center'} key={user.id} className="hover:bg-gray-100 px-3">
-                <Checkbox
-                  checked={checkedIds.includes(user.id)}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setCheckedIds((prev) => [...prev, user.id]);
-                    } else {
-                      setCheckedIds((prev) => prev.filter((id) => id !== user.id));
-                    }
-                  }}
-                />
-                <UserRow user={user} />
-                {i < accountUsers.length - 1 && <Divider />}
-              </Stack>
-            ))}
+            {isLoadingAccount ? (
+              <Box className="p-5 text-center">Loading...</Box>
+            ) : (
+              accountUsers.map((user, i) => (
+                <Stack direction={'row'} alignItems={'center'} key={user.id} className="hover:bg-gray-100 px-3">
+                  <Checkbox checked={checkedIds.includes(user.id)} onChange={(e) => handleCheckedIds(e, user)} />
+                  <UserRow user={user} />
+                  {i < accountUsers.length - 1 && <Divider />}
+                </Stack>
+              ))
+            )}
           </Stack>
         </Stack>
         {/* Account pagination */}

@@ -109,8 +109,7 @@ export const LibraryDetail = ({ setOpenDialog }: TopicDetailProps) => {
         <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'center'} className="p-2 rounded-xl" boxShadow={1}>
           <SelectInput title="New Word" value={[]} onChange={() => {}} width={'50%'} />
           <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setOnAddNewWord(false)} />
-          <
-             width={'25px'} startIcon={<Done />} handleClick={() => setOnAddNewWord(false)} />
+          <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setOnAddNewWord(false)} />
         </Stack>
       )}
       {/* Word */}
@@ -127,23 +126,7 @@ export const LibraryDetail = ({ setOpenDialog }: TopicDetailProps) => {
           </Stack>
         </Stack>
         {/* Word table */}
-        <Stack
-          className="overflow-y-auto h-60"
-          sx={{
-            scrollBehavior: 'smooth',
-            '&::-webkit-scrollbar': {
-              width: '4px',
-            },
-            '&::-webkit-scrollbar-track': {
-              backgroundColor: '#f1f1f1',
-              borderRadius: '10px',
-            },
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: '#b3b3b3',
-              borderRadius: '10px',
-            },
-          }}
-        >
+        <Stack className="custom-scrollbar h-60">
           {[1, 2, 3, 4, 5].map((item, index) => (
             <div key={item}>
               <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer pl-3 pr-2 relative">

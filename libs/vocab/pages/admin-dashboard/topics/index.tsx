@@ -1,13 +1,42 @@
 'use-client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Divider, Checkbox, Box } from '@mui/material';
 import { AddCircleRounded, Clear, Done, DeleteOutlined, SaveOutlined } from '@mui/icons-material';
 import { TextButton, OutlineButton, CustomDialog, TextFieldInput, SelectInput } from '@/core/component';
 import { TopicRow } from './components/TopicRow';
+import { TopicModel } from '@/core/models/TopicModel';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { getAllTopics } from '@/core/services/TopicServices';
+import { NewTopic } from './components/NewTopic';
+import { PaginationFooter } from '@/vocab/component';
 
 export const TopicsManagement = () => {
+  const queryClient = useQueryClient();
+
   const [openDialog, setOpenDialog] = useState(false);
-  const [onAddWordForNewTopic, setOnAddWordForNewTopic] = useState(false);
+
+  const [topics, setTopics] = useState<TopicModel[]>([]);
+
+  const [pageSize, setPageSize] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const { data: fetchTopics = [], isLoading: isLoadingTopics } = useQuery({
+    queryKey: ['topics'],
+    queryFn: async () => getAllTopics(),
+    placeholderData: (previousData) => previousData,
+  });
+
+  useEffect(() => {
+    if (fetchTopics) {
+      const data = fetchTopics.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
+      setTopics(data);
+    }
+  }, [fetchTopics]);
+
+  useEffect(() => {
+    const data = fetchTopics.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
+    setTopics(data);
+  }, [pageSize, currentPage]);
 
   return (
     <Stack spacing={3}>
@@ -34,8 +63,8 @@ export const TopicsManagement = () => {
             className="bg-gray-200 h-10 px-3 rounded-t-xl
                   font-semibold"
           >
-            <Stack flex={1.2} direction={'row'} spacing={1} alignItems={'center'}>
-              <Checkbox checked={false} className="h-6 w-6" />
+            <Checkbox checked={false} />
+            <Stack flex={1.2} direction={'row'} alignItems={'center'}>
               <span>Name</span>
             </Stack>
             <Stack flex={1} direction={'row'} justifyContent={'space-between'} spacing={2}>
@@ -44,113 +73,31 @@ export const TopicsManagement = () => {
             </Stack>
           </Stack>
 
-          {[1, 2, 3, 4, 5].map((item) => (
-            <div key={item}>
-              <TopicRow />
-              {item < 5 && <Divider />}
-            </div>
-          ))}
+          {isLoadingTopics ? (
+            <Box className="p-3">Loading...</Box>
+          ) : (
+            topics.map((topic: TopicModel, i) => (
+              <Box key={topic.id} className="hover:bg-gray-100 relative">
+                <Stack direction={'row'} alignItems={'center'} className="px-3">
+                  <Checkbox checked={false} />
+                  <TopicRow topic={topic} />
+                </Stack>
+                {i < topics.length - 1 && <Divider />}
+              </Box>
+            ))
+          )}
+          <PaginationFooter
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            offset={currentPage}
+            setOffset={setCurrentPage}
+            totalItems={fetchTopics.length}
+          />
         </Stack>
       </Stack>
       {/* New Topic form */}
       <CustomDialog isOpenModal={openDialog} setIsOpenModal={() => setOpenDialog(false)} maxWidth="md">
-        <Box className="text-black pb-3">
-          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'start'}>
-            <h1 className="font-bold text-[16px] ">New Topic</h1>
-            <TextButton startIcon={<Clear />} width={'35px'} fontSize={23} height={'20px'} handleClick={() => setOpenDialog(false)} color="red" />
-          </Stack>
-          {/* Topic info */}
-          <Stack direction={'row'} spacing={3} className="p-3">
-            <Stack spacing={2} flex={1}>
-              <Box>
-                <span className="">Topic Name</span>
-                <TextFieldInput value={''} setValue={() => {}} roundedWidth={3} height={'30px'} />
-              </Box>
-              <Box>
-                <span className="">Description</span>
-                <TextFieldInput value={''} setValue={() => {}} roundedWidth={3} height={'30px'} />
-              </Box>
-            </Stack>
-            {/* Word */}
-            <Divider orientation="vertical" flexItem />
-            <span className="self-start font-semibold">Word</span>
-            <Stack flex={2} spacing={1} direction={'column'} justifyContent={'center'} alignItems={'center'} className="rounded-xl pt-2">
-              {onAddWordForNewTopic ? (
-                <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'center'} className="p-2 rounded-xl w-full">
-                  <SelectInput title="New Word" value={[]} onChange={() => {}} width={'50%'} />
-                  <TextButton width={'25px'} startIcon={<Clear />} color="#ff0000" handleClick={() => setOnAddWordForNewTopic(false)} />
-                  <TextButton width={'25px'} startIcon={<Done />} handleClick={() => setOnAddWordForNewTopic(false)} />
-                </Stack>
-              ) : (
-                <OutlineButton
-                  title=""
-                  width={'80%'}
-                  handleClick={() => {
-                    setOnAddWordForNewTopic(true);
-                  }}
-                  height={'30px'}
-                  icon={<AddCircleRounded />}
-                />
-              )}
-              <Box className="rounded-2xl flex-1 w-full p-2 shadow-xl">
-                {/* Header Word table */}
-                <Stack direction={'row'} alignItems={'center'} className="bg-gray-200 h-10 px-3 rounded-t-xl font-semibold">
-                  <Stack flex={1.2} direction={'row'} spacing={1} alignItems={'center'}>
-                    <Checkbox checked={false} className="h-6 w-6" />
-                    <span>Word</span>
-                  </Stack>
-                  <Stack flex={1} direction={'row'} justifyContent={'space-between'} spacing={2}>
-                    <span className="flex-1 whitespace-nowrap">Vietnamese</span>
-                    <span className="flex-1">CEFR</span>
-                  </Stack>
-                </Stack>
-                {/* Word table */}
-                <Stack
-                  className="overflow-y-auto h-64 "
-                  sx={{
-                    scrollBehavior: 'smooth',
-                    '&::-webkit-scrollbar': {
-                      width: '4px',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                      backgroundColor: '#f1f1f1',
-                      borderRadius: '10px',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                      backgroundColor: '#b3b3b3',
-                      borderRadius: '10px',
-                    },
-                  }}
-                >
-                  {[1, 2, 3, 4, 5].map((item, index) => (
-                    <div key={item}>
-                      <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer p-3 relative">
-                        <Stack flex={1.2} direction={'row'} spacing={1} alignItems={'end'}>
-                          <Checkbox checked={false} className="h-6 w-6" />
-                          <span>Road</span>
-                          <i className="bg-[#e5e2e2] text-[12px] rounded-2xl px-1 size-fit">noun</i>
-                        </Stack>
-                        <Stack flex={1} direction={'row'} justifyContent={'space-between'} spacing={2} alignItems={'center'}>
-                          <span className="flex-1">Con duong</span>
-                          <Stack direction={'row'} spacing={2} className="flex-1" justifyContent={'space-around'} alignItems={'center'}>
-                            <span className="">C1</span>
-                            <TextButton startIcon={<DeleteOutlined />} width={'20px'} color="red" />
-                          </Stack>
-                        </Stack>
-                        <span className="absolute top-0 left-1 text-[9px]">{++index}</span>
-                      </Stack>
-                      {item < 5 && <Divider />}
-                    </div>
-                  ))}
-                </Stack>
-              </Box>
-            </Stack>
-          </Stack>
-          {/* buttons */}
-          <Box className="flex justify-end mr-3">
-            <OutlineButton title="Save" icon={<SaveOutlined />} handleClick={() => {}} width={'120px'} height={'30px'} />
-          </Box>
-        </Box>
+        <NewTopic setOpenDialog={setOpenDialog} />
       </CustomDialog>
     </Stack>
   );

@@ -1,5 +1,5 @@
 import { Stack, Checkbox, Menu, MenuItem, Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { MoreVert, AccountCircleOutlined, LockOpenOutlined, LockOutlined, LockPersonOutlined } from '@mui/icons-material';
 import { TextButton, CustomTextField, CustomDialog } from '@/core/component';
 import { UserProfile } from './UserProfile';
@@ -16,7 +16,7 @@ type UserRowProps = {
   user: UserModel;
 };
 
-export const UserRow = ({ user }: UserRowProps) => {
+export const UserRow = memo(({ user }: UserRowProps) => {
   const { setNotification } = useNotification();
   const { setConfirmation } = useConfirmation();
   const queryClient = useQueryClient();
@@ -44,7 +44,7 @@ export const UserRow = ({ user }: UserRowProps) => {
           await unbannedUser(user.id);
         }
         setNotification('User status updated successfully', 'success');
-        await queryClient.invalidateQueries({ queryKey: ['users', user.role.role_name] });
+        await queryClient.invalidateQueries({ queryKey: ['users', user.role.roleName] });
       } catch (error) {
         setNotification('Failed to update user status', 'error');
         console.error(error);
@@ -75,9 +75,7 @@ export const UserRow = ({ user }: UserRowProps) => {
           >
             {user.status.toUpperCase()}
           </span>
-          <TextButton startIcon
-          
-          ={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
+          <TextButton startIcon={<MoreVert />} width={'30px'} fontSize={'20px'} color="black" handleClick={handleOpen} />
         </Stack>
         <Menu
           anchorEl={anchorEl}
@@ -123,11 +121,10 @@ export const UserRow = ({ user }: UserRowProps) => {
           </MenuItem>
         </Menu>
       </Stack>
-
       <CustomDialog isOpenModal={openDialog != false} setIsOpenModal={() => setOpenDialog(false)} maxWidth="md">
         {openDialog === 'Profile' && <UserProfile setIsOpenModal={() => setOpenDialog(false)} currentUser={user} />}
         {openDialog === 'Permission' && <UserPermission setIsOpenModal={() => setOpenDialog(false)} currentUser={user} />}
       </CustomDialog>
     </Stack>
   );
-};
+});

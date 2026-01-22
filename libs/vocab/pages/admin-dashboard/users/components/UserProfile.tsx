@@ -112,7 +112,7 @@ export const UserProfile = ({ setIsOpenModal, currentUser }: UserProfileProps) =
             setNotification('User updated successfully', 'success');
             setUser({});
             queryClient.invalidateQueries({
-              queryKey: ['users', currentUser.role.role_name],
+              queryKey: ['users', currentUser.role.roleName],
             });
             setIsOpenModal(false);
           });
@@ -203,9 +203,9 @@ export const UserProfile = ({ setIsOpenModal, currentUser }: UserProfileProps) =
           <Stack direction={'row'} spacing={8} alignItems={'center'} justifyContent={'space-between'}>
             <span className="text-[14px] text-black font-semibold w-[120px]">Role</span>
             <SelectInput
-              selectedValue={currentUser ? currentUser?.role.role_name : roles.find((r) => r.id === user?.roleId)?.role_name}
+              selectedValue={currentUser ? currentUser?.role.roleName : roles.find((r) => r.id === user?.roleId)?.roleName}
               value={roles}
-              labelField="role_name"
+              labelField="roleName"
               isValid={valid.roleId}
               onSelectId={(v) => {
                 if (!!v) {

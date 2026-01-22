@@ -33,25 +33,7 @@ export const CustomDialog = ({ isOpenModal, setIsOpenModal, children, maxWidth =
         },
       }}
     >
-      <Box
-        className="overflow-y-auto"
-        sx={{
-          padding: '16px',
-
-          scrollBehavior: 'smooth',
-          '&::-webkit-scrollbar': {
-            width: '4px',
-          },
-          '&::-webkit-scrollbar-track': {
-            backgroundColor: '#f1f1f1',
-            borderRadius: '10px',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#b3b3b3',
-            borderRadius: '10px',
-          },
-        }}
-      >
+      <Box className="custom-scrollbar" sx={{ padding: '16px' }}>
         {children}
       </Box>
     </Dialog>

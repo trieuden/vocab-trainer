@@ -32,9 +32,8 @@ export const Confirmation = () => {
         if (isProcessing && reason === 'backdropClick') return;
         handleCancel();
       }}
-      className="rounded-3xl"
     >
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle sx={{ paddingX: 2, paddingBottom: 1, paddingTop: 2 }}>{title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{message}</DialogContentText>
       </DialogContent>

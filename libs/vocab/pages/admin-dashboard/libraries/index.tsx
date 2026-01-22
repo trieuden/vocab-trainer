@@ -109,23 +109,7 @@ export const LibrariesManager = () => {
                   </Stack>
                 </Stack>
                 {/* Word table */}
-                <Stack
-                  className="overflow-y-auto h-64 "
-                  sx={{
-                    scrollBehavior: 'smooth',
-                    '&::-webkit-scrollbar': {
-                      width: '4px',
-                    },
-                    '&::-webkit-scrollbar-track': {
-                      backgroundColor: '#f1f1f1',
-                      borderRadius: '10px',
-                    },
-                    '&::-webkit-scrollbar-thumb': {
-                      backgroundColor: '#b3b3b3',
-                      borderRadius: '10px',
-                    },
-                  }}
-                >
+                <Stack className="custom-scrollbar h-64 ">
                   {[1, 2, 3, 4, 5].map((item, index) => (
                     <div key={item}>
                       <Stack direction={'row'} alignItems={'center'} className="hover:bg-gray-100 min-h-16 rounded-md cursor-pointer p-4 relative">

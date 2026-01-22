@@ -113,8 +113,8 @@ export const HomePage = ({ setIsOpenAccMenu, isShortcutKeys }: HomePageProps) =>
 
     const fetchData = async () => {
       // if (currentUser.id === 'guest') {
-        const res = await GetDefaultLibraries();
-        setLibraries(res);
+      const res = await GetDefaultLibraries();
+      setLibraries(res);
       // }
       // if (currentUser.id === 'milo') {
       //   const res = await GetMiloLibraries();
@@ -503,23 +503,7 @@ export const HomePage = ({ setIsOpenAccMenu, isShortcutKeys }: HomePageProps) =>
   };
 
   return (
-    <Box
-      className={`shadow-2xl overflow-y-auto text-white bg-[${theme.palette.background.default}]`}
-      sx={{
-        scrollBehavior: 'smooth',
-        '&::-webkit-scrollbar': {
-          width: '4px',
-        },
-        '&::-webkit-scrollbar-track': {
-          backgroundColor: isDarkMode ? '#333' : '#f1f1f1',
-          borderRadius: '10px',
-        },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: isDarkMode ? '#f1f1f1' : '#b3b3b3',
-          borderRadius: '10px',
-        },
-      }}
-    >
+    <Box className={`shadow-2xl custom-scrollbar text-white bg-[${theme.palette.background.default}]`}>
       {/* Header */}
       <Header
         setIsOpenModal={setIsOpenModal}

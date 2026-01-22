@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 import { Box, Divider, IconButton, Stack, Tooltip } from '@mui/material';
 import { MailOutline, LockOutline, LockOpenOutlined, DeleteOutline, HelpOutlineOutlined, ClearOutlined } from '@mui/icons-material';
-import { TextButton } from '@/core/component';
-import { getRolePermissionsByRoleId } from '@/core/services/RolePermissionServices';
 import { useConfirmation, useNotification } from '@/vocab/providers';
-import { createUserPermission, deleteUserPermission } from '@/core/services/UserPermissionServices';
 import { useQueryClient } from '@tanstack/react-query';
+import { createRolePermission, deleteRolePermission } from '@/core/services/RolePermissionServices';
+import { use } from 'i18next';
+import { getAllPermissions } from '@/core/services/PermissionServices';
 
 // --- Cấu hình các điểm cố định ---
 const START_POINT = { x: 40, y: 180, id: 'start' };
@@ -23,30 +23,33 @@ const ADMIN_END_POINTS = [
 const ACCOUNT_END_POINTS = [{ x: 480, y: 177, id: 'end-1', permission: 'USER_S_ACCESS' }];
 const SNAP_DISTANCE = 30; // Khoảng cách tối đa để "hít" vào điểm
 
-export const UserPermission = ({ setIsOpenModal, currentUser }) => {
+export const Permissions = ({ role }) => {
   const { setConfirmation } = useConfirmation();
   const { setNotification } = useNotification();
 
-  const END_POINTS = currentUser.role.roleName === 'admin' ? ADMIN_END_POINTS : ACCOUNT_END_POINTS;
+  const END_POINTS = role.roleName === 'admin' ? ADMIN_END_POINTS : ACCOUNT_END_POINTS;
   const [lines, setLines] = useState([]);
   const [currentLine, setCurrentLine] = useState(null);
 
-  const [rolePermissions, setRolePermissions] = useState([]);
+  const [allPermission, setAllPermission] = useState([]);
 
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (currentUser && currentUser.userPermissions) {
-      const perms = currentUser.userPermissions;
-
+    setLines([]);
+    if (role && role.rolePermissions) {
+      const perms = role.rolePermissions;
       if (perms) drawPermission(perms);
-      const fetchRolePermissions = async () => {
-        const data = await getRolePermissionsByRoleId(currentUser.role.id);
-        setRolePermissions(data);
-      };
-      fetchRolePermissions();
     }
-  }, [currentUser]);
+  }, [role]);
+
+  useEffect(() => {
+    const fetchPermission = async () => {
+      const res = await getAllPermissions();
+      setAllPermission(res);
+    };
+    fetchPermission();
+  }, []);
 
   const drawPermission = (permissions) => {
     if (!permissions) return;
@@ -60,7 +63,7 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
           start: START_POINT,
           end: END_POINTS[endPointIndex],
           permission: p.permission.permissionName,
-          userPermission: p,
+          rolePermission: p,
         },
       ]);
     });
@@ -112,26 +115,24 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
     if (closestPoint && minDistance <= SNAP_DISTANCE) {
       // Kiểm tra để không tạo đường nối trùng lặp
       const isDuplicate = lines.some((line) => line && line.end && line.end.id === closestPoint.id);
-
       if (!isDuplicate) {
-        // Chỉ thêm đường nếu rolePermissions cho phép
-        const activePermission = rolePermissions.find((rp) => rp.permission.permissionName === closestPoint.permission);
-        if (activePermission) {
-          if (await setConfirmation('Confirm Save', `Are you sure to grant permission ${closestPoint.permission} to user ${currentUser.name}?`)) {
-            const userPermission = await createUserPermission({
-              userId: currentUser.id,
-              permissionId: activePermission.permission.id,
-            });
-            queryClient.invalidateQueries({
-              queryKey: ['users', currentUser.role.roleName],
-            });
+        // Thêm đường
+        if (
+          await setConfirmation('Confirm Save', `Are you sure to grant permission ${closestPoint.permission} to role ${role.roleName.toUpperCase()}?`)
+        ) {
+          const rolePermission = await createRolePermission({
+            roleId: role.id,
+            permissionId: allPermission.find((p) => p.permissionName === closestPoint.permission).id,
+          });
+          queryClient.invalidateQueries({
+            queryKey: ['roles'],
+          });
 
-            setLines((prevLines) => [
-              ...prevLines,
-              { start: START_POINT, end: closestPoint, permission: closestPoint.permission, userPermission: userPermission },
-            ]);
-            setNotification(`Permission ${closestPoint.permission} granted to user ${currentUser.name} successfully.`, 'success');
-          }
+          setLines((prevLines) => [
+            ...prevLines,
+            { start: START_POINT, end: closestPoint, permission: closestPoint.permission, rolePermissions: rolePermission },
+          ]);
+          setNotification(`Permission ${closestPoint.permission} granted to role ${role.roleName.toUpperCase()} successfully.`, 'success');
         }
       }
     }
@@ -141,59 +142,12 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
   };
 
   return (
-    <Box className="text-black select-none">
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-        <h1 className="font-bold text-[18px]">User Permission Manager</h1>
-        <TextButton startIcon={<ClearOutlined />} width={'40px'} handleClick={setIsOpenModal} />
+    <Box className="text-black select-none  border border-gray-300 rounded-xl relative">
+      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} className="bg-gray-200 h-10 rounded-t-xl px-3">
+        <h1 className="font-bold text-[18px]">Permissions</h1>
       </Stack>
 
       <Stack direction={'row'} alignItems={'center'} className="text-black">
-        <Stack direction="row" alignItems="center" className="mb-4 w-52">
-          <Stack
-            className="p-3 rounded-2xl w-full items-center"
-            style={{
-              boxShadow: '0 2px 25px #00802b',
-              animation: 'slideDown 0.8s ease-out forwards',
-              transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-
-              '&:hover': {
-                transform: 'scale(1.1)',
-              },
-            }}
-            spacing={1}
-          >
-            <Box
-              component={'img'}
-              src={currentUser.avatar ? currentUser.avatar : '/images/default.png'}
-              alt=""
-              className="h-24 w-24 rounded-full object-cover border border-gray-300"
-            />
-            <span className="font-semibold text-lg">{currentUser.name}</span>
-            <Divider className="my-1 w-10" />
-            <span className="text-sm text-gray-500">{currentUser.role.roleName}</span>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <MailOutline fontSize="16px" />
-              <span className=" text-[12px] text-black">{currentUser.email}</span>
-            </Stack>
-            <Stack direction={'row'} alignItems={'center'} justifyContent={'center'}>
-              <Tooltip title="Move all permissions" arrow>
-                <span>
-                  <TextButton startIcon={<DeleteOutline />} width={'40px'} height={'30px'} color="#e60000" />
-                </span>
-              </Tooltip>
-
-              <Tooltip
-                title="- Connect the blue dots to grant permissions to the user
-              - Click on the connected permissions to remove them from the user"
-                arrow
-              >
-                <span>
-                  <TextButton startIcon={<HelpOutlineOutlined />} width={'40px'} height={'30px'} />
-                </span>
-              </Tooltip>
-            </Stack>
-          </Stack>
-        </Stack>
         <svg
           width="85%"
           height="400px"
@@ -214,7 +168,7 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
                     y1={line.start.y}
                     x2={line.end.x}
                     y2={line.end.y}
-                    stroke={rolePermissions.find((rp) => rp.permission.permission_name === line.permission) ? 'blue' : 'red'}
+                    stroke={'blue'}
                     strokeWidth="3"
                     className="cursor-pointer"
                   />
@@ -242,7 +196,6 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
           {END_POINTS.map((point) => {
             // Kiểm tra xem điểm này đã được nối chưa
             const isConnected = lines.some((line) => line.end.id === point.id);
-            const isActive = rolePermissions.find((rp) => rp.permission.permissionName === point.permission);
 
             return (
               <foreignObject
@@ -254,41 +207,38 @@ export const UserPermission = ({ setIsOpenModal, currentUser }) => {
                 className="select-none cursor-pointer overflow-visible"
                 onClick={async () => {
                   // Xử lý khi click vào điểm kết thúc (xóa kết nối)
-                  if (isActive) {
+                  if (isConnected) {
                     if (
-                      await setConfirmation('Confirm Remove', `Are you sure to remove permission ${point.permission} from user ${currentUser.name}?`)
+                      await setConfirmation('Confirm Remove', `Are you sure to remove permission ${point.permission} from role ${role.roleName}?`)
                     ) {
-                      await deleteUserPermission(currentUser.userPermissions.find((up) => up.permission.permissionName === point.permission).id);
+                      await deleteRolePermission(role.rolePermissions.find((rp) => rp.permission.permissionName === point.permission).id);
                       queryClient.invalidateQueries({
-                        queryKey: ['users', currentUser.role.roleName],
+                        queryKey: ['roles'],
                       });
-                      setNotification(`Permission ${point.permission} removed from user ${currentUser.name} successfully.`, 'success');
+                      setNotification(`Permission ${point.permission} removed from role ${role.roleName} successfully.`, 'success');
                       setLines((prev) => prev.filter((line) => line && line.end && line.end.id !== point.id));
                     }
                   }
                 }}
               >
-                <Tooltip
-                  title={!isActive ? 'This permission is not assigned' : isConnected ? 'Click to remove permission' : 'Drag to assign permission'}
-                  arrow
-                >
+                <Tooltip title={isConnected ? 'Click to remove permission' : 'Drag to assign permission'} arrow>
                   <div
                     xmlns="http://www.w3.org/1999/xhtml"
                     className={`${
-                      isActive && isConnected ? 'bg-[#80ff8086]' : 'bg-[#ffffff86]'
+                      isConnected ? 'bg-[#80ff8086]' : 'bg-[#ffffff86]'
                     } flex items-center p-2 rounded-lg box-shadow-md border border-gray-300`}
                     style={{
                       width: 'fit-content',
                     }}
                   >
-                    {isConnected && isActive ? (
-                      <LockOpenOutlined sx={{ color: isActive ? 'green' : 'red', fontSize: '20px', marginRight: '8px' }} />
+                    {isConnected ? (
+                      <LockOpenOutlined sx={{ color: 'green', fontSize: '20px', marginRight: '8px' }} />
                     ) : (
-                      <LockOutline sx={{ color: isActive ? 'black' : 'red', fontSize: '20px', marginRight: '8px' }} />
+                      <LockOutline sx={{ color: 'black', fontSize: '20px', marginRight: '8px' }} />
                     )}
 
                     {/* Phần Text của bạn */}
-                    <span className={`${isActive ? 'text-black ' : 'text-red-500'} text-[13px]`}>{point.permission}</span>
+                    <span className="text-black text-[13px]">{point.permission}</span>
                   </div>
                 </Tooltip>
               </foreignObject>

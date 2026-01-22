@@ -18,7 +18,7 @@ export const getSentence = async (word: string) => {
 
             if (contentType && contentType.includes("application/json")) {
                 data = await response.json();
-                return data;
+                return data?.result ?? data;
             } else {
                 // Nếu response là text thuần
                 const textData = await response.text();
@@ -49,7 +49,7 @@ export const getPassage = async (word: WordModel) => {
 
             if (contentType && contentType.includes("application/json")) {
                 data = await response.json();
-                return data;
+                return data?.result ?? data;
             } else {
                 // Nếu response là text thuần
                 const textData = await response.text();
@@ -80,7 +80,7 @@ export const getTranslationScore = async (englishText: string, vietnameseText: s
 
             if (contentType && contentType.includes("application/json")) {
                 data = await response.json();
-                return data;
+                return data?.result ?? data;
             } else {
                 // Nếu response là text thuần
                 const textData = await response.text();
